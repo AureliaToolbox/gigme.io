@@ -1,0 +1,24 @@
+= form_for @gitter_message do |f|
+  - if @gitter_message.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@gitter_message.errors.count, "error")} prohibited this gitter_message from being saved:"
+      ul
+        - @gitter_message.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :from_user
+    = f.text_field :from_user
+  .field
+    = f.label :text
+    = f.text_field :text
+  .field
+    = f.label :html
+    = f.text_field :html
+  .field
+    = f.label :sent
+    = f.text_field :sent
+  .field
+    = f.label :unread
+    = f.text_field :unread
+  .actions = f.submit 'Save'

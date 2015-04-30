@@ -1,0 +1,29 @@
+h1 Listing gitter_messages
+
+table
+  thead
+    tr
+      th From user
+      th Text
+      th Html
+      th Sent
+      th Unread
+      th
+      th
+      th
+
+  tbody
+    - @gitter_messages.each do |gitter_message|
+      tr
+        td = gitter_message.from_user
+        td = gitter_message.text
+        td = gitter_message.html
+        td = gitter_message.sent
+        td = gitter_message.unread
+        td = link_to 'Show', gitter_message
+        td = link_to 'Edit', edit_gitter_message_path(gitter_message)
+        td = link_to 'Destroy', gitter_message, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Gitter message', new_gitter_message_path

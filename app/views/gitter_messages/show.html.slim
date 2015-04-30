@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong From user:
+  = @gitter_message.from_user
+p
+  strong Text:
+  = @gitter_message.text
+p
+  strong Html:
+  = @gitter_message.html
+p
+  strong Sent:
+  = @gitter_message.sent
+p
+  strong Unread:
+  = @gitter_message.unread
+
+= link_to 'Edit', edit_gitter_message_path(@gitter_message)
+'|
+= link_to 'Back', gitter_messages_path

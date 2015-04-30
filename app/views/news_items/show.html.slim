@@ -1,0 +1,39 @@
+p#notice = notice
+
+p
+  strong User:
+  = @news_item.from_user
+p
+  strong Name:
+  = @news_item.name
+p
+  strong Author:
+  = @news_item.author
+p
+  strong Text:
+  = @news_item.text
+p
+  strong Html:
+  = @news_item.html
+p
+  strong Views:
+  = @news_item.views
+p
+  strong Posted:
+  = @news_item.posted
+
+p
+  strong Content Items:
+
+  - @news_item.news_contents.each do |content|
+    p
+      strong Name:
+      = content.name
+      = link_to 'Edit', edit_news_content_path(content)
+    p
+      strong Link:
+      = content.link
+
+= link_to 'Edit', edit_news_item_path(@news_item)
+'|
+= link_to 'Back', news_items_path

@@ -1,0 +1,34 @@
+= form_for @news_item do |f|
+  - if @news_item.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@news_item.errors.count, "error")} prohibited this news_item from being saved:"
+      ul
+        - @news_item.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    label User
+    = f.text_field :from_user
+  .field
+    label Name
+    = f.text_field :name
+  .field
+    label Author
+    = f.text_field :author
+  .field
+    label Text
+    = f.text_field :text
+  .field
+    label Html
+    = f.text_field :html
+  .field
+    label Link
+    = f.text_field :link
+  .field
+    label Posted
+    = f.text_field :posted
+  strong Content Items
+  = f.fields_for :news_contents do |builder|
+    = render 'news_content_form', :f => builder
+
+  .actions = f.submit 'Save'

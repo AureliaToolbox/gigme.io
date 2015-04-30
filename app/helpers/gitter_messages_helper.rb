@@ -1,0 +1,2 @@
+module GitterMessagesHelper
+end

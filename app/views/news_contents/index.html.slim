@@ -1,0 +1,31 @@
+h1 Listing news_contents
+
+table
+  thead
+    tr
+      th User
+      th Name
+      th Text
+      th Html
+      th Views
+      th Posted
+      th
+      th
+      th
+
+  tbody
+    - @news_contents.each do |news_content|
+      tr
+        td = news_content.from_user
+        td = news_content.name
+        td = news_content.text
+        td = news_content.html
+        td = news_content.views
+        td = news_content.posted
+        td = link_to 'Show', news_content
+        td = link_to 'Edit', edit_news_content_path(news_content)
+        td = link_to 'Destroy', news_content, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New News content', new_news_content_path

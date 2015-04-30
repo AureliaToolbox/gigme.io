@@ -1,0 +1,17 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @news_content.name
+p
+  strong Link:
+  = @news_content.link
+
+= link_to 'Edit', edit_news_content_path(@news_content)
+'|
+= link_to 'Back', news_contents_path
+
+
+
+
+
