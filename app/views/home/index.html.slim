@@ -1,14 +1,15 @@
-<link rel="stylesheet" type="text/css" href="assets/aureliatoolkit/styles/left-nav/styles.css">
-<link rel="stylesheet" type="text/css" href="assets/aureliatoolkit/styles/cards/styles.css">
-<link rel="stylesheet" type="text/css" href="assets/aureliatoolkit/jspm_packages/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
 
-<div style="display:none;" id="user_info">
-  <span>#{current_user.username}|#{current_user.uid}|#{current_user.image}</span>
-</div>
+- if current_user
+  <div style="display:none;" id="user_info">
+    <span>#{current_user.username}|#{current_user.uid}|#{current_user.image}</span>
+  </div>
 section aurelia-app=""
 
-= javascript_include_tag 'aureliatoolkit/jspm_packages/system.js'
-= javascript_include_tag 'aureliatoolkit/config.js'
+= javascript_include_tag '/client/jspm_packages/system.js'
+= javascript_include_tag '/client/config.js'
 
 javascript:
   System.import('aurelia-bootstrapper');
