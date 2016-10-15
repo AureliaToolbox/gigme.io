@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['aurelia-framework', 'aurelia-http-client', './session'], function (_export, _context) {
+System.register(['aurelia-framework', 'aurelia-http-client', './services/session'], function (_export, _context) {
   "use strict";
 
   var inject, bindable, HttpClient, Session, _dec, _class, _desc, _value, _class2, _descriptor, NavBar;
@@ -60,8 +60,8 @@ System.register(['aurelia-framework', 'aurelia-http-client', './session'], funct
       bindable = _aureliaFramework.bindable;
     }, function (_aureliaHttpClient) {
       HttpClient = _aureliaHttpClient.HttpClient;
-    }, function (_session) {
-      Session = _session.Session;
+    }, function (_servicesSession) {
+      Session = _servicesSession.Session;
     }],
     execute: function () {
       _export('NavBar', NavBar = (_dec = inject(Session), _dec(_class = (_class2 = function () {

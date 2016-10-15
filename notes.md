@@ -1,3 +1,11 @@
+Enable confirmation via devise so that user can confirm their email
+Enable an admin to have to confirm the user as well
+Enable google authentication
+Enable facebook authentication
+
+
+
+
 listing.rb
   title: string
   description: string
@@ -14,6 +22,9 @@ user.rb
   last_name: string
   dob: datetime
   email: string
+  availability: listing_type lookup
+  experience_level: experience_level lookup
+  rating: float
 
 company.rb
   name: string
@@ -28,3 +39,13 @@ message.rb
   created_date: datetime
   received_date: datetime
   reply_message_id: integer
+
+
+
+
+
+## NEW
+
+Availability (should be a listing type also?)
+experience_level.rb
+  name: string

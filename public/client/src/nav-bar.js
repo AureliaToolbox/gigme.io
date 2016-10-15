@@ -1,6 +1,6 @@
 import {inject, bindable} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
-import {Session} from './session';
+import {Session} from './services/session';
 
 @inject(Session)
 export class NavBar {

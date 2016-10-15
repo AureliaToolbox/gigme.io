@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+
+- if current_user
+  <div style="display:none;" id="user_info">
+    <span>#{current_user.username}|#{current_user.uid}|#{current_user.image}</span>
+  </div>
+section aurelia-app="main"
+
+  table.table.table-striped
+    thead
+      tr
+        th Title
+        th Description
+        th Company
+        th Type
+        th Actions
+
+    tbody
+      - @listings.each do |listing|
+        tr
+          td = listing.title
+          td = listing.description
+          td
+            - if listing.company?
+              = listing.company.name
+          td
+            - if listing.listing_type?
+              = listing.listing_type.name
+          td
+            | &nbsp;
+
+= javascript_include_tag '/client/jspm_packages/system.js'
+= javascript_include_tag '/client/config.js'
+
+javascript:
+  System.import('aurelia-bootstrapper');

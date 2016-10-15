@@ -1,10 +1,20 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
+
+  ## Custom
+  field :availablity_id, type: String, default: ""
+  field :experience_level_id, type: String, default: ""
+  field :rating, type: Float
+  belongs_to :company
+  belongs_to :availablity
+  belongs_to :experience_level
 
   ## Database authenticatable
   field :email,                 type: String, default: ""
@@ -39,11 +49,9 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      p '-' * 80
-      p auth
-      p '-' * 80
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
