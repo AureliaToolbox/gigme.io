@@ -8,7 +8,14 @@
       <th>Actions</th>
     </thead>
     <tbody>
-      <tr repeat.for="listing of listings">
+      <tr>
+        <td><input placeholder="Title" value.bind="titleFilter" /></td>
+        <td><input placeholder="Description" value.bind="descriptionFilter" /></td>
+        <td><input placeholder="Company" value.bind="companyFilter" /></td>
+        <td><input placeholder="Type" value.bind="typeFilter" /></td>
+        <td></td>
+      </tr>
+      <tr repeat.for="listing of displayListings">
         <template if.bind="!listing.isEditing">
           <td>${listing.title}</td>
           <td>${listing.description}</td>
@@ -23,7 +30,10 @@
             </span>
           </td>
           <td>
-            <a href="#" click.trigger="edit(listing)" if.bind="!listing.isEditing">Edit</a>
+            <a href="#"
+              click.trigger="edit(listing)"
+              if.bind="listing.canEdit">Edit
+            </a>
           </td>
         </template>
         <template if.bind="listing.isEditing">
@@ -54,7 +64,5 @@
       </tr>
     </tbody>
   </table>
-  <button class="btn" click.trigger="add()">Add new</button>
-  <button class="btn" click.trigger="createCompany()">Add company</button>
-  <button class="btn" click.trigger="createListingType()">Add listing type</button>
+  <!-- <button class="btn" click.trigger="add()">Add new</button> -->
 </template>

@@ -1,8 +1,14 @@
+import {UsersService} from 'services/users';
+
 export class Datastore {
   companies = [];
   listingTypes = [];
   listings = [];
 
+  static inject = [UsersService];
+  constructor(usersService) {
+    this.usersService = usersService;
+  }
   addListing(listing) {
     this.setupListing(listing)
     this.listings.push(listing);

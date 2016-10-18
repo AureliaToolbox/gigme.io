@@ -6,15 +6,17 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:github]
+         :omniauthable, :omniauth_providers => [:github, :google_oauth2]
 
   ## Custom
-  field :availablity_id, type: String, default: ""
+  field :availability_id, type: String, default: ""
   field :experience_level_id, type: String, default: ""
   field :rating, type: Float
   belongs_to :company
-  belongs_to :availablity
+  belongs_to :availability
   belongs_to :experience_level
+  field :links, type: Array, default: []
+  field :is_admin, type: Boolean, default: false
 
   ## Database authenticatable
   field :email,                 type: String, default: ""

@@ -21,7 +21,9 @@ System.register([], function (_export, _context) {
 
         NavigationService.prototype.setActive = function setActive(routeName) {
           var link = document.querySelector('#' + routeName);
-          link.classList.add('active');
+          if (link) {
+            link.classList.add('active');
+          }
         };
 
         return NavigationService;

@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-System.register([], function (_export, _context) {
+System.register(['services/users'], function (_export, _context) {
   "use strict";
 
-  var Datastore;
+  var UsersService, _class, _temp, Datastore;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -15,15 +15,19 @@ System.register([], function (_export, _context) {
     return object.$oid;
   }
   return {
-    setters: [],
+    setters: [function (_servicesUsers) {
+      UsersService = _servicesUsers.UsersService;
+    }],
     execute: function () {
-      _export("Datastore", Datastore = function () {
-        function Datastore() {
+      _export('Datastore', Datastore = (_temp = _class = function () {
+        function Datastore(usersService) {
           _classCallCheck(this, Datastore);
 
           this.companies = [];
           this.listingTypes = [];
           this.listings = [];
+
+          this.usersService = usersService;
         }
 
         Datastore.prototype.addListing = function addListing(listing) {
@@ -45,9 +49,9 @@ System.register([], function (_export, _context) {
         };
 
         return Datastore;
-      }());
+      }(), _class.inject = [UsersService], _temp));
 
-      _export("Datastore", Datastore);
+      _export('Datastore', Datastore);
     }
   };
 });

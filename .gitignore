@@ -33,6 +33,6 @@ bower.json
 # Ignore pow environment settings
 .powenv
 
-app/assets/javascripts/aureliatoolkit/jspm_modules
-app/assets/javascripts/aureliatoolkit/node_modules
-app/assets/javascripts/aureliatoolkit/dist
+public/client/jspm_modules
+public/client/node_modules
+public/client/dist

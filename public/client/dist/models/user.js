@@ -20,6 +20,7 @@ System.register([], function (_export, _context) {
         this._id = '';
         this.name = '';
         this.image = '';
+        this.username = '';
 
         Object.assign(this, data);
       });

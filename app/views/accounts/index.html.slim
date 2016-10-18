@@ -1,0 +1,80 @@
+<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+
+section aurelia-app="main"
+  h2 Manage account
+  div.row
+    div.col-xs-6
+      h3 #{current_user.name}
+      div.row
+        <p class="col-xs-6">
+          <a href="bootstrap-elements.html">
+            <span style="background-image: url('#{current_user.image}&amp;s=64'); width: 32px; height: 32px; background-size: contain; display: inline-block;" data-original-title="#{current_user.name}">
+            </span>
+            <span class="ripple-wrapper"></span>
+          </a>
+        </p>
+        <div class="col-xs-6">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>E-mail</strong>
+          <span>#{current_user.email}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Name</strong>
+          <span>#{current_user.name}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Username</strong>
+          <span>#{current_user.username}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>image</strong>
+          <span>#{current_user.image}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Provider</strong>
+          <span>#{current_user.provider}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Availability</h3>
+          - if current_user.availability
+            <strong>#{current_user.availability.name}</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Experience</h3>
+          - if current_user.experience_level
+            <strong>#{current_user.experience_level.name}</strong>
+        </div>
+      </div>
+      <div class="row">
+        <ul class="col-xs-12">
+          - current_user.links.each do |link|
+            <li>
+              | #{link.name}
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+= javascript_include_tag '/client/jspm_packages/system.js'
+= javascript_include_tag '/client/config.js'
+
+javascript:
+  System.import('aurelia-bootstrapper');

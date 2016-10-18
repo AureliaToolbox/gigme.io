@@ -5,7 +5,8 @@ let navService = new NavigationService();
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .globalResources('components/user-dropdown');
 
   let path = window.location.pathname.substring(1);
   navService.setActive(path);

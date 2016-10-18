@@ -3,8 +3,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-    p '-' * 80
-    p @listings.first
     respond_to do |format|
       format.html
       format.json { render json: @listings }

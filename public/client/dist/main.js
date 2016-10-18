@@ -5,7 +5,7 @@ System.register(['./services/navigation'], function (_export, _context) {
 
   var NavigationService, navService;
   function configure(aurelia) {
-    aurelia.use.standardConfiguration().developmentLogging();
+    aurelia.use.standardConfiguration().developmentLogging().globalResources('components/user-dropdown');
 
     var path = window.location.pathname.substring(1);
     navService.setActive(path);

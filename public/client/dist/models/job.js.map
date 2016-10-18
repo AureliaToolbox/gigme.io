@@ -1,1 +1,0 @@
-{"version":3,"sources":["models/job.js"],"names":["Job","data","_id","title","description","Object","assign"],"mappings":";;;;;;;;;;;;;;;;qBAAaA,G,GAOX,aAAYC,IAAZ,EAAkB;AAAA;;AAAA,aANlBC,GAMkB,GANZ,EAMY;AAAA,aALlBC,KAKkB,GALV,EAKU;AAAA,aAJlBC,WAIkB,GAJJ,EAII;;AAChBC,eAAOC,MAAP,CAAc,IAAd,EAAoBL,IAApB;AACD,O","file":"models/job.js","sourceRoot":"/src"}

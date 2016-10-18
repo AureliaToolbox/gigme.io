@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+
+section aurelia-app="main"
+
+  table.table.table-striped
+    thead
+      tr
+        th Image
+        th Name
+        th Availability
+        th Experience Level
+
+    tbody
+      - @users.each do |user|
+        tr
+          td
+            div style="background-image: url('#{user.image}&amp;s=64'); width: 32px; height: 32px; background-size: contain; display: inline-block;"
+          td = user.name
+          td
+            - if user.availability?
+              = user.availability.name
+          td
+            - if user.experience_level?
+              = user.experience_level.name
+
+= javascript_include_tag '/client/jspm_packages/system.js'
+= javascript_include_tag '/client/config.js'
+
+javascript:
+  System.import('aurelia-bootstrapper');

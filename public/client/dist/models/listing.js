@@ -20,6 +20,7 @@ System.register([], function (_export, _context) {
         this._id = '';
         this.title = '';
         this.description = '';
+        this.canEdit = false;
 
         Object.assign(this, data);
       });

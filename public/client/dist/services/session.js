@@ -59,11 +59,19 @@ System.register(['aurelia-framework'], function (_export, _context) {
       bindable = _aureliaFramework.bindable;
     }],
     execute: function () {
-      _export('Session', Session = (_class = function Session() {
-        _classCallCheck(this, Session);
+      _export('Session', Session = (_class = function () {
+        function Session() {
+          _classCallCheck(this, Session);
 
-        _initDefineProp(this, 'currentUser', _descriptor, this);
-      }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'currentUser', [bindable], {
+          _initDefineProp(this, 'currentUser', _descriptor, this);
+        }
+
+        Session.prototype.currentUserChanged = function currentUserChanged(newValue) {
+          console.log(newValue);
+        };
+
+        return Session;
+      }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'currentUser', [bindable], {
         enumerable: true,
         initializer: null
       })), _class));

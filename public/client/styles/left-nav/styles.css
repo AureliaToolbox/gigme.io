@@ -46,3 +46,7 @@
     overflow-y: auto;
   }
 }
+
+table.table > tbody td {
+  vertical-align: middle;
+}
