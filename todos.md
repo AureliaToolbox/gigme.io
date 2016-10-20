@@ -23,6 +23,7 @@ x. User management to set profile settings
 # Listings
 
 1. Allow logged in company user to add a listing
+
 1. Can click to read details
   a. Show dialog with info
   b. Ability to click interested button to send message
