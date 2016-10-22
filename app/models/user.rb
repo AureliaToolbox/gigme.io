@@ -55,6 +55,7 @@ class User
   def self.from_omniauth(auth)
     p '-' * 80
     p auth
+    p 'user should come next'
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       p user
       user.provider = auth.provider
