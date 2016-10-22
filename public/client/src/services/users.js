@@ -12,8 +12,10 @@ export class UsersService {
     });;
     let dropdown = document.querySelector('user-dropdown');
     let otherDeadContent = document.querySelector('user-dropdown + li');
-    let result = templatingEngine.enhance(dropdown);
-    otherDeadContent.style.display = 'none';
+    if (dropdown) {
+      templatingEngine.enhance(dropdown);
+      otherDeadContent.style.display = 'none';
+    }
   }
   getAll() {
     let url = `/admin/users.json`;
