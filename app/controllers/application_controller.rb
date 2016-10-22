@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :add_user
 
   def add_user
-    p '-' * 80
-    p current_user
     @user = current_user
   end
 end
