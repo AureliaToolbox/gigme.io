@@ -264,4 +264,5 @@ Devise.setup do |config|
   # config.omniauth :twitter, "KEY", "SECRET"
   # config.omniauth :linked_in, "KEY", "SECRET"
 
+  config.sign_out_via = :get
 end
