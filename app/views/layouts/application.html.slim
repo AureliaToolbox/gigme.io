@@ -48,7 +48,7 @@ html
             li#accounts
               a href="/accounts"
                 | Accounts
-          - if current_user.is_admin
+          - if current_user && current_user.is_admin
             li#admin
               a href="/admin"
                 | Admin
