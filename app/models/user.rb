@@ -66,5 +66,6 @@ class User
       user.image = auth.info.image
       user.password = Devise.friendly_token[0,20]
     end
+    p 'done'
   end
 end
