@@ -5,8 +5,39 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <!--[if lte IE 9]><!-->
+    <script src="/assets/js/vendor/html5shiv.min.js"></script>
+    <!--<![endif]-->
   </head>
   <body>
-    <%= yield %>
+    <div id="home" class="section block-primary position-r align-c-xs-max">
+      <div id="particles-js" class="site-bg">
+        <div class="site-bg-img"></div>
+        <div class="site-bg-video"></div>
+        <div class="site-bg-overlay"></div>
+        <div class="site-bg-effect layer" data-depth=".30"></div>
+        <canvas class="site-bg-canvas layer" data-depth=".30"></canvas>
+      </div> <!-- .site-bg -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div> <!-- #home -->
+
+    <script src="/assets/js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/vendor/plugin.js"></script>
+    <script src="/assets/js/variable.js"></script>
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>

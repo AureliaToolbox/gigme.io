@@ -29,7 +29,6 @@ export class ListingsService {
     delete job.isEditing;
     job.company_id = getId(job.company);
     job.listing_type_id = getId(job.listing_type);
-    console.log(job)
     return this.http.post('listings/create.json', job).then(result => {
       return result.content;
     });

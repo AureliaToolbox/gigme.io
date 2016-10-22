@@ -7,7 +7,6 @@ export class Index {
   constructor(session, usersService) {
     this.session = session;
     this.usersService = usersService;
-    console.log(this.session.currentUser)
   }
   edit() {
     this.isEditing = true;

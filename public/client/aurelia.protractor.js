@@ -25,7 +25,6 @@ function loadAndWaitForAureliaPage(pageUrl) {
     '  cb("Aurelia App composed")' +
     '}, false);'
   ).then(function(result){
-      console.log(result);
       return result;
   });
 }

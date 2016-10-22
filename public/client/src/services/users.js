@@ -26,7 +26,7 @@ export class UsersService {
   save(user) {
     let url = `/admin/users/${user._id.$oid}`;
     return this.http.put(url, user).then(result => {
-      console.log(result);
+      console.log('Saved');
     });
   }
 }

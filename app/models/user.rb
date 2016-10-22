@@ -63,4 +63,13 @@ class User
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def as_json(options={})
+    super(:only => [ :availability_id, :experience_level_id, :rating, :links, :name, :image ],
+      :include => {
+        :availability => {:only => [:name]},
+        :experience_level => {:only => [:name]}
+      }
+    )
+  end
 end

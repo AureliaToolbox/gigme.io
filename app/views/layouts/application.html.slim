@@ -26,7 +26,7 @@ html
               a.dropdown-toggle.ellipsis href="#" data-target="#" data-toggle="dropdown" aria-expanded="false"
                 div style="background-image: url('#{current_user.image}&amp;s=64'); width: 32px; height: 32px; background-size: contain; display: inline-block;"
                 span.ellipsis.pull-right
-                  | #{current_user.username}
+                  | #{current_user.name}
                   b.caret
                 div.ripple-wrapper
               ul.dropdown-menu.dropdown-menu-right
@@ -35,7 +35,7 @@ html
                     | Sign out
                 li.divider
 
-          li#home
+          / li#home
             a href="/home"
               | Home
           li#listings

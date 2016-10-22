@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def add_user
     @user = current_user
   end
+
+  def after_sign_in_path_for(resource)
+    listings_path
+  end
 end

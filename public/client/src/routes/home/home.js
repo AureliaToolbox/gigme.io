@@ -19,11 +19,6 @@ export class Home{
         card.likes.push(newLike)
       });
     }
-    event.cancelBubble = true;
-    event.bubbles = false;
-    event.stopPropagation();
-    event.preventDefault();
-    return false;
   }
   activate(){
     var self = this;
@@ -38,7 +33,7 @@ export class Home{
   }
 }
 
-function sortByDate (a, b) {console.log(a.posted);return a.posted - b.posted}
+function sortByDate (a, b) {return a.posted - b.posted}
 function sortByLikes (a, b) {return b.likes.length - a.likes.length}
 
 class Card {

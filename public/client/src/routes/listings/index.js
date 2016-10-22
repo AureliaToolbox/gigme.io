@@ -72,7 +72,7 @@ export class Index {
   }
   save(item) {
     this.listingsService.save(item).then(result => {
-      console.log(result);
+      console.log('Saved');
     });
   }
   add() {

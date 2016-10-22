@@ -1,12 +1,15 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {Session} from '../../services/session';
+import {Datastore} from 'resources/datastore';
 
-@inject(Router, Session)
+
 export class Index {
-  constructor(router,session) {
+  static inject = [Router, Session, Datastore];
+  constructor(router, session, datastore) {
     this.router = router;
     this.session = session;
+    this.datastore = datastore;
     this.router.configure(config => {
       config.title = 'Aurelia';
       config.map([
