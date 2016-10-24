@@ -3,7 +3,6 @@ import {Router} from 'aurelia-router';
 import {Session} from '../../services/session';
 import {Datastore} from 'resources/datastore';
 
-
 export class Index {
   static inject = [Router, Session, Datastore];
   constructor(router, session, datastore) {
@@ -16,13 +15,6 @@ export class Index {
         { route: ['','home'],  moduleId: './home',      nav: true, title:'Home' }
       ]);
     });
-  }
-  attached(){
-    let thisUser = document.querySelector('#user_info')
-    if (thisUser) {
-      let content = thisUser.textContent;
-      this.session.currentUser = new User(content.split('|')[0], content.split('|')[1], content.split('|')[2])
-    }
   }
 }
 

@@ -59,6 +59,7 @@
     "dependencies": {
       "aurelia-bootstrapper": "npm:aurelia-bootstrapper@^1.0.0",
       "aurelia-dependency-injection": "npm:aurelia-dependency-injection@^1.0.0",
+      "aurelia-dialog": "npm:aurelia-dialog@^1.0.0-beta.3.0.1",
       "aurelia-framework": "npm:aurelia-framework@^1.0.3",
       "aurelia-http-client": "npm:aurelia-http-client@^1.0.0",
       "aurelia-polyfills": "npm:aurelia-polyfills@^1.1.1",
@@ -68,6 +69,7 @@
       "css": "github:systemjs/plugin-css@^0.1.9",
       "font-awesome": "npm:font-awesome@^4.6.3",
       "jquery": "npm:jquery@^3.1.0",
+      "moment": "npm:moment@^2.15.1",
       "text": "github:systemjs/plugin-text@^0.0.9"
     },
     "devDependencies": {

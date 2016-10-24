@@ -1,10 +1,17 @@
-Unicorn is not working
+Consider not augmenting with JavaScript if user isn't logged in
 
+Should have a reference from user/message/to and from back to a user
+  Show the name in the message list
 
+Ellipsis the message in the view
 
+Clicking on a message should show details and allow replying
 
-
-
+Links -
+  Add a new model for a link
+    Need a front end and back end model
+  Add ability to add a link
+    Should be able to add a name and a link itself
 
 
 
@@ -25,10 +32,10 @@ x. User management to set profile settings
 
 # Developers
 
-1. Click to read details
-  a. Show dialog with info
-  b. Ability to click interested button to send message
-1. Can filter based on columns
+x. Click to read details
+  x. Show dialog with info
+  x. Ability to click interested button to send message
+x. Can filter based on columns
 
 # Listings
 

@@ -20,11 +20,15 @@ export class UsersService {
   getAll() {
     let url = `/admin/users.json`;
     return this.http.get(url).then(result => {
-      return result.content;
+      let users = [];
+      result.content.forEach(user => {
+        users.push(new User(user));
+      });
+      return users;
     });
   }
   save(user) {
-    let url = `/admin/users/${user._id.$oid}`;
+    let url = `/admin/users/${user.id}`;
     return this.http.put(url, user).then(result => {
       console.log('Saved');
     });

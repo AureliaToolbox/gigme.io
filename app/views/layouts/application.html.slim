@@ -34,7 +34,10 @@ html
                   a href="/users/sign_out"
                     | Sign out
                 li.divider
-
+          - if !current_user
+            li
+              a href="/users/sign_up"
+                | Sign up / in
           / li#home
             a href="/home"
               | Home
@@ -52,6 +55,10 @@ html
             li#admin
               a href="/admin"
                 | Admin
+          - if current_user
+            li#messages
+              a href="/messages"
+                | Messages
 
     div.page-host
       = yield

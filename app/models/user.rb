@@ -12,11 +12,12 @@ class User
   field :availability_id, type: String, default: ""
   field :experience_level_id, type: String, default: ""
   field :rating, type: Float
+  field :links, type: Array, default: []
+  field :is_admin, type: Boolean, default: false
+
   belongs_to :company
   belongs_to :availability
   belongs_to :experience_level
-  field :links, type: Array, default: []
-  field :is_admin, type: Boolean, default: false
 
   ## Database authenticatable
   field :email,                 type: String, default: ""
@@ -65,11 +66,14 @@ class User
   end
 
   def as_json(options={})
-    super(:only => [ :availability_id, :experience_level_id, :rating, :links, :name, :image ],
+    super(:only => [ :_id, :availability_id, :experience_level_id, :rating, :links, :name, :image, :created_at ],
       :include => {
         :availability => {:only => [:name]},
         :experience_level => {:only => [:name]}
       }
     )
   end
+
+  has_many :to_messages, class_name: 'Message', inverse_of: :to_user
+  has_many :from_messages, class_name: 'Message', inverse_of: :from_user
 end

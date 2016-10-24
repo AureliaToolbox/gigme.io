@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+
+section aurelia-app="main"
+
+  div.row
+    div.col-xs-6
+      table.table.table-striped
+        thead
+          tr
+            th Title
+            th Body
+            th From
+            th Received date
+        tbody
+          tr
+            td
+              input placeholder="title"
+            td
+              input placeholder="body"
+            td
+              input placeholder="from"
+            td
+              input placeholder="received date"
+
+          - @from_messages.each do |message|
+            tr
+              td = message.title
+              td = message.body
+              td = message.from_user_id
+              td = message.created_at
+
+    div.col-xs-6
+      table.table.table-striped
+        thead
+          tr
+            th Title
+            th Body
+            th To
+            th Received date
+        tbody
+          tr
+            td
+              input placeholder="title"
+            td
+              input placeholder="body"
+            td
+              input placeholder="to"
+            td
+              input placeholder="received date"
+
+          - @to_messages.each do |message|
+            tr
+              td = message.title
+              td = message.body
+              td = message.to_user_id
+              td = message.created_at
+
+= javascript_include_tag '/client/jspm_packages/system.js'
+= javascript_include_tag '/client/config.js'
+
+javascript:
+  System.import('aurelia-bootstrapper');

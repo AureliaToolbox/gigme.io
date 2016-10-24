@@ -4,11 +4,11 @@ class Message
 
   field :title, type: String
   field :body, type: String
-  field :from_user_id, type: Integer
-  field :to_user_id, type: Integer
-  field :created_date, type: Time
+  field :from_user_id, type: String
+  field :to_user_id, type: String
   field :received_date, type: Time
   field :reply_message_id, type: Integer
-  embedded_in :user
-  embedded_in :message
+
+  belongs_to :from_user, class_name: 'User', inverse_of: :from_messages
+  belongs_to :to_user, class_name: 'User', inverse_of: :to_messages
 end

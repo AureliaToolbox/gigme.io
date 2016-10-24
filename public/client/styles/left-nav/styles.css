@@ -1,3 +1,18 @@
+.clickable {
+  cursor: pointer;
+}
+ai-dialog-footer > .btn-success:hover {
+  color: #fff !important;
+  background-color: #449d44 !important;
+  border-color: #398439 !important;
+}
+.message-body {
+  display: block;
+  width: 100%;
+  min-width: 400px;
+  min-height: 200px;
+}
+
 @media (min-width: 768px) {
   .navbar-collapse {
     height: auto;

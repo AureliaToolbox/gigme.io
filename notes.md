@@ -1,11 +1,3 @@
-Enable confirmation via devise so that user can confirm their email
-Enable an admin to have to confirm the user as well
-Enable google authentication
-Enable facebook authentication
-
-
-
-
 listing.rb
   title: string
   description: string
@@ -39,10 +31,6 @@ message.rb
   created_date: datetime
   received_date: datetime
   reply_message_id: integer
-
-
-
-
 
 ## NEW
 

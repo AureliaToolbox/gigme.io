@@ -1,5 +1,5 @@
 export class User {
-  _id = '';
+  id = '';
   name = '';
   image = '';
   availablity;
@@ -7,8 +7,14 @@ export class User {
   experience_level;
   rating;
   username = '';
+  created_at;
 
   constructor(data) {
     Object.assign(this, data);
+    this.id = this.getId();
+  }
+
+  getId() {
+    return this._id.$oid;
   }
 }

@@ -6,6 +6,8 @@ export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
+    .plugin('aurelia-dialog')
+    .globalResources('resources/date-format')
     .globalResources('components/user-dropdown');
 
   let path = window.location.pathname.substring(1);

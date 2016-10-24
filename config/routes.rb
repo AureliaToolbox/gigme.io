@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   scope '/admin' do
-    resources :users
+    resources :users do
+      resources :messages do
+        get 'from', on: :collection
+        get 'to', on: :collection
+      end
+    end
   end
+  resources :messages, only: :index
   resources :gitter_messages
   resources :news_items do
     post 'like', on: :collection
   end
   resources :news_contents
   resources :listings do
+    get 'index', on: :collection
     post 'new', on: :collection
     post 'create', on: :collection
   end
