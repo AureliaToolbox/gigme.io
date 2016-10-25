@@ -1,6 +1,6 @@
 import {Session} from 'services/session';
 import {UsersService} from 'services/users';
-import {Link} from 'models/link';
+import {Link} from 'models/index';
 
 export class Index {
   static inject = [Session, UsersService];
@@ -19,10 +19,10 @@ export class Index {
     });
   }
   addLink() {
-    // TODO: Add links to user
     let user = this.session.currentUser;
-    // TODO: Create a real link
     let link = new Link();
+    link.isNew = true;
+    link.user_id = user.id;
     user.addLink(link)
   }
 }

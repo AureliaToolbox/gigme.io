@@ -19,6 +19,11 @@ class User
   belongs_to :availability
   belongs_to :experience_level
 
+  has_many :to_messages, class_name: 'Message', inverse_of: :to_user
+  has_many :from_messages, class_name: 'Message', inverse_of: :from_user
+
+  has_many :links
+
   ## Database authenticatable
   field :email,                 type: String, default: ""
   field :name,                  type: String, default: ""
@@ -69,11 +74,9 @@ class User
     super(:only => [ :_id, :availability_id, :experience_level_id, :rating, :links, :name, :image, :created_at ],
       :include => {
         :availability => {:only => [:name]},
-        :experience_level => {:only => [:name]}
+        :experience_level => {:only => [:name]},
+        :links => {:only => [:_id, :title, :body, :user_id, :url]}
       }
     )
   end
-
-  has_many :to_messages, class_name: 'Message', inverse_of: :to_user
-  has_many :from_messages, class_name: 'Message', inverse_of: :from_user
 end

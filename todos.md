@@ -7,12 +7,7 @@ Ellipsis the message in the view
 
 Clicking on a message should show details and allow replying
 
-Links -
-  Add a new model for a link
-    Need a front end and back end model
-  Add ability to add a link
-    Should be able to add a name and a link itself
-
+Return links when getting user
 
 
 # User

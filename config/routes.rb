@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
   end
   resources :messages, only: :index
+  resources :links
   resources :gitter_messages
   resources :news_items do
     post 'like', on: :collection
