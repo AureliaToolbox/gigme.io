@@ -20,6 +20,7 @@ module.exports = {
         "aurelia-router",
         "aurelia-templating-binding",
         "aurelia-http-client",
+        "aurelia-dialog",
         "aurelia-polyfills",
         "aurelia-templating-resources",
         "aurelia-templating-router",
