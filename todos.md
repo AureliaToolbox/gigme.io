@@ -1,6 +1,8 @@
 ## Before beta
 
 1. Add onboarding process that allows joining a company
+  a. Onboarding is underway
+    1. Work on edit details
 
 1. Allow creating / joining a company later
 
