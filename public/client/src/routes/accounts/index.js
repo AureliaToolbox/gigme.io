@@ -1,13 +1,15 @@
 import {Session} from 'services/session';
 import {UsersService} from 'services/users';
 import {Link} from 'models/index';
+import {Datastore} from 'resources/datastore';
 
 export class Index {
-  static inject = [Session, UsersService];
+  static inject = [Session, UsersService, Datastore];
   isEditing = false;
-  constructor(session, usersService) {
+  constructor(session, usersService, datastore) {
     this.session = session;
     this.usersService = usersService;
+    this.datastore = datastore;
   }
   edit() {
     this.isEditing = true;

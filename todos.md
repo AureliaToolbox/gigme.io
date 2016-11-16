@@ -1,13 +1,36 @@
+## Before beta
+
+1. Add onboarding process that allows joining a company
+
+1. Allow creating / joining a company later
+
+1. Clicking on a message should show details and allow replying
+
+1. In message list, should be able to click to respond
+  a. Possible also click to open user details
+
+x. Don't allow updating if not current user or admin
+  a. Need to test
+
+x. Don't allow sending messages if not logged in
+  a. Check other things like this
+  x. Need to test
+
+x. Should have a reference from user/message/to and from back to a user
+  x. Return a name label from the API
+  x. Show the name in the message list
+
+## Later
+
+Clean up developer details
+Clean up listing details
+Add company details?
+
+Add a virtual scroll
+
 Consider not augmenting with JavaScript if user isn't logged in
 
-Should have a reference from user/message/to and from back to a user
-  Show the name in the message list
-
 Ellipsis the message in the view
-
-Clicking on a message should show details and allow replying
-
-Return links when getting user
 
 
 # User
@@ -23,7 +46,7 @@ x. User management to set profile settings
   x. Links
 
 1. Add ability to rate previous company
-1. Add ability to add links
+x. Add ability to add links
 
 # Developers
 

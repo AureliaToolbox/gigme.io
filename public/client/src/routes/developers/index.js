@@ -4,14 +4,16 @@ import {Datastore} from 'resources/datastore';
 import {DialogService} from 'aurelia-dialog';
 import {DeveloperDetails} from 'components/developer-details';
 import {MessageUser} from 'components/message-user';
+import {OnboardingService} from 'services/onboarding';
 
 export class Index {
   developers = [];
-  static inject = [UsersService, Datastore, DialogService];
-  constructor(usersService, datastore, dialogService) {
+  static inject = [UsersService, Datastore, DialogService, OnboardingService];
+  constructor(usersService, datastore, dialogService, onboardingService) {
     this.usersService = usersService;
     this.datastore = datastore;
     this.dialogService = dialogService;
+    this.onboardingService = onboardingService;
   }
   activate() {
     return this.usersService.getAll().then(result => {

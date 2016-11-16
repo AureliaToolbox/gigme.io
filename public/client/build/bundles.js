@@ -29,6 +29,7 @@ module.exports = {
         "aurelia-logging-console",
         "bootstrap",
         "jquery",
+        "moment",
         "css"
       ],
       "options": {

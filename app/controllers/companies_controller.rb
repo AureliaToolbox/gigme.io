@@ -22,6 +22,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    return false if cannot_save_or_update
     @company.save
     respond_to do |format|
       format.html { redirect_to(@company) }
@@ -30,6 +31,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    return false if cannot_save_or_update
     @company.update(company_params)
     respond_to do |format|
       format.html { redirect_to(@company) }
@@ -38,6 +40,10 @@ class CompaniesController < ApplicationController
   end
 
   private
+    def cannot_save_or_update
+      return false if !current_user.is_admin || !@company.id || @company.id != current_user.company_id
+    end
+
     def set_company
       @company = Company.find(params[:id])
     end

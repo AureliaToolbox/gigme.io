@@ -22,6 +22,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    return false if cannot_save_or_update
     @listing.save
     respond_to do |format|
       format.html { redirect_to(@listing) }
@@ -30,6 +31,7 @@ class ListingsController < ApplicationController
   end
 
   def update
+    return false if cannot_save_or_update
     @listing.update(listing_params)
     respond_to do |format|
       format.html { redirect_to(@listing) }
@@ -38,6 +40,10 @@ class ListingsController < ApplicationController
   end
 
   private
+    def cannot_save_or_update
+      return false if !current_user.is_admin || !@listing.company_id || @listing.company_id != current_user.company_id
+    end
+
     def set_listing
       @listing = Listing.find(params[:id])
     end

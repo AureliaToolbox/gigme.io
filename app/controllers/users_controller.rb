@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    # TODO: Make sure user is authorized to update
+    return false if !current_user.is_admin? || @user.is_current_user?
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)

@@ -15,11 +15,12 @@ Rails.application.routes.draw do
     post 'like', on: :collection
   end
   resources :news_contents
-  resources :listings do
-    get 'index', on: :collection
-    post 'new', on: :collection
-    post 'create', on: :collection
-  end
+  resources :listings
+   # do
+    # get 'index', on: :collection
+  #   post 'new', on: :collection
+  #   post 'create', on: :collection
+  # end
   resources :accounts
   resources :companies do
     post 'new', on: :collection

@@ -19,7 +19,7 @@
             <template if.bind="!message.isEditing">
               <td>${message.title}</td>
               <td>${message.body}</td>
-              <td>${message.from_user_id}</td>
+              <td>${message.from_user.name}</td>
               <td>${message.created_at | dateFormat}</td>
               <td>
                 <a href="#"
@@ -52,7 +52,7 @@
             <template if.bind="!message.isEditing">
               <td>${message.title}</td>
               <td>${message.body}</td>
-              <td>${message.to_user_id}</td>
+              <td>${message.to_user.name}</td>
               <td>${message.created_at | dateFormat}</td>
             </template>
           </tr>

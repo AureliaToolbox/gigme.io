@@ -28,7 +28,8 @@ section aurelia-app="main"
             tr
               td = message.title
               td = message.body
-              td = message.from_user_id
+              - if message.from_user
+                td = message.from_user.name
               td = message.created_at
 
     div.col-xs-6
@@ -54,7 +55,8 @@ section aurelia-app="main"
             tr
               td = message.title
               td = message.body
-              td = message.to_user_id
+              - if message.to_user
+                td = message.to_user.name
               td = message.created_at
 
 = javascript_include_tag '/client/jspm_packages/system.js'

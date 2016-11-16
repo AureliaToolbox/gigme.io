@@ -79,4 +79,8 @@ class User
       }
     )
   end
+
+  def is_current_user?(user_id)
+    return id.to_s == user_id.to_s
+  end
 end

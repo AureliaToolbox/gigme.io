@@ -4,14 +4,25 @@ export class Datastore {
   companies = [];
   listingTypes = [];
   listings = [];
+  availabilities = [];
+  experienceLevels = [];
 
   static inject = [UsersService];
   constructor(usersService) {
     this.usersService = usersService;
   }
+  load() {
+    this.datacontext.load();
+  }
   addListing(listing) {
     this.setupListing(listing)
     this.listings.push(listing);
+  }
+  addAvailability(availability) {
+    this.availabilities.push(availability);
+  }
+  addExperienceLevel(experienceLevel) {
+    this.experienceLevels.push(experienceLevel);
   }
   setupListing(listing) {
     if (listing.company_id) {

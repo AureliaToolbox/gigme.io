@@ -49,6 +49,7 @@
     </ai-dialog-body>
     <ai-dialog-footer>
       <button
+        if.bind="session.currentUser"
         class="btn btn-success pull-left"
         click.trigger="sendMessage()">Send Message</button>
       <button click.trigger="controller.cancel()">Cancel</button>
