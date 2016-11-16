@@ -27,7 +27,6 @@ module.exports = {
         "aurelia-loader-default",
         "aurelia-history-browser",
         "aurelia-logging-console",
-        "bootstrap/css/bootstrap.css!text",
         "jquery",
         "moment",
         "css"
