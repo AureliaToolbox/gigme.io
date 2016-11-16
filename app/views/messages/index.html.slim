@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="client/styles/left-nav/styles.css">
-<link rel="stylesheet" type="text/css" href="client/styles/cards/styles.css">
-<link rel="stylesheet" type="text/css" href="client/jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="dist/styles/left-nav/styles.css">
+<link rel="stylesheet" type="text/css" href="dist/styles/cards/styles.css">
+<link rel="stylesheet" type="text/css" href="jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
 
 section aurelia-app="main"
 
@@ -59,8 +59,8 @@ section aurelia-app="main"
                 td = message.to_user.name
               td = message.created_at
 
-= javascript_include_tag '/client/jspm_packages/system.js'
-= javascript_include_tag '/client/config.js'
+= javascript_include_tag '/jspm_packages/system.js'
+= javascript_include_tag '/config.js'
 
 javascript:
   System.import('aurelia-bootstrapper');

@@ -36,6 +36,6 @@ bower.json
 # Ignore pow environment settings
 .powenv
 
-public/client/jspm_packages
-public/client/node_modules
-public/client/dist
+public/jspm_packages
+node_modules
+public/dist
