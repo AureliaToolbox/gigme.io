@@ -16,9 +16,13 @@ export class Index {
     this.onboardingService = onboardingService;
   }
   activate() {
-    return this.usersService.getAll().then(result => {
-      this.developers = result;
-    });
+    if (this.datastore.users) {
+      this.developers = this.datastore.users;
+    } else {
+      return this.usersService.getAll().then(result => {
+        this.developers = result;
+      });
+    }
   }
   openDetails(developer) {
     let settings = {
@@ -27,7 +31,6 @@ export class Index {
     };
     this.dialogService.open(settings).then(response => {
       if (!response.wasCancelled) {
-        console.log(response.output);
         this.sendMessage(response.output);
       } else {
         console.log('bad');

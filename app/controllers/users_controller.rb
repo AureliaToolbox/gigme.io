@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    return false if !current_user.is_admin? || @user.is_current_user?
+    return false if !current_user.is_current_user?(@user.id) && !current_user.is_admin?
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)

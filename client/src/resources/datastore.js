@@ -1,4 +1,6 @@
 import {UsersService} from 'services/users';
+import {DataLoader} from 'services/data-loader';
+import {Lazy} from 'aurelia-dependency-injection';
 
 export class Datastore {
   companies = [];
@@ -6,16 +8,25 @@ export class Datastore {
   listings = [];
   availabilities = [];
   experienceLevels = [];
+  users = [];
 
-  static inject = [UsersService];
-  constructor(usersService) {
+  static inject = [UsersService, Lazy.of(DataLoader)];
+  constructor(usersService, dataLoader) {
     this.usersService = usersService;
+    this.dataLoader = dataLoader;
+    this.load();
   }
   load() {
-    this.datacontext.load();
+    if (typeof this.dataLoader === 'function') {
+      this.dataLoader = this.dataLoader();
+    }
+    this.dataLoader.load(this);
+  }
+  addUser(user) {
+    this.users.push(user);
   }
   addListing(listing) {
-    this.setupListing(listing)
+    this.setupListing(listing);
     this.listings.push(listing);
   }
   addAvailability(availability) {
@@ -23,6 +34,9 @@ export class Datastore {
   }
   addExperienceLevel(experienceLevel) {
     this.experienceLevels.push(experienceLevel);
+  }
+  addListingType(listingType) {
+    this.listingTypes.push(listingType);
   }
   setupListing(listing) {
     if (listing.company_id) {

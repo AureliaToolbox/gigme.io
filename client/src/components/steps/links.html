@@ -1,3 +1,8 @@
 <template>
-  <h4>Editing</h4>
+  <h4>Links</h4>
+  <ul>
+    <li repeat.for="link of user.links">
+      <a href.bind="link.url">${link.title}</a>
+    </li>
+  </ul>
 </template>

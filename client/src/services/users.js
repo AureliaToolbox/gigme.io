@@ -28,9 +28,19 @@ export class UsersService {
     });
   }
   save(user) {
-    let url = `/admin/users/${user.id}`;
-    return this.http.put(url, user).then(result => {
+    if (user.availability) {
+      user.availability_id = getId(user.availability);
+    }
+    if (user.experience_level) {
+      user.experience_level_id = getId(user.experience_level);
+    }
+    let url = `/admin/users/${user.id}.json`;
+    return this.http.patch(url, user).then(result => {
       console.log('Saved');
     });
   }
+}
+
+function getId(obj) {
+  return obj._id.$oid;
 }

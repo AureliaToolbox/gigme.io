@@ -2,7 +2,7 @@
 
 1. Add onboarding process that allows joining a company
   a. Onboarding is underway
-    1. Work on edit details
+    1. Work on edit links
 
 1. Allow creating / joining a company later
 
@@ -11,16 +11,6 @@
 1. In message list, should be able to click to respond
   a. Possible also click to open user details
 
-x. Don't allow updating if not current user or admin
-  a. Need to test
-
-x. Don't allow sending messages if not logged in
-  a. Check other things like this
-  x. Need to test
-
-x. Should have a reference from user/message/to and from back to a user
-  x. Return a name label from the API
-  x. Show the name in the message list
 
 ## Later
 

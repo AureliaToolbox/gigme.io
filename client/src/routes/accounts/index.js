@@ -6,6 +6,10 @@ import {Datastore} from 'resources/datastore';
 export class Index {
   static inject = [Session, UsersService, Datastore];
   isEditing = false;
+  nameMatcher = (a, b) => {
+    if (!a || !b) return;
+    return a.name === b.name;
+  }
   constructor(session, usersService, datastore) {
     this.session = session;
     this.usersService = usersService;

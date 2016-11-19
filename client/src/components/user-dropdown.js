@@ -5,6 +5,7 @@ import {User} from 'models/user';
 @containerless
 export class UserDropdown {
   @bindable currentUser;
+  @bindable additionalDetails;
   session;
   isOpen = false;
   static inject = [Session];
@@ -13,6 +14,9 @@ export class UserDropdown {
   }
   bind(bindingContext, overrideContext) {
     this.session.currentUser = new User(this.currentUser);
+    if (this.additionalDetails) {
+      Object.assign(this.session.currentUser, this.additionalDetails);
+    }
   }
   toggleOpen() {
     this.isOpen = !this.isOpen;

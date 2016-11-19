@@ -4,7 +4,7 @@ export class User {
   id = '';
   name = '';
   image = '';
-  availablity;
+  availability;
   listing_type;
   experience_level;
   rating;
