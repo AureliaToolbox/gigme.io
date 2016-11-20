@@ -16,7 +16,7 @@ export class DataLoader {
     experienceLevels.forEach(expLevel => {
       this.datastore.addExperienceLevel(new ExperienceLevel(expLevel));
     });
-
+    this.checkLoadUsers();
   }
   checkLoadUsers() {
     if (!window.dataLoader.users) return;

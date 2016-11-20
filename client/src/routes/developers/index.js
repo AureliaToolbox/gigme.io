@@ -17,7 +17,9 @@ export class Index {
   }
   activate() {
     if (this.datastore.users) {
-      this.developers = this.datastore.users;
+      this.datastore.users.forEach(userInfo => {
+        this.developers.push(new User(userInfo));
+      });
     } else {
       return this.usersService.getAll().then(result => {
         this.developers = result;
