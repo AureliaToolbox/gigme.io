@@ -9,9 +9,9 @@ html
     = csrf_meta_tags
     javascript:
       window.dataLoader = {
-        availabilities: "#{j @availabilities.to_json.html_safe}",
-        listingTypes: "#{j @listing_types.to_json.html_safe}",
-        experienceLevels: "#{j @experience_levels.to_json.html_safe}"
+        availabilities: '#{j @availabilities.to_json.html_safe}',
+        listingTypes: '#{j @listing_types.to_json.html_safe}',
+        experienceLevels: '#{j @experience_levels.to_json.html_safe}'
       }
 
   body
