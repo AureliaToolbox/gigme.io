@@ -1,7 +1,13 @@
 ## Before beta
 
+1. Get landing page in place
+  a. Add logo
+  b. Add stock images
+  c. Set up e-mail for AureliaToolbox.com
+
 1. Add onboarding process that allows joining a company
   a. Onboarding is underway
+    1. Add ability to create / join a company
     1. Work on edit links
 
 1. Allow creating / joining a company later

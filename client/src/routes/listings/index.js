@@ -79,6 +79,7 @@ export class Index {
     let newListing = new Listing();
     newListing.isEditing = true;
     this.listings.push(newListing);
+    this.filter();
   }
   titleFilterChanged() {
     this.filter();
