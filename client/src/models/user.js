@@ -10,6 +10,7 @@ export class User {
   rating;
   username = '';
   created_at;
+  company_id;
   links = [];
 
   constructor(data) {
@@ -32,5 +33,8 @@ export class User {
   }
   addLink(link) {
     this.links.push(link);
+  }
+  setCompany(company) {
+    this.company_id = company.id;
   }
 }

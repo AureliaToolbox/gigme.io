@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def add_user
     @user = current_user
+    @company = current_user.company
   end
 
   def after_sign_in_path_for(resource)

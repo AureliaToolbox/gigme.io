@@ -3,7 +3,7 @@ import {LinksService} from 'services/links';
 
 export class LinkItem {
   @bindable link;
-  isEditing = false;
+  @bindable isEditing = false;
 
   static inject = [LinksService];
   constructor(linksService) {
@@ -21,5 +21,8 @@ export class LinkItem {
     this.linksService.save(this.link).then(result => {
       this.isEditing = false;
     });
+  }
+  isEditingChanged(newValue) {
+    console.log(newValue)
   }
 }

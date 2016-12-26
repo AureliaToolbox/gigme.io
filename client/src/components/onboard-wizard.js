@@ -7,9 +7,10 @@ export class OnboardWizard {
   steps = [
     { id: 1, viewModel: 'components/steps/start' },
     { id: 2, viewModel: 'components/steps/personal-details' },
-    { id: 3, viewModel: 'components/steps/work-details' },
-    { id: 4, viewModel: 'components/steps/links' },
-    { id: 5, viewModel: 'components/steps/end' }
+    { id: 3, viewModel: 'components/steps/add-company' },
+    { id: 4, viewModel: 'components/steps/work-details' },
+    { id: 5, viewModel: 'components/steps/links' },
+    { id: 6, viewModel: 'components/steps/end' }
   ];
   static inject = [DialogController];
   constructor(dialogController) {

@@ -13,11 +13,7 @@ export class CompaniesService {
       return result.content;
     });
   }
-  saveCompany() {
-    let company = new Company();
-    company.name = 'Google';
-    company.website = 'http://www.google.com';
-    company.main_contact_id = 1;
+  saveCompany(company) {
     return this.http.post('companies/create.json', company).then(result => {
       return result.content;
     });
