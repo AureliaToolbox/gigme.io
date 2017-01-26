@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   resources :home, only: :index
   resources :developers, only: :index
   resources :admin, only: :index
-  resources :landing_page, only: :index
+  resources :landing_page do
+    get 'index', on: :collection
+    get 'consulting_services', on: :collection
+  end
   root 'landing_page#index'
 end

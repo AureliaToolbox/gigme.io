@@ -44,12 +44,6 @@ section aurelia-app="main"
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <strong>Provider</strong>
-          <span>#{current_user.provider}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
           <h3>Availability</h3>
           - if current_user.availability
             <strong>#{current_user.availability.name}</strong>
@@ -63,6 +57,14 @@ section aurelia-app="main"
         </div>
       </div>
       <div class="row">
+        <div class="col-xs-12">
+          <h3>Company</h3>
+          - if current_user.company
+            <strong>#{current_user.company.name}</strong>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Links</h3>
         <ul class="col-xs-12">
           - current_user.links.each do |link|
             <li>

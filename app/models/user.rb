@@ -73,8 +73,8 @@ class User
   def as_json(options={})
     super(:only => [ :_id, :availability_id, :experience_level_id, :rating, :links, :name, :image, :created_at ],
       :include => {
-        :availability => {:only => [:name]},
-        :experience_level => {:only => [:name]},
+        :availability => {:only => [:_id, :name]},
+        :experience_level => {:only => [:_id, :name]},
         :links => {:only => [:_id, :title, :body, :user_id, :url]}
       }
     )

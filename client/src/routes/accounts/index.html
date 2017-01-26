@@ -51,12 +51,6 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <strong>Provider</strong>
-          <span>${session.currentUser.provider}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
           <h3>Availability</h3>
           <strong if.bind="!isEditing">${session.currentUser.availability.name}</strong>
           <select class="form-control"
@@ -83,9 +77,18 @@
           </select>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>Company</h3>
+          <compose view-model="components/steps/add-company" model.bind="session.currentUser"></compose>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
+    <div class="col-xs-12">
+      <h3>Links</h3>
+    </div>
     <ul class="col-xs-12">
       <li repeat.for="link of session.currentUser.links">
         <link-item link.bind="link"></link-item>

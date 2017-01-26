@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :preload_data
 
   def add_user
+    return if current_user.blank?
     @user = current_user
     @company = current_user.company
   end

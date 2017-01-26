@@ -1,21 +1,22 @@
 ## Before beta
 
-1. Get landing page in place
-  a. Add logo
+x. Get landing page in place
+  x. Add logo
   x. Add stock images
 
-1. Add onboarding process that allows joining a company
-  a. Onboarding is underway
+x. Add onboarding process that allows joining a company
+  x. Onboarding is underway
     x. Work on edit links
-    1. Add ability to create / join a company
+    x. Add ability to create / join a company
 
-1. Allow creating / joining a company later
+x. Allow creating / joining a company later
+  x. Need to see why this isn't finding a company
+  b. Working on accounts page, check onboarding
 
 1. Clicking on a message should show details and allow replying
 
 1. In message list, should be able to click to respond
   a. Possible also click to open user details
-
 
 ## Later
 

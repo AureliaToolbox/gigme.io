@@ -1,9 +1,10 @@
 <template>
   <template if.bind="!isAddingCompany">
     <template if.bind="company">
-      <h3>${company.name}</h3>
+      <h4>${company.name}</h4>
       <p>${company.website}</p>
       <strong>${company.url}</strong>
+      <p>After finishing this wizard, visit the listings page to create new job listings.</p>
     </template>
     <button class="btn btn-default"
       click.trigger="addCompany()">Add Company?</button>
@@ -24,5 +25,7 @@
     </div>
     <button class="btn btn-success"
       click.trigger="save()">Save</button>
+    <button class="btn btn-danger"
+      click.trigger="cancel()">Cancel</button>
   </template>
 </template>

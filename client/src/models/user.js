@@ -5,11 +5,15 @@ export class User {
   name = '';
   image = '';
   availability;
+  availability_id;
   listing_type;
+  listing_type_id;
   experience_level;
+  experience_level_id;
   rating;
   username = '';
   created_at;
+  company;
   company_id;
   links = [];
 
@@ -35,6 +39,7 @@ export class User {
     this.links.push(link);
   }
   setCompany(company) {
+    this.company = company;
     this.company_id = company.id;
   }
 }

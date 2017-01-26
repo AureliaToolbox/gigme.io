@@ -20,8 +20,8 @@ export class UserDropdown {
       Object.assign(this.session.currentUser, this.additionalDetails);
     }
     if (this.company) {
-      let company = new Company(newValue);
-      this.currentUser.company = company;
+      let company = new Company(this.company);
+      this.session.currentUser.setCompany(company);
     }
   }
   toggleOpen() {

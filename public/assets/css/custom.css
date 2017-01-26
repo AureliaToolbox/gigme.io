@@ -10,3 +10,22 @@
   padding: 12px 12px 12px 12px;
   color: white !important;
 }
+
+.navbar-brand-wrap span {
+  color: #1497FC;
+  font-size: 24px;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+@media (min-width: 992px) {
+  .navbar-brand img {
+    max-height: 90px;
+  }
+}
+
+.site-footer-logo {
+  max-height: 150px;
+}
