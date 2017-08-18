@@ -1,0 +1,18 @@
+<template>
+  <ai-dialog>
+    <ai-dialog-body>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Amount</strong>
+          <input type="number" value.bind="amount" placeholder="amount to send" />
+        </div>
+      </div>
+    </ai-dialog-body>
+    <ai-dialog-footer>
+      <button
+        class="btn btn-success pull-left"
+        click.trigger="send()">Send</button>
+      <button click.trigger="controller.cancel()">Cancel</button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

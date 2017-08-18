@@ -6,6 +6,12 @@ class Listing
   field :description, type: String
   field :company_id, type: String
   field :listing_type_id, type: String
+  field :completed, type: Boolean
+
   belongs_to :company
   belongs_to :listing_type
+
+  has_many :payment_requests
+
+  has_one :wallet
 end

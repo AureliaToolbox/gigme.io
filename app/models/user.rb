@@ -18,11 +18,13 @@ class User
   belongs_to :company
   belongs_to :availability
   belongs_to :experience_level
+  has_one :wallet
 
   has_many :to_messages, class_name: 'Message', inverse_of: :to_user
   has_many :from_messages, class_name: 'Message', inverse_of: :from_user
 
   has_many :links
+  has_many :payment_requests
 
   ## Database authenticatable
   field :email,                 type: String, default: ""

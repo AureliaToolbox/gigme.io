@@ -15,7 +15,10 @@ export class User {
   created_at;
   company;
   company_id;
+  wallet;
+  wallet_id;
   links = [];
+  payment_requests = [];
 
   constructor(data) {
     let tempLinks = [];
@@ -41,5 +44,9 @@ export class User {
   setCompany(company) {
     this.company = company;
     this.company_id = company.id;
+  }
+  setWallet(wallet) {
+    this.wallet = wallet;
+    this.wallet_id = wallet.id;
   }
 }

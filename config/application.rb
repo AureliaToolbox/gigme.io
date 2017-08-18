@@ -15,6 +15,7 @@ Bundler.require(*Rails.groups)
 
 module Aureliatoolkit
   class Application < Rails::Application
+    BlockIo.set_options api_key: ENV['block_io_litecoin_apikey'], pin: ENV['block_io_pin'], version: 2
 
     config.middleware.use Rack::Deflater
 

@@ -3,6 +3,8 @@ export class Company {
   name = '';
   website = '';
   main_contact_id = '';
+  wallet;
+  wallet_id;
 
   constructor(data) {
     Object.assign(this, data);
@@ -12,5 +14,9 @@ export class Company {
   }
   getId() {
     return this._id.$oid;
+  }
+  setWallet(wallet) {
+    this.wallet = wallet;
+    this.wallet_id = wallet.id;
   }
 }

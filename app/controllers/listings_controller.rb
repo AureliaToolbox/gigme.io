@@ -1,11 +1,12 @@
 class ListingsController < ApplicationController
+  before_action :authenticate_user!
   respond_to :json
 
   def index
-    @listings = Listing.all
+    @listings = Listing.all.includes(:wallet)
     respond_to do |format|
       format.html
-      format.json { render json: @listings }
+      format.json { render json: @listings, include: :wallet }
     end
   end
 
@@ -22,8 +23,9 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    @wallet = CreateWalletService.create_listing_wallet(@listing)
     return false if cannot_save_or_update
-    @listing.save
+    @listing.save!
     respond_to do |format|
       format.html { redirect_to(@listing) }
       format.json { render json: @listing }

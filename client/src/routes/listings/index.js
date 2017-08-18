@@ -4,6 +4,10 @@ import {Listing, Company, ListingType} from 'models/index';
 import {Datastore} from 'resources/datastore';
 import {Session} from 'services/session'
 import {observable} from 'aurelia-framework';
+import {WalletsService} from 'services/wallets';
+import {DialogService} from 'aurelia-dialog';
+import {SendMoney} from 'components/send-money';
+import {RequestMoney} from 'components/request-money';
 
 export class Index {
   listings = [];
@@ -14,13 +18,17 @@ export class Index {
   @observable descriptionFilter = '';
   @observable companyFilter = '';
   @observable typeFilter = '';
-  static inject = [CompaniesService, ListingsService, Datastore, Session];
-  constructor(companiesService, listingsService, datastore, session) {
+
+  static inject = [CompaniesService, ListingsService, WalletsService, Datastore, Session, DialogService];
+  constructor(companiesService, listingsService, walletsService, datastore, session, dialogsService) {
     this.companiesService = companiesService;
     this.listingsService = listingsService;
+    this.walletsService = walletsService;
+    this.dialogsService = dialogsService;
     this.datastore = datastore;
     this.session = session;
   }
+
   attached() {
     // TODO: Pull from loaded page
     return Promise.all([
@@ -34,9 +42,12 @@ export class Index {
       return this.listingsService.getListings().then(result => {
         result.forEach(listingJson => {
           let listing = new Listing(listingJson);
+          this.getWalletBalance(listing);
+
           let user = this.session.currentUser;
           if (user && user.company) {
             listing.canEdit = (user.company._id === listing._id);
+            console.log(listing.canEdit)
           }
           this.datastore.addListing(listing);
           this.listings.push(listing);
@@ -72,7 +83,22 @@ export class Index {
   }
   save(item) {
     this.listingsService.save(item).then(result => {
+      item.isEditing = false;
       console.log('Saved');
+    });
+  }
+  sendMoney(listing) {
+    let model = listing.wallet;
+    return this.dialogsService.open({ viewModel: SendMoney, model: model }).then(dialogResult => {
+      return this.getWalletBalance(listing).then(result => {
+        listing.isEditing = false;
+      });
+    });
+  }
+  requestPayment(listing) {
+    let model = listing.wallet;
+    return this.dialogsService.open({ viewModel: RequestMoney, model: model }).then(dialogResult => {
+      console.log(dialogResult);
     });
   }
   add() {
@@ -117,6 +143,15 @@ export class Index {
         }
       }
       return match;
+    });
+  }
+  getWalletBalance(listing) {
+    return this.walletsService.getWalletBalance(listing.wallet.address).then(result => {
+      if (!result || !result.total_value) {
+        this.hasNoWallet = true;
+      }
+      listing.wallet.balance = result.total_value;
+      this.hasNoWallet = false;
     });
   }
 }

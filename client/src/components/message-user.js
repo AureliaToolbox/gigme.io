@@ -18,7 +18,6 @@ export class MessageUser {
     this.message.to_user_id = this.user.id;
   }
   sendMessage() {
-    console.log(this.message);
     this.messagesService.sendMessage(this.user, this.message).then(result => {
       console.log(result);
     });

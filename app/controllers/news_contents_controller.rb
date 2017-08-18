@@ -1,4 +1,5 @@
 class NewsContentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_news_content, only: [:show, :edit, :update, :destroy]
   respond_to :json
 

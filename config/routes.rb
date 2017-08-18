@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         get 'from', on: :collection
         get 'to', on: :collection
       end
+      resources :payment_requests
     end
   end
   resources :messages, only: :index
@@ -21,11 +22,22 @@ Rails.application.routes.draw do
   #   post 'new', on: :collection
   #   post 'create', on: :collection
   # end
-  resources :accounts
+
+  resources :accounts do
+    get 'request_new_user_wallet', on: :collection
+    get 'request_new_company_wallet', on: :collection
+    get 'get_users_wallet_info', on: :collection
+    post 'get_wallet_info', on: :collection
+    get 'get_listings_wallet_info', on: :collection
+    post 'send_money', on: :collection
+    post 'request_from_wallet', on: :collection
+  end
+
   resources :companies do
     post 'new', on: :collection
     post 'create', on: :collection
   end
+
   resources :listing_types do
     post 'new', on: :collection
     post 'create', on: :collection

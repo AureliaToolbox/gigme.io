@@ -30,6 +30,12 @@ GEM
     addressable (2.4.0)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.10)
+    block_io (1.0.7)
+      connection_pool (~> 2.0, >= 2.0.0)
+      ecdsa (~> 1.2, >= 1.2.0)
+      httpclient (~> 2.4, >= 2.4.0)
+      json (~> 1.8, >= 1.8.1)
+      pbkdf2-ruby (~> 0.2, >= 0.2.1)
     bson (2.3.0)
     builder (3.2.2)
     byebug (9.0.5)
@@ -53,6 +59,7 @@ GEM
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
+    ecdsa (1.2.0)
     erubis (2.7.0)
     execjs (2.5.2)
     faraday (0.9.1)
@@ -64,6 +71,7 @@ GEM
       request_store (>= 1.0.5)
     hashie (3.4.0)
     hike (1.2.3)
+    httpclient (2.8.3)
     i18n (0.7.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
@@ -126,6 +134,7 @@ GEM
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
+    pbkdf2-ruby (0.2.1)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.3)
@@ -217,6 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  block_io (~> 1.0.7)
   byebug
   coffee-rails (~> 4.0.0)
   devise

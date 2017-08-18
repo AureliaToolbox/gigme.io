@@ -2,23 +2,22 @@
   <table class="table table-striped">
     <thead>
       <th>Title</th>
-      <th>Description</th>
       <th>Company</th>
       <th>Type</th>
+      <th>Bounty</th>
       <th>Actions</th>
     </thead>
     <tbody>
       <tr>
         <td><input placeholder="Title" value.bind="titleFilter" /></td>
-        <td><input placeholder="Description" value.bind="descriptionFilter" /></td>
         <td><input placeholder="Company" value.bind="companyFilter" /></td>
         <td><input placeholder="Type" value.bind="typeFilter" /></td>
+        <td></td>
         <td></td>
       </tr>
       <tr repeat.for="listing of displayListings">
         <template if.bind="!listing.isEditing">
           <td>${listing.title}</td>
-          <td>${listing.description}</td>
           <td>
             <span if.bind="listing.company">
               ${listing.company.name}
@@ -30,15 +29,23 @@
             </span>
           </td>
           <td>
+            <span if.bind="listing.listing_type">
+              ${listing.wallet.balance | usdFormat}
+            </span>
+          </td>
+          <td>
             <a href="#"
               click.trigger="edit(listing)"
               if.bind="listing.canEdit">Edit
             </a>
+            <button class="btn btn-default" href="#"
+              click.trigger="sendMoney(listing)">Add to Bounty</a>
+            <button class="btn btn-default" href="#"
+              click.trigger="requestPayment(listing)">Request Payment</a>
           </td>
         </template>
         <template if.bind="listing.isEditing">
           <td><input value.bind="listing.title" /></td>
-          <td><input value.bind="listing.description" /></td>
           <td>
             <select value.bind="listing.company">
               <option model.bind="null">Choose...</option>

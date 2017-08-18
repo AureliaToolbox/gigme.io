@@ -26,10 +26,9 @@ export class ListingsService {
     });
   }
   save(job) {
-    delete job.isEditing;
     job.company_id = getId(job.company);
     job.listing_type_id = getId(job.listing_type);
-    return this.http.post('listings/create.json', job).then(result => {
+    return this.http.post('listings.json', job).then(result => {
       return result.content;
     });
   }

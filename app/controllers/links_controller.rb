@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :authenticate_user!
   respond_to :json
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
@@ -31,7 +32,6 @@ class LinksController < ApplicationController
   end
 
   def update
-    p '*' * 80
     @link.update(link_params)
     respond_to do |format|
       format.html { redirect_to(@link) }

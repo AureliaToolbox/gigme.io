@@ -5,3 +5,4 @@ export {ExperienceLevel} from './experience-level';
 export {Availability} from './availability';
 export {User} from './user';
 export {Link} from './link';
+export {Wallet} from './wallet';
