@@ -1,6 +1,6 @@
 class CreateWalletService
   def self.create_user_wallet(user)
-    wallet
+    wallet = nil
     begin
       wallet_info = create_wallet(user.id)
       wallet = Wallet.create(wallet_info['data'])
