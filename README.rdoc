@@ -1,4 +1,0 @@
-## Pre-requisites
-
-1. MongoDb installed
-2. rbenv-vars

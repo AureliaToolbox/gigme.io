@@ -13,3 +13,8 @@ nginx config -
 ```
 $ sudo vim /etc/nginx/sites-available/aureliatoolbox
 ```
+
+## Pre-requisites
+
+1. MongoDb installed
+2. rbenv-vars
