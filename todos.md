@@ -1,3 +1,5 @@
+1. Make sure to create a new web server
+
 REMOVE GITTER MESSAGE JUNK
 
 0. Restrict access and remove server rendered pages if not authenticated

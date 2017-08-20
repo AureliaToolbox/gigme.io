@@ -19,7 +19,6 @@ gem 'omniauth-linkedin'
 
 gem "slim-rails"
 gem "gon"
-gem "byebug"
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
@@ -34,4 +33,5 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem "byebug"
 end

@@ -18,6 +18,7 @@ module Aureliatoolkit
     BlockIo.set_options api_key: ENV['block_io_litecoin_apikey'], pin: ENV['block_io_pin'], version: 2
 
     config.middleware.use Rack::Deflater
+    config.assets.enabled = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
