@@ -18,3 +18,5 @@ $ sudo vim /etc/nginx/sites-available/aureliatoolbox
 
 1. MongoDb installed
 2. rbenv-vars
+
+## Deploying
