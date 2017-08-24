@@ -17,11 +17,9 @@ Rails.application.routes.draw do
   end
   resources :news_contents
   resources :listings
-   # do
-    # get 'index', on: :collection
-  #   post 'new', on: :collection
-  #   post 'create', on: :collection
-  # end
+  resources :payment_requests do
+    patch 'approve'
+  end
 
   resources :accounts do
     get 'request_new_user_wallet', on: :collection

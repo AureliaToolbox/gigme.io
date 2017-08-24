@@ -5,6 +5,7 @@ export class Wallet {
   total_value;
   available_balance;
   pending_received_balance;
+  address;
 
   constructor(data) {
     Object.assign(this, data);

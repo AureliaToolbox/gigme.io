@@ -48,17 +48,13 @@
             <input class="form-control" if.bind="isEditing" value.bind="session.currentUser.username" />
           </div>
         </div>
-        <div class="row">
+        <div class="row" if.bind="isEditing">
           <div class="col-xs-12">
             <strong>Image</strong>
-            <span if.bind="!isEditing">${session.currentUser.image}</span>
-            <input class="form-control" if.bind="isEditing" value.bind="session.currentUser.image" />
+            <input class="form-control" value.bind="session.currentUser.image" />
           </div>
         </div>
       </div>
-
-
-
       <div class="row">
         <div class="col-xs-12">
           <wallet-details title="Current Wallet Balance" wallet.bind="session.currentUser.wallet"></wallet-details>

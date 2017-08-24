@@ -1,25 +1,24 @@
-1. Make sure to create a new web server
-
 REMOVE GITTER MESSAGE JUNK
 
-0. Restrict access and remove server rendered pages if not authenticated
-
-1. Add service for creating wallets
-  x. By user
-    x User should get a new wallet created when signing up and verified
-    x Display users wallet information on account home
-      x. Show the wallet address
-        x This should allow users to fill their wallet
-  b. By development item
-
-x. Add service for checking wallet balance
-  a. Should be agnostic of coin type (btc, ltc, eth)
-  x. Should have a get current price call to calculate USD
-
-x. Make sure whenever we get wallet information we persist it
-
-0. Publish out all current changes
-  a. Go update the data references for the production instance
+8. Write out instructions for joining / participating
+  a. Technology
+    - Coinbase
+    - Block.io
+    - Hardware wallets - Trezor
+    - Ruby on Rails
+    - Aurelia
+  b. Concepts
+    - Permissions are mostly driven by inferring the user
+      a. Most requests cannot be provided a wallet address or anything
+      b. Controlling interest
+  c. Joining
+    - Instructions for setting up wallets
+    - Instructions for joining CompleteContractCycle.com
+      a. Explanation of Johns role
+    - First task - only a beginner can do them
+  c. Warnings disclaimers
+    - All transactions must be approved by controlling interest
+    - Not an exchange
 
 6. Remove company onboarding and have it be by request-only.
 
@@ -30,16 +29,17 @@ x.x. Create a new model for controlling_interest
   b. Display company owner information
   c. Display company wallet balance
 
-7.5. When approving payment, use controlling_interest for approving the redistribution
-  a. Superadmin has sole control to approve payment from this wallet
-
-8. Add an approve payment workflow
-  a. Add a list view of pending payment_requests
-  a. Add approve button that
-    - Marks the listing completed
-    -
+x. Add an approve payment workflow
+  x. Add a list view of pending payment_requests
+  x. Add approve button that
+    x Marks the listing completed
     - Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
 
+9. Add service for checking network fees
+  a. Show estimated network fee when requesting payment
+    - RequestMoney dialog
+  b. Show estimated network fee when sending money
+    - SendMoney dialog
 
 ---
 
@@ -74,72 +74,3 @@ x.x. Create a new model for controlling_interest
 4. Add ability to withdraw from personal wallet.  Creates a request to take the money out.
   a. Later
 100. Update the landing pages and such to show what the service is doing
-
-
-## Before beta
-
-x. Allow creating / joining a company later
-  x. Need to see why this isn't finding a company
-  b. Working on accounts page, check onboarding
-
-1. In message list, should be able to click to respond
-  a. Possible also click to open user details
-
-## Later
-
-Clean up developer details
-Clean up listing details
-Add company details?
-
-Add a virtual scroll
-
-Consider not augmenting with JavaScript if user isn't logged in
-
-Ellipsis the message in the view
-
-
-# User
-
-x. Ability to log in is priority one
-
-x. User management to set profile settings
-  x. Availability
-  x. User info (everything in user.rb)
-  c. Hidden status to go ghost-mode
-  d. Specialities
-  x. Experience
-  x. Links
-
-1. Add ability to rate previous company
-x. Add ability to add links
-
-# Developers
-
-x. Click to read details
-  x. Show dialog with info
-  x. Ability to click interested button to send message
-x. Can filter based on columns
-
-# Listings
-
-1. Allow logged in company user to add a listing
-
-1. Can click to read details
-  a. Show dialog with info
-  b. Ability to click interested button to send message
-x. Can filter based on columns
-1. Add approval button for admins only
-1. Add back-end check for authorization
-
-# Company
-
-1. Manage open listings
-  a. Should only be able to edit their own listings
-  a. Add listing info
-  b. Close listing
-  c. Can bump 1x per day
-1. Add ability to rate previous user
-
-# Admin
-
-1. CRUD operations for all types

@@ -22,6 +22,7 @@ export class UserDropdown {
   }
   bind(bindingContext, overrideContext) {
     this.session.currentUser = new User(this.currentUser);
+
     if (this.session.currentUser) {
       this.paymentRequestsService.getForUser(this.session.currentUser).then(result => {
         this.session.currentUser.payment_requests = result;

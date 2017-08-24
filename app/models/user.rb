@@ -15,7 +15,7 @@ class User
   field :links, type: Array, default: []
   field :is_admin, type: Boolean, default: false
 
-  belongs_to :company
+  belongs_to :company, inverse_of: :users
   belongs_to :availability
   belongs_to :experience_level
   has_one :wallet

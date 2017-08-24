@@ -43,8 +43,15 @@ class AccountsController < ApplicationController
     from_address = params[:from_address]
     approval_url = params[:approval_url]
 
+    wallet = Wallet.get_by_address(from_address)
+    if (wallet.present? && wallet.listing.present?)
+      PaymentRequestService.request_money(amount, approval_url, from_address, to_label, current_user, wallet.listing)
+    else
+      PaymentRequestService.request_money(amount, approval_url, from_address, to_label, current_user)
+    end
+
     return head 403 if (to_label == current_user.id)
-    PaymentRequestService.request_money(amount, approval_url, from_address, to_label, current_user)
+
     render json: true
   end
 end

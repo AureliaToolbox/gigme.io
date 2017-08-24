@@ -6,3 +6,4 @@ export {Availability} from './availability';
 export {User} from './user';
 export {Link} from './link';
 export {Wallet} from './wallet';
+export {PaymentRequest} from './payment-request';

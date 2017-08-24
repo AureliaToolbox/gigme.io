@@ -4,6 +4,7 @@ export class Listing {
   description = '';
   company;
   listing_type;
+  completed = false;
   canEdit = false;
 
   constructor(data) {

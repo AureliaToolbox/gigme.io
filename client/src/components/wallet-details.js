@@ -3,6 +3,7 @@ import {WalletsService} from 'services/wallets';
 import {bindable} from 'aurelia-framework';
 import {DialogService} from 'aurelia-dialog';
 import {SendMoney} from 'components/send-money';
+import {ShowAddress} from 'components/show-address';
 
 export class WalletDetails {
   @bindable title = '';
@@ -38,5 +39,10 @@ export class WalletDetails {
         this.wallet.updateValues(result);
       });
     });
+  }
+  showAddress() {
+    let dialogOptions = { viewModel: ShowAddress, model: this.wallet };
+
+    return this.dialogsService.open(dialogOptions);
   }
 }

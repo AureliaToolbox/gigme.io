@@ -4,6 +4,7 @@ html
     title Aurelia Toolbox
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = stylesheet_link_tag    "/jspm_packages/github/twbs/bootstrap@3.3.7/css/bootstrap", media: 'all'
+    = stylesheet_link_tag    "/styles/styles", media: 'all'
     = csrf_meta_tags
     javascript:
       window.dataLoader = {
@@ -64,6 +65,10 @@ html
             li#messages
               a href="/messages"
                 | Messages
+          - if current_user
+            li#payment-requests
+              a href="/payment_requests"
+                | Payment Requests
 
     div.page-host
       = yield

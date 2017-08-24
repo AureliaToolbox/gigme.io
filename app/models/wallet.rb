@@ -13,4 +13,8 @@ class Wallet
   belongs_to :user
   belongs_to :listing
   belongs_to :company
+
+  def self.get_by_address(address)
+    Wallet.where(address: address)
+  end
 end

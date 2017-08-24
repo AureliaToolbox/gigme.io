@@ -11,17 +11,28 @@ export class PaymentRequestsService {
       x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
     });;
   }
+  getAll() {
+    let url = `/payment_requests.json`;
+    return this.http.get(url).then(result => {
+      let paymentRequests = [];
+      result.content.forEach(paymentRequest => {
+        paymentRequests.push(new PaymentRequest(paymentRequest));
+      });
+      return paymentRequests;
+    });
+  }
   getForUser(user) {
     let url = `/admin/users/${user.id}/payment_requests.json`;
     return this.http.get(url).then(result => {
-      return result.content;
+      let paymentRequests = [];
+      result.content.forEach(paymentRequest => {
+        paymentRequests.push(new PaymentRequest(paymentRequest));
+      });
+      return paymentRequests;
     });
   }
   approve(paymentRequest) {
-    if (paymentRequest) {
-      paymentRequest.user_id = getId(paymentRequest.user.id);
-    }
-    let url = `/admin/payment_requests/${paymentRequest.id}.json`;
+    let url = `/payment_requests/${paymentRequest.id}/approve.json`;
 
     return this.http.patch(url, paymentRequest).then(result => {
       console.log('Saved');

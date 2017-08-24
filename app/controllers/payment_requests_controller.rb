@@ -3,7 +3,13 @@ class PaymentRequestsController < ApplicationController
   respond_to :json
 
   def index
-    @payment_requests = current_user.payment_requests
+    user_id = params[:user_id]
+
+    if user_id
+      @payment_requests = current_user.payment_requests
+    else
+      @payment_requests = PaymentRequest.all
+    end
 
     respond_to do |format|
       format.html
@@ -32,8 +38,24 @@ class PaymentRequestsController < ApplicationController
     end
   end
 
+  def approve
+    set_payment_request
+
+    can_approve = ControllingInterest.first.company.verify_is_owner(current_user)
+    return head 403 if (!can_approve)
+
+    WalletTransferService.approve_payment_request(@payment_request)
+
+    respond_to do |format|
+      format.html { redirect_to(@payment_request) }
+      format.json { render json: @payment_request }
+    end
+  end
+
   def update
+    set_payment_request
     @payment_request.update(payment_request_params)
+
     respond_to do |format|
       format.html { redirect_to(@payment_request) }
       format.json { render json: @payment_request }
@@ -46,6 +68,6 @@ class PaymentRequestsController < ApplicationController
     end
 
     def payment_request_params
-      params.require(:payment_request).permit(:amount, :from_address, :to_label, :approval_url, :completed)
+      params.require(:payment_request).permit(:amount, :from_address, :to_label, :approval_url, :completed, :user_id, :listing_id)
   end
 end

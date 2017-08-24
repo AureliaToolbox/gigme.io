@@ -54,3 +54,8 @@ section {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.large-modal {
+  min-height: 200px;
+  min-width: 450px;
+}
