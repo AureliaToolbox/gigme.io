@@ -15,8 +15,6 @@ export class CompaniesService {
   }
   create(company) {
     return this.http.post('companies/create.json', company).then(result => {
-      console.log(result)
-      console.log(result.content)
       return result.content;
     });
   }

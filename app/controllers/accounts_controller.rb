@@ -26,6 +26,18 @@ class AccountsController < ApplicationController
     render json: balance
   end
 
+  def get_network_fees
+    amount = params[:amount]
+    address = params[:address]
+    fees = NetworkFeeService.get_network_fees(amount, address)
+    render json: fees
+  end
+
+  def get_exchange_rate
+    rate = WalletBalanceService.get_exchange_rate(:usd)
+    render json: rate
+  end
+
   def send_money
     label = params[:label]
     amount = params[:amount]

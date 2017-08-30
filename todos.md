@@ -1,24 +1,14 @@
 REMOVE GITTER MESSAGE JUNK
 
-8. Write out instructions for joining / participating
-  a. Technology
-    - Coinbase
-    - Block.io
-    - Hardware wallets - Trezor
-    - Ruby on Rails
-    - Aurelia
-  b. Concepts
-    - Permissions are mostly driven by inferring the user
-      a. Most requests cannot be provided a wallet address or anything
-      b. Controlling interest
-  c. Joining
-    - Instructions for setting up wallets
-    - Instructions for joining CompleteContractCycle.com
-      a. Explanation of Johns role
-    - First task - only a beginner can do them
-  c. Warnings disclaimers
-    - All transactions must be approved by controlling interest
-    - Not an exchange
+9. Add service for checking network fees
+  x. Show estimated network fee when requesting payment
+    x RequestMoney dialog
+    x Show the network fee
+    x Show the remainder (remove input element)
+  b. Show estimated network fee when sending money
+    - SendMoney dialog
+
+10. Do not return listings which are completed
 
 6. Remove company onboarding and have it be by request-only.
 
@@ -33,13 +23,9 @@ x. Add an approve payment workflow
   x. Add a list view of pending payment_requests
   x. Add approve button that
     x Marks the listing completed
+    - Skim 10% to the controlling interests wallet
     - Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
 
-9. Add service for checking network fees
-  a. Show estimated network fee when requesting payment
-    - RequestMoney dialog
-  b. Show estimated network fee when sending money
-    - SendMoney dialog
 
 ---
 

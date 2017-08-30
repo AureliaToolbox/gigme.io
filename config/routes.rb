@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get 'request_new_user_wallet', on: :collection
     get 'request_new_company_wallet', on: :collection
     get 'get_users_wallet_info', on: :collection
+    post 'get_network_fees', on: :collection
+    get 'get_exchange_rate', on: :collection
     post 'get_wallet_info', on: :collection
     get 'get_listings_wallet_info', on: :collection
     post 'send_money', on: :collection

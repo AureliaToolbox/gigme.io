@@ -11,7 +11,6 @@ export class DataContext {
     this.datastore = datastore;
   }
   load() {
-    console.log('getting availabilities')
     this.getAvailabilities();
     this.getExperienceLevels();
   }

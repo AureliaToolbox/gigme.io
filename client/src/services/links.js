@@ -11,7 +11,6 @@ export class LinksService {
     });;
   }
   save(link) {
-    console.log(link)
     let url = '';
     let verb;
     if (link.isNew) {

@@ -15,16 +15,16 @@ class WalletBalanceService
     wallet
   end
 
+  def self.get_exchange_rate(currency_code)
+    result = BlockIo.get_current_price price_base: currency_code
+    result['data']['prices'][0]['price'].to_f
+  end
+
   private
 
   def self.get_wallet_info(label)
     result = BlockIo.get_address_balance labels: label
     p result
     result['data']['balances'].detect {|balance| balance['label'] == label}
-  end
-
-  def self.get_exchange_rate(currency_code)
-    result = BlockIo.get_current_price price_base: currency_code
-    result['data']['prices'][0]['price'].to_f
   end
 end

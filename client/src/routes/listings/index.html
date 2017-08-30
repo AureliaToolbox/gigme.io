@@ -38,10 +38,12 @@
               click.trigger="edit(listing)"
               if.bind="listing.canEdit">Edit
             </a>
-            <button class="btn btn-default" href="#"
-              click.trigger="sendMoney(listing)">Add to Bounty</a>
-            <button class="btn btn-default" href="#"
-              click.trigger="requestPayment(listing)">Request Payment</a>
+            <template if.bind="!listing.completed">
+              <button class="btn btn-default"
+                click.trigger="sendMoney(listing)">Add to Bounty</button>
+              <button class="btn btn-default"
+                click.trigger="requestPayment(listing)">Request Payment</button>
+            </template>
           </td>
         </template>
         <template if.bind="listing.isEditing">

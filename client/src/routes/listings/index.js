@@ -47,7 +47,6 @@ export class Index {
           let user = this.session.currentUser;
           if (user && user.company) {
             listing.canEdit = (user.company._id === listing._id);
-            console.log(listing.canEdit)
           }
           this.datastore.addListing(listing);
           this.listings.push(listing);
@@ -84,7 +83,6 @@ export class Index {
   save(item) {
     this.listingsService.save(item).then(result => {
       item.isEditing = false;
-      console.log('Saved');
     });
   }
   sendMoney(listing) {

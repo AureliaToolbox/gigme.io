@@ -3,14 +3,36 @@
     <ai-dialog-body>
       <div class="row">
         <div class="col-xs-12">
-          <strong>Amount</strong>
-          <input type="number" value.bind="amount" placeholder="amount to send" />
+          <strong>Total Amount</strong>
+          <span>${total | usdFormat}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Estimated Network Fees</strong>
+          <span>${networkFees | usdFormat}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Controlling Interest Fees (10%)</strong>
+          <span>${controllingInterestFees | usdFormat}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Remainder</strong>
+          <span>${amount | usdFormat}</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <strong>Approval Link <small>(github link, signed e-doc)</small></strong>
-          <input type="text" value.bind="approvalUrl" placeholder="approval link" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <input type="text" value.bind="approvalUrl" placeholder="approval link" class="form-control" />
         </div>
       </div>
     </ai-dialog-body>
