@@ -17,6 +17,6 @@ class Listing
   has_one :wallet
 
   def self.not_completed
-    where(completed: false)
+    where(:completed => [nil, false])
   end
 end
