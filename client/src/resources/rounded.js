@@ -1,6 +1,7 @@
 export class RoundedValueConverter {
   toView(value) {
-    let returnValue = (Math.ceil(value * 4) / 4);
+    console.log(value)
+    let returnValue = (parseFloat(value).toFixed(4));
     return returnValue;
   }
 }

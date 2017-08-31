@@ -14,7 +14,7 @@
     <tbody>
       <tr repeat.for="paymentRequest of paymentRequests">
         <template if.bind="!paymentRequest.isEditing">
-          <td>${paymentRequest.amount | rounded} - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
+          <td>${paymentRequest.amount | rounded} LTC - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
           <td>
             <span if.bind="paymentRequest.from_address">
               ${paymentRequest.from_address}
