@@ -16,7 +16,7 @@ class Listing
 
   has_one :wallet
 
-  def self.not_completed()
-    Listing.where(completed: false)
+  def self.not_completed
+    where(completed: false)
   end
 end
