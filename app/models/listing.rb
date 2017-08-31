@@ -7,6 +7,7 @@ class Listing
   field :company_id, type: String
   field :listing_type_id, type: String
   field :completed, type: Boolean
+  field :has_transaction_fee, type: Boolean
 
   belongs_to :company
   belongs_to :listing_type
@@ -14,4 +15,8 @@ class Listing
   has_many :payment_requests
 
   has_one :wallet
+
+  def self.not_completed()
+    Listing.where(completed: false)
+  end
 end

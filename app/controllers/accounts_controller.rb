@@ -55,7 +55,9 @@ class AccountsController < ApplicationController
     from_address = params[:from_address]
     approval_url = params[:approval_url]
 
-    wallet = Wallet.get_by_address(from_address)
+    wallet = Wallet.get_by_address(from_address).first
+    p '-' * 80
+    p wallet
     if (wallet.present? && wallet.listing.present?)
       PaymentRequestService.request_money(amount, approval_url, from_address, to_label, current_user, wallet.listing)
     else

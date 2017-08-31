@@ -6,10 +6,10 @@ import {ExchangeRatesService} from 'services/exchange-rates';
 import {Session} from 'services/session';
 
 export class RequestMoney {
-  @bindable amount;
   @bindable approvalUrl = '';
   @bindable wallet;
-  total;
+  value;
+  isChargingControllingInterestFees = false;
 
   static inject = [DialogController, WalletsService, NetworkFeesService, ExchangeRatesService, Session];
   constructor(dialogController, walletsService, networkFeesService, exchangeRatesService, session) {
@@ -35,21 +35,47 @@ export class RequestMoney {
     });
   }
   calculateValues() {
-    let amount = this.wallet.available_balance * this.exchangeRate;
-    let remainder = (amount - (this.networkFees * this.exchangeRate));
-    this.networkFees = (this.networkFees * this.exchangeRate);
-    this.controllingInterestFees = (remainder * .1);
-    this.amount = (remainder - this.controllingInterestFees);
-    this.total = (this.amount + this.controllingInterestFees + this.networkFees);
+    let totalAmountInCurrency = this.wallet.available_balance * this.exchangeRate;
+    let networkFeesInCurrency = (this.networkFees * this.exchangeRate);
+    let totalLessNetworkFees = (totalAmountInCurrency - networkFeesInCurrency);
+    let controllingInterestFees;
+    let remainder;
+
+    if (this.isChargingControllingInterestFees) {
+      controllingInterestFees = (totalLessNetworkFees * .1);
+      remainder = (totalLessNetworkFees - this.controllingInterestFees);
+    } else {
+      remainder = totalLessNetworkFees;
+    }
+
+    let data = {
+      networkFeesInCurrency: networkFeesInCurrency,
+      controllingInterestFees: controllingInterestFees,
+      remainder: remainder,
+      total: totalAmountInCurrency
+    };
+
+    this.value = new PaymentRequestInCurrency(data);
   }
   request() {
     let wallet = this.wallet;
     let fromAddress = wallet.address;
     let toLabel = this.session.currentUser.wallet.label;
     let approvalUrl = this.approvalUrl;
+    let amount = (this.wallet.available_balance - this.networkFees);
 
-    return this.walletsService.requestFromWallet(this.amount, approvalUrl, fromAddress, toLabel).then(result => {
+    return this.walletsService.requestFromWallet(amount, approvalUrl, fromAddress, toLabel).then(result => {
       return this.controller.ok(this.wallet);
     });
+  }
+}
+
+export class PaymentRequestInCurrency {
+  networkFeesInCurrency;
+  controllingInterestFees;
+  remainder;
+  total;
+  constructor(data) {
+    Object.assign(data);
   }
 }

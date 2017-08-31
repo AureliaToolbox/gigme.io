@@ -4,25 +4,25 @@
       <div class="row">
         <div class="col-xs-12">
           <strong>Total Amount</strong>
-          <span>${total | usdFormat}</span>
+          <span>${value.total | usdFormat}</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <strong>Estimated Network Fees</strong>
-          <span>${networkFees | usdFormat}</span>
+          <span>${value.networkFeesInCurrency | usdFormat}</span>
         </div>
       </div>
-      <div class="row">
+      <div class="row" if.bind="isChargingControllingInterestFees">
         <div class="col-xs-12">
           <strong>Controlling Interest Fees (10%)</strong>
-          <span>${controllingInterestFees | usdFormat}</span>
+          <span>${value.controllingInterestFees | usdFormat}</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <strong>Remainder</strong>
-          <span>${amount | usdFormat}</span>
+          <span>${value.remainder | usdFormat}</span>
         </div>
       </div>
       <div class="row">

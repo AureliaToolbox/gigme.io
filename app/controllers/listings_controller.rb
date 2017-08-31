@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
   respond_to :json
 
   def index
-    @listings = Listing.all.includes(:wallet)
+    @listings = Listing.not_completed.all.includes(:wallet)
     respond_to do |format|
       format.html
       format.json { render json: @listings, include: :wallet }

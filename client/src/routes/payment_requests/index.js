@@ -20,6 +20,8 @@ export class Index {
     return this.paymentRequestsService.approve(paymentRequest).then(result => {
       Object.assign(paymentRequest, result);
       paymentRequest.id = paymentRequest.getId();
+    }).catch(error => {
+      alert('Error: Forbidden.  You are not allowed to approve this.');
     });
   }
 }

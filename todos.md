@@ -8,8 +8,6 @@ REMOVE GITTER MESSAGE JUNK
   b. Show estimated network fee when sending money
     - SendMoney dialog
 
-10. Do not return listings which are completed
-
 6. Remove company onboarding and have it be by request-only.
 
 ### ----
@@ -23,18 +21,10 @@ x. Add an approve payment workflow
   x. Add a list view of pending payment_requests
   x. Add approve button that
     x Marks the listing completed
-    - Skim 10% to the controlling interests wallet
     - Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
 
 
 ---
-
-5. Refactor the listing to support development items for a company to start.
-  a. Charge a transaction fee of $15 per listing
-  a. Add a approval_link
-  a. Add a scope to the listing to only return uncompleted listings
-  a. Add a route for completing a listing
-  a. Do not allow updating approval from client_side
 
 7. Add ability to request to work on a listing
   a. User clicks to request to work on an issue
@@ -58,5 +48,5 @@ x. Add an approve payment workflow
   e. Admin view only, this should somehow be single-threaded if possible to prevent multiple movements.
 
 4. Add ability to withdraw from personal wallet.  Creates a request to take the money out.
-  a. Later
+  a. Research allowing the user to set their own personal wallet instead
 100. Update the landing pages and such to show what the service is doing
