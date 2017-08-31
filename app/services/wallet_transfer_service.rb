@@ -4,10 +4,10 @@ class WalletTransferService
   end
 
   def self.approve_payment_request(payment_request)
-    amount = payment_request.amount
+    amount = payment_request.amount.to_f.round(3)
     label = payment_request.to_label
     address = payment_request.from_address
-    BlockIo.withdraw amounts: amount, from_labels: label, to_addresses: address
+    BlockIo.withdraw amounts: amount, from_addresses: address, to_labels: label
     payment_request.completed = true
     payment_request.save!
 

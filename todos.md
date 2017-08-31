@@ -1,5 +1,8 @@
 REMOVE GITTER MESSAGE JUNK
 
+0. Add current value to approval list
+1. Approve transactions
+
 9. Add service for checking network fees
   x. Show estimated network fee when requesting payment
     x RequestMoney dialog
@@ -22,7 +25,6 @@ x. Add an approve payment workflow
   x. Add approve button that
     x Marks the listing completed
     - Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
-
 
 ---
 

@@ -8,7 +8,7 @@ class PaymentRequestsController < ApplicationController
     if user_id
       @payment_requests = current_user.payment_requests
     else
-      @payment_requests = PaymentRequest.all
+      @payment_requests = PaymentRequest.all.with_user
     end
 
     respond_to do |format|

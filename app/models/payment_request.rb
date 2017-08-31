@@ -10,4 +10,8 @@ class PaymentRequest
 
   belongs_to :user
   belongs_to :listing
+
+  def self.with_user
+    PaymentRequest.includes(:user)
+  end
 end
