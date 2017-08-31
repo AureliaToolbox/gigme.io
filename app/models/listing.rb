@@ -6,7 +6,7 @@ class Listing
   field :description, type: String
   field :company_id, type: String
   field :listing_type_id, type: String
-  field :completed, type: Boolean
+  field :completed, type: Boolean, default: false
   field :has_transaction_fee, type: Boolean
 
   belongs_to :company
