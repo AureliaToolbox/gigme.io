@@ -1,4 +1,7 @@
 .rbenv-vars
+.vagrant
+./box/*
+/box/*
 
 shared/log/unicorn.stderr.log
 shared/log/unicorn.stdout.log

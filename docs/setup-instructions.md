@@ -1,3 +1,58 @@
+# Vagrant
+
+We use Vagrant to provision a development environment so that the platform can be worked on across various operating systems (I'm looking at you Windows)
+
+To start with Vagrant, from the root directory of this project after cloning -
+
+### Install new vagrant box
+
+The project comes with a pre-configured vagrant box in the `box` directory.  We need to install it before bringing up our VM -
+
+```
+$ vagrant box add aureliatoolbox-basebox ./box/aureliatoolbox-base.box
+```
+
+## Next bring our box up
+
+```
+$ vagrant up
+$ vagrant ssh
+$ vim ~/.bashrc
+```
+
+When the editor is open make sure to be in edit mode and paste the following in -
+
+```
+export block_io_litecoin_apikey={{your block.io testnet apikey goes here}}
+export block_io_pin={{your block.io pin goes here}}
+
+export GITHUB_SECRET_ID="{{DEV SECRET"
+export GITHUB_SECRET_APP="{{DEV APP}}"
+
+export GOOGLE_CLIENT_ID="{{DEV GOOGLE CLIENT}}"
+export GOOGLE_CLIENT_SECRET="{{DEV GOOGLE SECRET}}"
+```
+
+Save this file and source ~/.bashrc again so the environment variables reload -
+
+```
+$ source ~/.bashrc
+```
+
+Now the environment variables are in place to at least allow logins in against GitHub.
+
+Next we need to install the ruby gems and run the rails server.
+
+```
+$ cd /vagrant
+$ bundle install
+$ bundle exec unicorn -p3000 -b 0.0.0.0
+```
+
+
+# Non-vagrant
+
+
 ## Install the following in your local development environment -
 
 0. Ruby (version 2.3.1) - Most use a tool called RVM which is Ruby Version Manager for managing the ruby installations.  You can install RVM first and then use it to install a specific version of Ruby.
