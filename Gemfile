@@ -21,7 +21,7 @@ gem "gon"
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'block_io', '~> 1.0.7'
+gem 'block_io', '~> 1.0.6'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use unicorn as the app server
