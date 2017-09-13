@@ -10,7 +10,7 @@
       <div class="col-xs-6">
         <h4>
           <small>USD Equiv</small>
-          ${paymentRequest.amount | usdFormat}
+          ${value.total | usdFormat}
         </h4>
       </div>
       <div class="col-xs-6">
@@ -23,7 +23,7 @@
     <div class="row">
       <p><strong>Approval Url:</strong> ${paymentRequest.approval_url}</p>
       <p><strong>From:</strong> ${paymentRequest.from_address}</p>
-      <p><strong>To:</strong> ${paymentRequest.to_label}</p>
+      <p><strong>To:</strong> ${paymentRequest.to_label ? paymentRequest.to_label : paymentRequest.to_address}</p>
     </div>
   </div>
 </template>

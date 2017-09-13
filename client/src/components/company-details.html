@@ -6,7 +6,12 @@
     <strong>${company.url}</strong>
 
     <template if.bind="company.wallet">
-      <wallet-details title="Company Wallet" wallet.bind="company.wallet"></wallet-details>
+      <wallet-details
+        title="Company Wallet"
+        wallet.bind="company.wallet"
+        can-send-to.bind="true"
+        can-request-distribution.bind="false">
+      </wallet-details>
     </template>
     <template if.bind="!company.wallet">
       <button click.trigger="requestNewWallet()"

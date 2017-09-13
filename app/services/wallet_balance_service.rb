@@ -16,8 +16,13 @@ class WalletBalanceService
   end
 
   def self.get_exchange_rate(currency_code)
-    result = BlockIo.get_current_price price_base: currency_code
-    result['data']['prices'][0]['price'].to_f
+    return_result = 0.0
+    if (Rails.env.production?)
+      result = BlockIo.get_current_price price_base: currency_code
+      return_result = result['data']['prices'][0]['price'].to_f
+    else
+      return_result = 60
+    end
   end
 
   private

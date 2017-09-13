@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   end
   resources :messages, only: :index
   resources :links
-  resources :gitter_messages
   resources :news_items do
     post 'like', on: :collection
   end
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
     get 'get_listings_wallet_info', on: :collection
     post 'send_money', on: :collection
     post 'request_from_wallet', on: :collection
+    post 'request_distribution', on: :collection
   end
 
   resources :companies do

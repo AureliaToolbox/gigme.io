@@ -4,10 +4,13 @@ import {bindable} from 'aurelia-framework';
 import {DialogService} from 'aurelia-dialog';
 import {SendMoney} from 'components/send-money';
 import {ShowAddress} from 'components/show-address';
+import {RequestDistribution} from 'components/request-distribution';
 
 export class WalletDetails {
   @bindable title = '';
   @bindable wallet;
+  @bindable canSendTo = false;
+  @bindable canRequestDistribution = false;
   isAddingWallet = false;
 
   static inject = [WalletsService, DialogService];
@@ -29,6 +32,19 @@ export class WalletDetails {
   }
   sendMoney() {
     let dialogOptions = { viewModel: SendMoney, model: this.wallet };
+
+    return this.dialogsService.open(dialogOptions).then(dialogResult => {
+      return this.walletsService.getWalletBalance(this.wallet.address).then(result => {
+        if (!result || !result.total_value) {
+          return;
+        }
+
+        this.wallet.updateValues(result);
+      });
+    });
+  }
+  requestDistribution() {
+    let dialogOptions = { viewModel: RequestDistribution, model: this.wallet };
 
     return this.dialogsService.open(dialogOptions).then(dialogResult => {
       return this.walletsService.getWalletBalance(this.wallet.address).then(result => {

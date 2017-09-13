@@ -5,6 +5,7 @@ class PaymentRequest
   field :amount, type: String
   field :from_address, type: String
   field :to_label, type: String
+  field :to_address, type: String
   field :approval_url, type: String
   field :completed, type: Boolean
 

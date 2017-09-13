@@ -38,6 +38,14 @@ export class PaymentRequestsService {
       console.log('Saved');
     });
   }
+  reject(paymentRequest) {
+    alert('TODO: Create the endpoint on the server to reject')
+    let url = `/payment_requests/${paymentRequest.id}/reject.json`;
+
+    return this.http.patch(url, paymentRequest).then(result => {
+      console.log('Saved');
+    });
+  }
 }
 
 function getId(obj) {

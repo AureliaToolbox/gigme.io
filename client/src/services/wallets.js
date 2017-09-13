@@ -60,4 +60,16 @@ export class WalletsService {
       return result.content;
     });
   }
+  requestDistribution(amount, fromAddress, toAddress) {
+    let url = `/accounts/request_distribution`;
+
+    let body = {
+      amount: amount,
+      to_address: toAddress,
+      from_address: fromAddress
+    };
+    return this.http.post(url, body).then(result => {
+      return result.content;
+    });
+  }
 }

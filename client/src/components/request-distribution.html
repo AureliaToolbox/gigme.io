@@ -1,0 +1,29 @@
+<template>
+  <ai-dialog>
+    <ai-dialog-body>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Total Amount</strong>
+          <span>${value.total | usdFormat}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Estimated Network Fees</strong>
+          <span>${value.networkFeesInCurrency | usdFormat}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <input type="text" value.bind="toAddress" placeholder="to address" class="form-control" />
+        </div>
+      </div>
+    </ai-dialog-body>
+    <ai-dialog-footer>
+      <button
+        class="btn btn-success pull-left"
+        click.trigger="request()">Request</button>
+      <button click.trigger="controller.cancel()">Cancel</button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

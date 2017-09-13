@@ -5,7 +5,7 @@
     <thead>
       <th>Amount</th>
       <th>From Address</th>
-      <th>To Label</th>
+      <th>To Label / Address</th>
       <th>Approval URL</th>
       <th>Completed</th>
       <th>User</th>
@@ -21,8 +21,8 @@
             </span>
           </td>
           <td>
-            <span if.bind="paymentRequest.to_label">
-              ${paymentRequest.to_label}
+            <span if.bind="(paymentRequest.to_label || paymentRequest.to_address)">
+              ${paymentRequest.to_label ? paymentRequest.to_label : paymentRequest.to_address}
             </span>
           </td>
           <td>
@@ -47,7 +47,9 @@
           </td>
           <td>
             <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
-              click.trigger="approve(paymentRequest)">Approve</a>
+              click.trigger="approve(paymentRequest)">Approve</button>
+            <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
+              click.trigger="reject(paymentRequest)">Reject</button>
           </td>
         </template>
       </tr>

@@ -1,22 +1,24 @@
-REMOVE GITTER MESSAGE JUNK
-
-0. Add ability to withdraw from your personal wallet only
-0. Add current value to approval list
-1. Approve transactions
-
-9. Add service for checking network fees
+0. Add ability to reject a payment request
+  a. Add a payment request status
+    - created
+    - approved
+    - rejected
+3. Add service for checking network fees
   x. Show estimated network fee when requesting payment
     x RequestMoney dialog
     x Show the network fee
     x Show the remainder (remove input element)
   b. Show estimated network fee when sending money
     - SendMoney dialog
+x. Remove company onboarding and have it be by request-only.
 
-6. Remove company onboarding and have it be by request-only.
-
-7. Archive old addresses once a listing is completed
+x. Archive old addresses once a listing is completed
 
 ### ----
+
+x. Add ability to withdraw from your personal wallet only
+  x. Must specify a valid litecoin address
+  x. Add lots of warnings that the address must be valid
 
 x.x. Create a new model for controlling_interest
   x. Reference to the company
@@ -27,7 +29,7 @@ x. Add an approve payment workflow
   x. Add a list view of pending payment_requests
   x. Add approve button that
     x Marks the listing completed
-    - Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
+    x Initiates the transfer of the remainder of the listing wallet to the requesting_user's wallet
 
 ---
 

@@ -2,6 +2,7 @@ export class PaymentRequest {
   amount;
   from_address;
   to_label;
+  to_address;
   approval_url = '';
   completed;
 

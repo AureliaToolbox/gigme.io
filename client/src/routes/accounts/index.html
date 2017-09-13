@@ -57,7 +57,12 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <wallet-details title="Current Wallet Balance" wallet.bind="session.currentUser.wallet"></wallet-details>
+          <wallet-details
+            title="Current Wallet Balance"
+            wallet.bind="session.currentUser.wallet"
+            can-send.bind="false"
+            can-request-distribution.bind="true">
+          </wallet-details>
         </div>
       </div>
       <div class="row">
