@@ -1,5 +1,6 @@
 REMOVE GITTER MESSAGE JUNK
 
+0. Add ability to withdraw from your personal wallet only
 0. Add current value to approval list
 1. Approve transactions
 
@@ -12,6 +13,8 @@ REMOVE GITTER MESSAGE JUNK
     - SendMoney dialog
 
 6. Remove company onboarding and have it be by request-only.
+
+7. Archive old addresses once a listing is completed
 
 ### ----
 

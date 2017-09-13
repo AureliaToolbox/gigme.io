@@ -2,7 +2,6 @@
 .vagrant
 ./box/*
 /box/*
-bin/*
 
 
 shared/log/unicorn.stderr.log
