@@ -1,3 +1,7 @@
+0. Add text about verifying Litecoin address
+0. Add text about making sure to clear your own wallet out when requesting payment
+0. Add flag for ifCharging fees if not already there
+
 0. Add ability to reject a payment request
   a. Add a payment request status
     - created
