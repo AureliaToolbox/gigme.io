@@ -2,19 +2,27 @@ class Wallet
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :address, type: String
   field :label, type: String
-  field :available_balance, type: String
-  field :pending_received_balance, type: String
-  field :network, type: String
-
-  field :total_value, type: Float
+  field :total_value, type: Float, default: 0.0
+  field :total_available_balance, type: Float, default: 0.0
+  field :total_pending_received_balance, type: Float, default: 0.0
+  field :network, type: String, default: 'ltc'
 
   belongs_to :user
-  belongs_to :listing
   belongs_to :company
+  has_many :addresses
 
-  def self.get_by_address(address)
-    Wallet.where(address: address)
+  def create_address(label = nil)
+    if (label.blank?)
+      owner_id = user.present? ? user.id : company.id
+      time = Time.now.getutc.to_i
+      label = "#{owner_id}@#{time}"
+    end
+
+    address_info = BlockIo.get_new_address :label => label
+    address = Address.create(address_info['data'])
+    address.wallet = self
+    address.save!
+    address
   end
 end

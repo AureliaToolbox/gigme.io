@@ -36,6 +36,8 @@ export class Index {
     user.addLink(link)
   }
   requestNewWallet() {
-    return this.walletsService.requestNewUserWallet();
+    return this.walletsService.requestNewUserWallet().then(newWallet => {
+      return this.session.currentUser.setWallet(newWallet);
+    });
   }
 }

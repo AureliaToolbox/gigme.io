@@ -10,13 +10,13 @@
       <div class="col-xs-6">
         <h4>
           <small>USD Equiv</small>
-          ${wallet.balance | usdFormat}
+          ${wallet.total_value | usdFormat}
         </h4>
         <p><strong>Network:</strong> ${wallet.network}</p>
         <p>
           <strong>Balance:</strong>
-          ${wallet.available_balance | twoDecimalFormat}
-          <span if.bind="wallet.pending_received_balance">(pending: ${wallet.pending_received_balance | twoDecimalFormat})</span>
+          ${wallet.total_available_balance | twoDecimalFormat}
+          <span if.bind="wallet.total_pending_received_balance">(pending: ${wallet.total_pending_received_balance | twoDecimalFormat})</span>
         </p>
       </div>
       <div class="col-xs-6">
@@ -27,10 +27,14 @@
         </button>
         <button class="btn btn-default"
           click.trigger="requestDistribution()"
-          if.bind="canRequestDistribution">
+          if.bind="ownsWallet">
             Request Distribution
         </button>
-        <button class="btn btn-default" click.trigger="showAddress()">Show Address</button>
+        <button class="btn btn-default"
+          click.trigger="showNewAddress()"
+          if.bind="ownsWallet">
+            Show Receive Address
+        </button>
       </div>
     </div>
   </div>

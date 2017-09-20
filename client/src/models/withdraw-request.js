@@ -1,13 +1,10 @@
-export class PaymentRequest {
+export class WithdrawRequest {
   amount;
-  approval_url = '';
+  to_address = '';
   completed;
 
   user;
   user_id;
-
-  listing;
-  listing_id;
 
   constructor(data) {
     Object.assign(this, data);

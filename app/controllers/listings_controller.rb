@@ -3,10 +3,10 @@ class ListingsController < ApplicationController
   respond_to :json
 
   def index
-    @listings = Listing.all.includes(:wallet)
+    @listings = Listing.includes(:address)
     respond_to do |format|
       format.html
-      format.json { render json: @listings, include: :wallet }
+      format.json { render json: @listings.to_json(include: :address) }
     end
   end
 
@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-    @wallet = CreateWalletService.create_listing_wallet(@listing)
+    @wallet = CreateWalletService.create_listing_address(@listing)
     return false if cannot_save_or_update
     @listing.save!
     respond_to do |format|

@@ -7,6 +7,11 @@
           <input type="number" value.bind="amount" placeholder="amount to send" />
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <span>Current Value in USD: <strong>${currentUsdValue | usdFormat}</strong></span>
+        </div>
+      </div>
     </ai-dialog-body>
     <ai-dialog-footer>
       <button

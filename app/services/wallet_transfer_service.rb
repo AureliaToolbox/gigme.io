@@ -1,28 +1,67 @@
 class WalletTransferService
-  def self.transfer_money(amount, label, address)
-    BlockIo.withdraw amounts: amount, from_labels: label, to_addresses: address
+  def self.transfer_money(amount, from_wallet, to_address)
+    wallet = WalletBalanceService.get_wallet_balance(from_wallet, 'usd')
+    from_addresses = wallet.addresses.pluck(:address).join(',')
+
+    network_fee_info = NetworkFeeService.get_network_fees(amount, to_address)
+    total_available = wallet.total_available_balance
+    new_address = wallet.create_address
+
+    network_fee = (network_fee_info['data']['estimated_network_fee'].to_f * 2)
+    remainder = ((total_available - amount.to_f) - network_fee)
+
+    amounts = "#{amount},#{remainder}"
+    to_addresses = "#{to_address},#{new_address.address}"
+
+    BlockIo.withdraw amounts: amounts, from_addresses: from_addresses, to_addresses: to_addresses
+  end
+
+  def self.approve_withdraw_request(withdraw_request)
+    amount = withdraw_request.amount.to_f.round(3)
+    wallet = withdraw_request.user.wallet
+    to_address = withdraw_request.to_address
+
+    from_addresses = []
+    wallet.addresses.each do |address|
+      from_addresses << address.address
+    end
+
+    BlockIo.withdraw amounts: amount, from_addresses: from_addresses, to_addresses: to_address
+
+    withdraw_request.completed = true
+    withdraw_request.save!
+
+    BlockIo.archive_addresses addresses: from_addresses
+
+    wallet.addresses.each do |address|
+      address.archived = true
+      address.save!
+    end
   end
 
   def self.approve_payment_request(payment_request)
-    amount = payment_request.amount.to_f.round(3)
-    to_label = payment_request.to_label
-    to_address = payment_request.to_address
-    from_address = payment_request.from_address
+    listing = payment_request.listing
+    user = payment_request.user
 
-    if (to_label.present?)
-      BlockIo.withdraw amounts: amount, from_addresses: from_address, to_labels: to_label
-    else
-      BlockIo.withdraw amounts: amount, from_addresses: from_address, to_addresses: to_address
-    end
+    to_address = user.wallet.create_address
+    total_available = listing.address.available_balance
+
+    network_fee_info = NetworkFeeService.get_network_fees(total_available, to_address.address)
+    new_address = user.wallet.create_address
+
+    network_fee = network_fee_info['data']['estimated_network_fee'].to_f
+
+    remainder = (total_available - (network_fee * 2))
+
+    from_address = listing.address.address
+
+    BlockIo.withdraw amounts: remainder, from_addresses: from_address, to_addresses: to_address.address
 
     payment_request.completed = true
     payment_request.save!
 
-    listing = payment_request.listing
-    if (listing.present?)
-      BlockIo.archive_addresses addresses: listing.wallet.address
-      listing.completed = true
-      listing.save!
-    end
+    BlockIo.archive_addresses addresses: from_address
+    listing.completed = true
+    listing.save!
   end
 end

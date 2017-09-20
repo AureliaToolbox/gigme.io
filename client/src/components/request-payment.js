@@ -5,9 +5,9 @@ import {NetworkFeesService} from 'services/network-fees';
 import {ExchangeRatesService} from 'services/exchange-rates';
 import {Session} from 'services/session';
 
-export class RequestMoney {
+export class RequestPayment {
   @bindable approvalUrl = '';
-  @bindable wallet;
+  @bindable listing;
   value;
   isChargingControllingInterestFees = false;
 
@@ -19,12 +19,11 @@ export class RequestMoney {
     this.exchangeRatesService = exchangeRatesService;
     this.session = session;
   }
-  activate(wallet) {
-    this.wallet = wallet;
-    let address = this.session.currentUser.wallet.address;
-    let balance = this.wallet.available_balance;
+  activate(listing) {
+    this.listing = listing;
+    let balance = this.listing.address.available_balance;
 
-    let networkFeesPromise = this.networkFeesService.getNetworkFees(balance, address).then(result => {
+    let networkFeesPromise = this.networkFeesService.getNetworkFees(balance, listing.address.address).then(result => {
       this.networkFees = result.estimated_network_fee;
     });
     let exchangeRatesPromise = this.exchangeRatesService.getExchangeRate().then(result => {
@@ -35,7 +34,7 @@ export class RequestMoney {
     });
   }
   calculateValues() {
-    let totalAmountInCurrency = this.wallet.available_balance * this.exchangeRate;
+    let totalAmountInCurrency = this.listing.address.available_balance * this.exchangeRate;
     let networkFeesInCurrency = (this.networkFees * this.exchangeRate);
     let totalLessNetworkFees = (totalAmountInCurrency - networkFeesInCurrency);
     let controllingInterestFees;
@@ -58,14 +57,12 @@ export class RequestMoney {
     this.value = new PaymentRequestInCurrency(data);
   }
   request() {
-    let wallet = this.wallet;
-    let fromAddress = wallet.address;
-    let toLabel = this.session.currentUser.wallet.label;
+    let listing = this.listing;
     let approvalUrl = this.approvalUrl;
-    let amount = (this.wallet.available_balance - this.networkFees);
+    let amount = (listing.address.available_balance - this.networkFees);
 
-    return this.walletsService.requestFromWallet(amount, approvalUrl, fromAddress, toLabel).then(result => {
-      return this.controller.ok(this.wallet);
+    return this.walletsService.requestFromListing(amount, approvalUrl, listing).then(result => {
+      return this.controller.ok(listing);
     });
   }
 }

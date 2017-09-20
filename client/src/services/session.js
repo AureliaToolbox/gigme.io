@@ -8,24 +8,24 @@ export class Session{
     this.walletsService = walletsService;
   }
 
-  getUsersWalletBalance() {
-    return this.walletsService.getUsersWalletBalance().then(result => {
+  getUsersWallet() {
+    return this.walletsService.getUsersWallet().then(result => {
       if (!result || !result.total_value) {
         this.hasNoWallet = true;
       }
-      this.currentUser.wallet.balance = result.total_value;
+      this.currentUser.wallet.total_value = result.total_value;
     });
   }
-  getUsersCompaniesWalletBalance() {
+  getUsersCompaniesWallet() {
     let companyWallet = this.currentUser.company.wallet;
     if (!companyWallet) {
       return;
     }
-    return this.walletsService.getWalletBalance(companyWallet.address).then(result => {
+    return this.walletsService.getWalletInfo(companyWallet).then(result => {
       if (!result || !result.total_value) {
         this.hasNoWallet = true;
       }
-      this.currentUser.company.wallet.balance = result.total_value;
+      this.currentUser.company.wallet.total_value = result.total_value;
     });
   }
 }

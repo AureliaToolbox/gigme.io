@@ -38,12 +38,12 @@ export class UserDropdown {
     if (this.wallet) {
       let wallet = new Wallet(this.wallet);
       this.session.currentUser.setWallet(wallet);
-      this.session.getUsersWalletBalance();
+      this.session.getUsersWallet();
     }
     if (this.companyWallet) {
       let companyWallet = new Wallet(this.companyWallet);
       this.session.currentUser.company.setWallet(companyWallet);
-      this.session.getUsersCompaniesWalletBalance();
+      this.session.getUsersCompaniesWallet();
     }
   }
   toggleOpen() {

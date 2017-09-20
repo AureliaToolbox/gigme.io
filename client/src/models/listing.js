@@ -3,11 +3,22 @@ export class Listing {
   title = '';
   description = '';
   company;
+  company_id;
   listing_type;
   completed = false;
   canEdit = false;
 
   constructor(data) {
     Object.assign(this, data);
+    if (this._id) {
+      this.id = this.getId();
+    }
+  }
+  setCompany(company) {
+    this.company = company;
+    this.company_id = company.id;
+  }
+  getId() {
+    return this._id.$oid;
   }
 }

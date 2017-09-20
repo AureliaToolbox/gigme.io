@@ -30,7 +30,7 @@
           </td>
           <td>
             <span if.bind="listing.listing_type">
-              ${listing.wallet.balance | usdFormat}
+              ${listing.address.total_value | usdFormat}
             </span>
           </td>
           <td>
@@ -47,15 +47,11 @@
           </td>
         </template>
         <template if.bind="listing.isEditing">
-          <td><input value.bind="listing.title" /></td>
           <td>
-            <select value.bind="listing.company">
-              <option model.bind="null">Choose...</option>
-              <option repeat.for="company of companies"
-                      model.bind="company">
-                ${company.name}
-              </option>
-            </select>
+            <input value.bind="listing.title" />
+          </td>
+          <td>
+            <strong if.bind="listing.company">${listing.company.name}</strong>
           </td>
           <td>
             <select value.bind="listing.listing_type">
@@ -67,7 +63,7 @@
             </select>
           </td>
           <td>
-            <a href="#" click.trigger="save(listing)" if.bind="listing.isEditing">Save</a>
+            <button click.trigger="save(listing)" if.bind="listing.isEditing">Save</button>
           </td>
         </template>
       </tr>

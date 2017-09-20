@@ -7,7 +7,7 @@ import {observable} from 'aurelia-framework';
 import {WalletsService} from 'services/wallets';
 import {DialogService} from 'aurelia-dialog';
 import {SendMoney} from 'components/send-money';
-import {RequestMoney} from 'components/request-money';
+import {RequestPayment} from 'components/request-payment';
 
 export class Index {
   listings = [];
@@ -42,7 +42,6 @@ export class Index {
       return this.listingsService.getListings().then(result => {
         result.forEach(listingJson => {
           let listing = new Listing(listingJson);
-          this.getWalletBalance(listing);
 
           let user = this.session.currentUser;
           if (user && user.company) {
@@ -81,27 +80,31 @@ export class Index {
     item.isEditing = true;
   }
   save(item) {
-    this.listingsService.save(item).then(result => {
+    return this.listingsService.save(item).then(result => {
       item.isEditing = false;
     });
   }
   sendMoney(listing) {
-    let model = listing.wallet;
+    let model = listing.address;
     return this.dialogsService.open({ viewModel: SendMoney, model: model }).then(dialogResult => {
-      return this.getWalletBalance(listing).then(result => {
+      return this.getAddress(listing).then(result => {
         listing.isEditing = false;
       });
     });
   }
   requestPayment(listing) {
-    let model = listing.wallet;
-    return this.dialogsService.open({ viewModel: RequestMoney, model: model }).then(dialogResult => {
-      console.log(dialogResult);
+    let model = listing;
+
+    return this.dialogsService.open({ viewModel: RequestPayment, model: model }).then(dialogResult => {
     });
   }
   add() {
     let newListing = new Listing();
     newListing.isEditing = true;
+
+    let usersCompany = this.session.currentUser.company;
+    newListing.setCompany(usersCompany);
+
     this.listings.push(newListing);
     this.filter();
   }
@@ -143,12 +146,12 @@ export class Index {
       return match;
     });
   }
-  getWalletBalance(listing) {
-    return this.walletsService.getWalletBalance(listing.wallet.address).then(result => {
+  getAddress(listing) {
+    return this.walletsService.getAddress(listing.address).then(result => {
       if (!result || !result.total_value) {
         this.hasNoWallet = true;
       }
-      listing.wallet.balance = result.total_value;
+      listing.address.total_value = result.total_value;
       this.hasNoWallet = false;
     });
   }

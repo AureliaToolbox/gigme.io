@@ -2,17 +2,39 @@ require 'bigdecimal'
 
 class WalletBalanceService
   def self.get_wallet_balance(wallet, currency_code)
-    label = wallet.label
+    self.clear_wallet_balance(wallet)
 
-    wallet_info = get_wallet_info(label)
-    balance = wallet_info['available_balance'].to_f
-    usd_forex = get_exchange_rate(currency_code)
+    exchange_rate = get_exchange_rate(currency_code)
 
-    wallet.pending_received_balance = wallet_info['pending_received_balance'];
-    wallet.available_balance = balance
-    wallet.total_value = (balance * usd_forex)
+    addresses = wallet.addresses.active
+
+    addresses.each do |address|
+      address_info = get_address_info(address)
+      address.pending_received_balance = address_info['pending_received_balance']
+      balance = address_info['available_balance'].to_f
+      address.available_balance = balance
+      address.total_value = (balance * exchange_rate)
+      address.save!
+
+      wallet.total_pending_received_balance += address.pending_received_balance
+      wallet.total_available_balance += balance
+      wallet.total_value += address.total_value
+    end
+
     wallet.save!
     wallet
+  end
+
+  def self.get_address_balance(address, currency_code)
+    exchange_rate = get_exchange_rate(currency_code)
+    address_info = get_address_info(address)
+    address.pending_received_balance = address_info['pending_received_balance'].to_f
+    balance = address_info['available_balance'].to_f
+
+    address.available_balance = balance
+    address.total_value = (balance * exchange_rate)
+    address.save!
+    address
   end
 
   def self.get_exchange_rate(currency_code)
@@ -21,15 +43,22 @@ class WalletBalanceService
       result = BlockIo.get_current_price price_base: currency_code
       return_result = result['data']['prices'][0]['price'].to_f
     else
-      return_result = 60
+      # Testnet money has no value, make one up
+      return_result = 51
     end
+  end
+
+  def self.clear_wallet_balance(wallet)
+    wallet.total_pending_received_balance = 0.0
+    wallet.total_available_balance = 0.0
+    wallet.total_value = 0.0
   end
 
   private
 
-  def self.get_wallet_info(label)
+  def self.get_address_info(address)
+    label = address.label
     result = BlockIo.get_address_balance labels: label
-    p result
     result['data']['balances'].detect {|balance| balance['label'] == label}
   end
 end

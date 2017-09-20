@@ -3,14 +3,14 @@ import {DialogController} from 'aurelia-dialog';
 
 export class ShowAddress {
   @bindable amount = 0;
-  @bindable wallet;
+  @bindable address;
 
   static inject = [DialogController];
   constructor(dialogController) {
     this.controller = dialogController;
   }
-  activate(wallet) {
-    this.wallet = wallet;
+  activate(address) {
+    this.address = address;
   }
   attached() {
     this.addressControl.select();

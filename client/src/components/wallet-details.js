@@ -10,7 +10,7 @@ export class WalletDetails {
   @bindable title = '';
   @bindable wallet;
   @bindable canSendTo = false;
-  @bindable canRequestDistribution = false;
+  @bindable ownsWallet = false;
   isAddingWallet = false;
 
   static inject = [WalletsService, DialogService];
@@ -22,7 +22,7 @@ export class WalletDetails {
     this.wallet = wallet;
   }
   save() {
-    return this.walletService.update(this.wallet).then(result => {
+    return this.walletsService.update(this.wallet).then(result => {
       Object.assign(this.wallet, result);
       this.wallet.id = this.wallet.getId();
     });
@@ -31,10 +31,10 @@ export class WalletDetails {
     this.isAddingWallet = false;
   }
   sendMoney() {
-    let dialogOptions = { viewModel: SendMoney, model: this.wallet };
+    let dialogOptions = { viewModel: SendMoney, model: this.wallet.address };
 
     return this.dialogsService.open(dialogOptions).then(dialogResult => {
-      return this.walletsService.getWalletBalance(this.wallet.address).then(result => {
+      return this.walletsService.getWalletInfo(this.wallet).then(result => {
         if (!result || !result.total_value) {
           return;
         }
@@ -47,7 +47,7 @@ export class WalletDetails {
     let dialogOptions = { viewModel: RequestDistribution, model: this.wallet };
 
     return this.dialogsService.open(dialogOptions).then(dialogResult => {
-      return this.walletsService.getWalletBalance(this.wallet.address).then(result => {
+      return this.walletsService.getWalletInfo(this.wallet).then(result => {
         if (!result || !result.total_value) {
           return;
         }
@@ -56,9 +56,11 @@ export class WalletDetails {
       });
     });
   }
-  showAddress() {
-    let dialogOptions = { viewModel: ShowAddress, model: this.wallet };
+  showNewAddress() {
+    return this.walletsService.requestNewAddress().then(address => {
+      let dialogOptions = { viewModel: ShowAddress, model: address };
 
-    return this.dialogsService.open(dialogOptions);
+      return this.dialogsService.open(dialogOptions);
+    });
   }
 }

@@ -1,29 +1,19 @@
 class PaymentRequestService
-  def self.request_money_to_label(amount, approval_url, from_address, to_label, user, listing = nil)
+  def self.request_money_to_label(amount, approval_url, user, listing)
     request = PaymentRequest.create(
       amount: amount,
-      from_address: from_address,
-      to_label: to_label,
-      approval_url: approval_url)
+      approval_url: approval_url,
+      listing: listing,
+      user: user)
 
-    if (listing.present?)
-      request.listing = listing
-    end
-
-    request.user = user
     request.save!
   end
 
-  def self.request_money_to_address(amount, approval_url, from_address, to_address, user, listing = nil)
+  def self.request_distribution(amount, to_address, user)
     request = PaymentRequest.create(
       amount: amount,
-      from_address: from_address,
       to_address: to_address,
-      approval_url: approval_url)
-
-    if (listing.present?)
-      request.listing = listing
-    end
+      user: user)
 
     request.user = user
     request.save!

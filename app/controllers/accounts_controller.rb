@@ -14,15 +14,28 @@ class AccountsController < ApplicationController
     render json: wallet
   end
 
+  def request_new_address
+    wallet = current_user.wallet
+    address = wallet.create_address
+    render json: address
+  end
+
   def get_users_wallet_info
     wallet = WalletBalanceService.get_wallet_balance(current_user.wallet, 'usd')
     render json: wallet
   end
 
   def get_wallet_info
-    address = params[:address]
-    wallet = Wallet.where({ address: address }).first
-    balance = WalletBalanceService.get_wallet_balance(wallet, 'usd')
+    wallet_id = params[:wallet_id]
+    wallet = Wallet.where({ id: wallet_id }).first
+    wallet = WalletBalanceService.get_wallet_balance(wallet, 'usd')
+    render json: wallet
+  end
+
+  def get_address_info
+    address_param = params[:address]
+    address = Address.where({ address: address_param }).first
+    balance = WalletBalanceService.get_address_balance(address, 'usd')
     render json: balance
   end
 
@@ -39,30 +52,20 @@ class AccountsController < ApplicationController
   end
 
   def send_money
-    label = params[:label]
     amount = params[:amount]
     address = params[:address]
     from_wallet = current_user.wallet
 
-    return head 403 if (from_wallet.label != label)
-    WalletTransferService.transfer_money(amount, label, address)
+    WalletTransferService.transfer_money(amount, from_wallet, address)
     render json: true
   end
 
-  def request_from_wallet
-    to_label = params[:to_label]
+  def request_from_listing
     amount = params[:amount]
-    from_address = params[:from_address]
+    listing = Listing.find(params[:listing_id])
     approval_url = params[:approval_url]
 
-    return head 403 if (to_label == current_user.id)
-
-    wallet = Wallet.get_by_address(from_address).first
-    if (wallet.present? && wallet.listing.present?)
-      PaymentRequestService.request_money_to_label(amount, approval_url, from_address, to_label, current_user, wallet.listing)
-    else
-      PaymentRequestService.request_money_to_label(amount, approval_url, from_address, to_label, current_user)
-    end
+    PaymentRequestService.request_money_to_label(amount, approval_url, current_user, listing)
 
     render json: true
   end
@@ -70,17 +73,12 @@ class AccountsController < ApplicationController
   def request_distribution
     to_address = params[:to_address]
     amount = params[:amount]
-    from_address = params[:from_address]
 
+    # TODO: How to secure this further?
     return head 403 if (from_address != current_user.wallet.address)
 
-    wallet = Wallet.get_by_address(from_address).first
-    if (wallet.present? && wallet.listing.present?)
-      # TODO: Send email for verification
-      PaymentRequestService.request_money_to_address(amount, nil, from_address, to_address, current_user, wallet.listing)
-    else
-      PaymentRequestService.request_money_to_address(amount, nil, from_address, to_address, current_user)
-    end
+    # TODO: Send email for verification
+    PaymentRequestService.request_distribution(amount, to_address, current_user)
 
     render json: true
   end

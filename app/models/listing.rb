@@ -14,7 +14,7 @@ class Listing
 
   has_many :payment_requests
 
-  has_one :wallet
+  has_one :address
 
   def self.not_completed
     where(completed: false)

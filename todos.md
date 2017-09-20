@@ -1,3 +1,33 @@
+1. Add visual representation of a wallet
+  a. Display the proper values (ex. total_available_balance instead of balance or w/e)
+
+x. Create an address model
+  d. Make sure to check balances before allowing withdraws
+    - Always use blockchain values, never mongo values
+  e. Look at adding a nonce value?
+
+1. Make sure all withdraw transactions create new addresses
+
+0. Automatically create a user wallet when a new user signs up
+
+0. Make labels `${user.id}|${address}`
+  a. Make wallet have addresses instead of a single address
+0. Rotate wallet address every cash out
+  a. Whenever a user requestsDistribution
+    - Once distribution succeeds
+      1. Create a new address
+      2. Archive old address
+  b. Whenever money is requested from a listing
+    - Once approved
+      1. Set status to Complete on the listing
+      2. Archive the old address
+  c. Whenever money is sent from a user wallet
+    - Once succeeds
+      1. Create new address for user
+      2. Move all balance of previous address to new address
+      3. Archive old address
+
+0. Add ability to cancel a listing with zero balance
 0. Add ability to opt-out of who shows in developers list
 0. Add text about verifying Litecoin address
 0. Add text about making sure to clear your own wallet out when requesting payment

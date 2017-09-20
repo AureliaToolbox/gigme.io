@@ -2,33 +2,36 @@ import {bindable} from 'aurelia-framework';
 import {DialogController} from 'aurelia-dialog';
 import {WalletsService} from 'services/wallets';
 import {Session} from 'services/session';
+import {ExchangeRatesService} from 'services/exchange-rates';
 
 export class SendMoney {
   @bindable amount = 0;
-  @bindable wallet;
+  @bindable address;
 
-  static inject = [DialogController, WalletsService, Session];
-  constructor(dialogController, walletsService, session) {
+  static inject = [DialogController, WalletsService, Session, ExchangeRatesService];
+  constructor(dialogController, walletsService, session, exchangeRatesService) {
     this.controller = dialogController;
     this.walletsService = walletsService;
     this.session = session;
+    this.exchangeRatesService = exchangeRatesService;
   }
-  activate(wallet) {
-    this.wallet = wallet;
+  activate(address) {
+    this.address = address;
+  }
+  attached() {
+    return this.exchangeRatesService.getExchangeRate().then(result => {
+      this.exchangeRate = result;
+    });
   }
   send() {
-    let wallet = this.wallet;
-    let address = wallet.address;
-    let fromLabel = this.session.currentUser.wallet.label;
+    let address = this.address.address;
 
-    return this.walletsService.sendToWallet(this.amount, fromLabel, address).then(result => {
-      return this.controller.ok(this.wallet);
+    return this.walletsService.sendToAddress(this.amount, address).then(result => {
+      return this.controller.ok(this.address);
     });
   }
   amountChanged(newValue) {
-    console.log('TODO: show the current value of this amount')
-    console.log('TODO: get the estimated fees')
-    console.log(newValue)
-    // this.currentUsdValue =
+    let displayValue = (newValue * this.exchangeRate);
+    this.currentUsdValue = displayValue;
   }
 }
