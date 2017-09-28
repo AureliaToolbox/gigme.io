@@ -9,11 +9,12 @@ export class Session{
   }
 
   getUsersWallet() {
-    return this.walletsService.getUsersWallet().then(result => {
-      if (!result || !result.total_value) {
+    return this.walletsService.getUsersWallet().then(updatedWalletInfo => {
+      if (!updatedWalletInfo || !updatedWalletInfo.total_value) {
         this.hasNoWallet = true;
       }
-      this.currentUser.wallet.total_value = result.total_value;
+      Object.assign(this.currentUser.wallet, updatedWalletInfo);
+      this.currentUser.wallet.total_value = updatedWalletInfo.total_value;
     });
   }
   getUsersCompaniesWallet() {

@@ -29,7 +29,8 @@ export class WalletsService {
     let url = `/accounts/get_users_wallet_info`;
 
     return this.http.get(url).then(result => {
-      return new Wallet(result.content);
+      let newWallet = new Wallet(result.content);
+      return newWallet;
     });
   }
 

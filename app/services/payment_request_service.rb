@@ -10,7 +10,7 @@ class PaymentRequestService
   end
 
   def self.request_distribution(amount, to_address, user)
-    request = PaymentRequest.create(
+    request = WithdrawRequest.create(
       amount: amount,
       to_address: to_address,
       user: user)

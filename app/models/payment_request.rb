@@ -12,4 +12,11 @@ class PaymentRequest
   def self.with_user
     PaymentRequest.includes(:user, :listing)
   end
+
+  def complete
+    self.completed = true
+    self.save!
+
+    self.listing.complete
+  end
 end

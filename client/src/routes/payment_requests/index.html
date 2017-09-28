@@ -1,58 +1,10 @@
 <template>
-  <require from="resources/rounded"></require>
-  <require from="resources/to-currency"></require>
-  <table class="table table-striped">
-    <thead>
-      <th>Amount</th>
-      <th>From Address</th>
-      <th>To Label / Address</th>
-      <th>Approval URL</th>
-      <th>Completed</th>
-      <th>User</th>
-      <th>Listing</th>
-    </thead>
-    <tbody>
-      <tr repeat.for="paymentRequest of paymentRequests">
-        <template if.bind="!paymentRequest.isEditing">
-          <td>${paymentRequest.amount | rounded} LTC - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
-          <td>
-            <span if.bind="paymentRequest.from_address">
-              ${paymentRequest.from_address}
-            </span>
-          </td>
-          <td>
-            <span if.bind="(paymentRequest.to_label || paymentRequest.to_address)">
-              ${paymentRequest.to_label ? paymentRequest.to_label : paymentRequest.to_address}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.approval_url">
-              ${paymentRequest.approval_url}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.completed">
-              ${paymentRequest.completed ? 'Completed' : 'Not Approved'}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.user">
-              ${paymentRequest.user.name}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.listing">
-              ${paymentRequest.listing.title}
-            </span>
-          </td>
-          <td>
-            <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
-              click.trigger="approve(paymentRequest)">Approve</button>
-            <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
-              click.trigger="reject(paymentRequest)">Reject</button>
-          </td>
-        </template>
-      </tr>
-    </tbody>
-  </table>
+  <require from="components/payment-requests-list"></require>
+  <require from="components/withdraw-requests-list"></require>
+  <payment-requests-list
+    exchange-rate.bind="currentExchangeRate"
+    payment-requests.bind="paymentRequests"></payment-requests-list>
+  <withdraw-requests-list
+    exchange-rate.bind="currentExchangeRate"
+    withdraw-requests.bind="withdrawRequests"></withdraw-requests-list>
 </template>

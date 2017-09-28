@@ -1,4 +1,5 @@
 import {PaymentRequestsService} from 'services/payment-requests';
+import {WithdrawRequestsService} from 'services/withdraw-requests';
 import {ExchangeRatesService} from 'services/exchange-rates';
 import {Datastore} from 'resources/datastore';
 
@@ -7,9 +8,10 @@ export class Index {
   companies = [];
   currentExchangeRate = 0;
 
-  static inject = [Datastore, PaymentRequestsService, ExchangeRatesService];
-  constructor(datastore, paymentRequestsService, exchangeRatesService) {
+  static inject = [Datastore, PaymentRequestsService, WithdrawRequestsService, ExchangeRatesService];
+  constructor(datastore, paymentRequestsService, withdrawRequestsService, exchangeRatesService) {
     this.paymentRequestsService = paymentRequestsService;
+    this.withdrawRequestsService = withdrawRequestsService;
     this.datastore = datastore;
     this.exchangeRatesService = exchangeRatesService;
   }
@@ -21,26 +23,9 @@ export class Index {
     let paymentRequestsPromise = this.paymentRequestsService.getAll().then(result => {
       this.paymentRequests = result;
     });
+    let withdrawRequestsPromise = this.withdrawRequestsService.getAll().then(result => {
+      this.withdrawRequests = result;
+    });
     return Promise.all([exchangeRatesPromise, paymentRequestsPromise]);
-  }
-
-  approve(paymentRequest) {
-    return this.paymentRequestsService.approve(paymentRequest).then(result => {
-      Object.assign(paymentRequest, result);
-      paymentRequest.completed = true;
-      paymentRequest.id = paymentRequest.getId();
-    }).catch(error => {
-      alert('Error: Forbidden.  You are not allowed to approve this.');
-    });
-  }
-  reject(paymentRequest) {
-    return this.paymentRequestsService.reject(paymentRequest).then(result => {
-      Object.assign(paymentRequest, result);
-      paymentRequest.completed = false;
-      paymentRequest.rejected = true;
-      paymentRequest.id = paymentRequest.getId();
-    }).catch(error => {
-      alert('Error: Forbidden.  You are not allowed to reject this.');
-    });
   }
 }

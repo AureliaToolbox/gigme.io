@@ -31,6 +31,6 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.6'
   gem "byebug"
 end

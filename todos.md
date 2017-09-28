@@ -1,17 +1,12 @@
-1. Add visual representation of a wallet
-  a. Display the proper values (ex. total_available_balance instead of balance or w/e)
+NEXT
 
 x. Create an address model
   d. Make sure to check balances before allowing withdraws
     - Always use blockchain values, never mongo values
   e. Look at adding a nonce value?
 
-1. Make sure all withdraw transactions create new addresses
+TESTS HERE
 
-0. Automatically create a user wallet when a new user signs up
-
-0. Make labels `${user.id}|${address}`
-  a. Make wallet have addresses instead of a single address
 0. Rotate wallet address every cash out
   a. Whenever a user requestsDistribution
     - Once distribution succeeds

@@ -19,8 +19,11 @@ class Wallet
       label = "#{owner_id}@#{time}"
     end
 
-    address_info = BlockIo.get_new_address :label => label
-    address = Address.create(address_info['data'])
+    address_info = BlockIoWrapper.get_new_address :label => label
+
+    address_data = (address_info['data'] || address_info[:data])
+
+    address = Address.create(address_data)
     address.wallet = self
     address.save!
     address

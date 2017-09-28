@@ -22,4 +22,15 @@ class Address
   def self.get_by_address(address)
     Address.where(address: address)
   end
+
+  def archive
+    self.archived = true
+    self.save!
+
+    Address.archive_blockio_addresses(self.address)
+  end
+
+  def self.archive_blockio_addresses(addresses)
+    BlockIoWrapper.archive_addresses(addresses)
+  end
 end

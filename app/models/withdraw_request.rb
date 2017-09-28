@@ -11,4 +11,9 @@ class WithdrawRequest
   def self.with_user
     PaymentRequest.includes(:user)
   end
+
+  def complete
+    self.completed = true
+    self.save!
+  end
 end

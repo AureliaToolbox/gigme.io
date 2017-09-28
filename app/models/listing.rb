@@ -19,4 +19,11 @@ class Listing
   def self.not_completed
     where(completed: false)
   end
+
+  def complete
+    self.address.archive
+
+    self.completed = true
+    self.save!
+  end
 end

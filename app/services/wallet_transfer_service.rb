@@ -28,8 +28,7 @@ class WalletTransferService
 
     BlockIo.withdraw amounts: amount, from_addresses: from_addresses, to_addresses: to_address
 
-    withdraw_request.completed = true
-    withdraw_request.save!
+    withdraw_request.complete
 
     BlockIo.archive_addresses addresses: from_addresses
 
@@ -47,7 +46,6 @@ class WalletTransferService
     total_available = listing.address.available_balance
 
     network_fee_info = NetworkFeeService.get_network_fees(total_available, to_address.address)
-    new_address = user.wallet.create_address
 
     network_fee = network_fee_info['data']['estimated_network_fee'].to_f
 
@@ -56,12 +54,5 @@ class WalletTransferService
     from_address = listing.address.address
 
     BlockIo.withdraw amounts: remainder, from_addresses: from_address, to_addresses: to_address.address
-
-    payment_request.completed = true
-    payment_request.save!
-
-    BlockIo.archive_addresses addresses: from_address
-    listing.completed = true
-    listing.save!
   end
 end

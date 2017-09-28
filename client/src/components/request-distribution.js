@@ -21,26 +21,27 @@ export class RequestDistribution {
   }
   activate(wallet) {
     this.wallet = wallet;
-    let address = this.session.currentUser.wallet.address;
-    let balance = (parseInt(this.wallet.available_balance) - .001);
+    let address = this.session.currentUser.wallet.addresses[0];
+    let balance = (parseFloat(this.wallet.total_available_balance) - .001);
 
-    let networkFeesPromise = this.networkFeesService.getNetworkFees(balance, address).then(result => {
+    let networkFeesPromise = this.networkFeesService.getNetworkFees(balance, address.address).then(result => {
       this.networkFees = result.estimated_network_fee;
     });
+
     let exchangeRatesPromise = this.exchangeRatesService.getExchangeRate().then(result => {
       this.exchangeRate = result;
     });
+
     return Promise.all([networkFeesPromise, exchangeRatesPromise]).then(() => {
       this.calculateValues();
     });
   }
   calculateValues() {
-    let totalAmountInCurrency = this.wallet.available_balance * this.exchangeRate;
     let networkFeesInCurrency = (this.networkFees * this.exchangeRate);
 
     let data = {
       networkFeesInCurrency: networkFeesInCurrency,
-      total: totalAmountInCurrency
+      total: (this.wallet.total_value - networkFeesInCurrency)
     };
 
     this.value = new PaymentRequestInCurrency(data);

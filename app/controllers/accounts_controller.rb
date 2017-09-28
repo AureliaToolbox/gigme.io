@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
 
   def get_users_wallet_info
     wallet = WalletBalanceService.get_wallet_balance(current_user.wallet, 'usd')
-    render json: wallet
+    render json: wallet.to_json(include: :addresses)
   end
 
   def get_wallet_info
@@ -75,7 +75,7 @@ class AccountsController < ApplicationController
     amount = params[:amount]
 
     # TODO: How to secure this further?
-    return head 403 if (from_address != current_user.wallet.address)
+    # return head 403 if (from_address != current_user.wallet.address)
 
     # TODO: Send email for verification
     PaymentRequestService.request_distribution(amount, to_address, current_user)
