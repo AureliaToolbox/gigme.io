@@ -5,15 +5,18 @@ class WalletTransferService
 
     network_fee_info = NetworkFeeService.get_network_fees(amount, to_address)
     total_available = wallet.total_available_balance
+
+    return false if total_available < amount.to_f
+
     new_address = wallet.create_address
 
     network_fee = (network_fee_info['data']['estimated_network_fee'].to_f * 2)
-    remainder = ((total_available - amount.to_f) - network_fee)
+    remainder = ((total_available - amount.to_f) - network_fee).to_f.round(5)
 
     amounts = "#{amount},#{remainder}"
     to_addresses = "#{to_address},#{new_address.address}"
 
-    BlockIo.withdraw amounts: amounts, from_addresses: from_addresses, to_addresses: to_addresses
+    BlockIoWrapper.withdraw(amounts, from_addresses, to_addresses)
   end
 
   def self.approve_withdraw_request(withdraw_request)
@@ -25,12 +28,14 @@ class WalletTransferService
     wallet.addresses.each do |address|
       from_addresses << address.address
     end
-
-    BlockIo.withdraw amounts: amount, from_addresses: from_addresses, to_addresses: to_address
+p '-' * 80
+p from_addresses.join(',')
+p to_address
+    BlockIoWrapper.withdraw(amount, from_addresses.join(','), to_address)
 
     withdraw_request.complete
 
-    BlockIo.archive_addresses addresses: from_addresses
+    BlockIoWrapper.archive_addresses(from_addresses.join(','))
 
     wallet.addresses.each do |address|
       address.archived = true
@@ -53,6 +58,8 @@ class WalletTransferService
 
     from_address = listing.address.address
 
-    BlockIo.withdraw amounts: remainder, from_addresses: from_address, to_addresses: to_address.address
+    BlockIoWrapper.withdraw(remainder, from_address, to_address.address)
+
+    payment_request.complete
   end
 end

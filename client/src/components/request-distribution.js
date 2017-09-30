@@ -49,7 +49,7 @@ export class RequestDistribution {
   request() {
     let wallet = this.wallet;
     let toAddress = this.toAddress;
-    let amount = (this.wallet.available_balance - this.networkFees);
+    let amount = (this.wallet.total_available_balance - this.networkFees);
 
     return this.walletsService.requestDistribution(amount, toAddress).then(result => {
       return this.controller.ok(this.wallet);

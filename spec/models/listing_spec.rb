@@ -12,7 +12,7 @@ RSpec.describe Listing do
       allow(BlockIoWrapper).to receive(:archive_addresses)
     end
 
-    it 'sets completed to false and ' do
+    it 'sets completed to false' do
       listing.complete
       listing.reload
 

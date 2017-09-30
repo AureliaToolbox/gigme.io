@@ -42,6 +42,7 @@ class PaymentRequestsController < ApplicationController
     set_payment_request
 
     can_approve = ControllingInterest.first.company.verify_is_owner(current_user)
+
     return head 403 if (!can_approve)
 
     WalletTransferService.approve_payment_request(@payment_request)

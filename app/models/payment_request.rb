@@ -4,7 +4,7 @@ class PaymentRequest
 
   field :amount, type: String
   field :approval_url, type: String
-  field :completed, type: Boolean
+  field :completed, type: Boolean, default: false
 
   belongs_to :user
   belongs_to :listing

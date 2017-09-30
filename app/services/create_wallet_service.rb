@@ -37,6 +37,6 @@ class CreateWalletService
   private
 
   def self.create_address(label)
-    BlockIoWrapper.get_new_address :label => label
+    BlockIoWrapper.get_new_address(label)
   end
 end

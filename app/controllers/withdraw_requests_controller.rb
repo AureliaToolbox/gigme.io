@@ -42,7 +42,10 @@ class WithdrawRequestsController < ApplicationController
     set_withdraw_request
 
     can_approve = ControllingInterest.first.company.verify_is_owner(current_user)
-    return head 403 if (!can_approve)
+
+    if (!can_approve)
+      return head 403
+    end
 
     WalletTransferService.approve_withdraw_request(@withdraw_request)
 

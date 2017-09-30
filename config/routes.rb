@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   resources :payment_requests do
     patch 'approve'
   end
-  resources :withdraw_requests
+  resources :withdraw_requests do
+    patch 'approve'
+  end
 
   resources :accounts do
     get 'request_new_user_wallet', on: :collection

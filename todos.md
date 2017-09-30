@@ -1,10 +1,3 @@
-NEXT
-
-x. Create an address model
-  d. Make sure to check balances before allowing withdraws
-    - Always use blockchain values, never mongo values
-  e. Look at adding a nonce value?
-
 TESTS HERE
 
 0. Rotate wallet address every cash out

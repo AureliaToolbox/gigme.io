@@ -25,6 +25,7 @@ class User
 
   has_many :links
   has_many :payment_requests
+  has_many :withdraw_requests
 
   ## Database authenticatable
   field :email,                 type: String, default: ""

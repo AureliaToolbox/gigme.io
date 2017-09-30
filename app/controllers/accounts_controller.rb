@@ -56,8 +56,13 @@ class AccountsController < ApplicationController
     address = params[:address]
     from_wallet = current_user.wallet
 
-    WalletTransferService.transfer_money(amount, from_wallet, address)
-    render json: true
+    result = WalletTransferService.transfer_money(amount, from_wallet, address)
+
+    if result == false
+      render(json: { invalid_request: true }, status: 403)
+    else
+      render json: true
+    end
   end
 
   def request_from_listing
@@ -65,7 +70,7 @@ class AccountsController < ApplicationController
     listing = Listing.find(params[:listing_id])
     approval_url = params[:approval_url]
 
-    PaymentRequestService.request_money_to_label(amount, approval_url, current_user, listing)
+    PaymentRequestService.request_from_listing(amount, approval_url, current_user, listing)
 
     render json: true
   end

@@ -1,5 +1,5 @@
 class PaymentRequestService
-  def self.request_money_to_label(amount, approval_url, user, listing)
+  def self.request_from_listing(amount, approval_url, user, listing)
     request = PaymentRequest.create(
       amount: amount,
       approval_url: approval_url,
@@ -7,6 +7,7 @@ class PaymentRequestService
       user: user)
 
     request.save!
+    request
   end
 
   def self.request_distribution(amount, to_address, user)
@@ -17,5 +18,6 @@ class PaymentRequestService
 
     request.user = user
     request.save!
+    request
   end
 end

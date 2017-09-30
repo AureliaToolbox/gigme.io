@@ -10,8 +10,10 @@ class WalletBalanceService
 
     addresses.each do |address|
       address_info = get_address_info(address)
-      address.pending_received_balance = address_info['pending_received_balance']
+      address.pending_received_balance = address_info['pending_received_balance'].to_f
+
       balance = address_info['available_balance'].to_f
+
       address.available_balance = balance
       address.total_value = (balance * exchange_rate)
       address.save!
@@ -39,13 +41,16 @@ class WalletBalanceService
 
   def self.get_exchange_rate(currency_code)
     return_result = 0.0
+
     if (Rails.env.production?)
-      result = BlockIo.get_current_price price_base: currency_code
+      result = BlockIoWrapper.get_exchange_rate(currency_code)
       return_result = result['data']['prices'][0]['price'].to_f
     else
       # Testnet money has no value, make one up
       return_result = 51
     end
+
+    return_result
   end
 
   def self.clear_wallet_balance(wallet)
@@ -57,8 +62,8 @@ class WalletBalanceService
   private
 
   def self.get_address_info(address)
-    label = address.label
-    result = BlockIo.get_address_balance labels: label
-    result['data']['balances'].detect {|balance| balance['label'] == label}
+    address = address.address
+    result = BlockIoWrapper.get_address_balance(address)
+    result['data']['balances'].detect {|balance| balance['address'] == address}
   end
 end

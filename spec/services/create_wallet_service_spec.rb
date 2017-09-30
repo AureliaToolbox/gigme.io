@@ -86,7 +86,7 @@ RSpec.describe CreateWalletService do
     end
   end
 
-  fdescribe 'create_company_wallet()' do
+  describe 'create_company_wallet()' do
     it 'creates a new address' do
       expect(Address.count).to be(0)
       CreateWalletService.create_company_wallet(@company)

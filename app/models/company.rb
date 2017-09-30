@@ -11,6 +11,6 @@ class Company
   has_many :users
 
   def verify_is_owner(user)
-    owner == user
+    owner.id == user.id
   end
 end

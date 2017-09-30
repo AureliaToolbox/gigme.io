@@ -19,7 +19,7 @@ class Wallet
       label = "#{owner_id}@#{time}"
     end
 
-    address_info = BlockIoWrapper.get_new_address :label => label
+    address_info = BlockIoWrapper.get_new_address(label)
 
     address_data = (address_info['data'] || address_info[:data])
 

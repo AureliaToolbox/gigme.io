@@ -4,12 +4,12 @@ class WithdrawRequest
 
   field :amount, type: String
   field :to_address, type: String
-  field :completed, type: Boolean
+  field :completed, type: Boolean, default: false
 
   belongs_to :user
 
   def self.with_user
-    PaymentRequest.includes(:user)
+    WithdrawRequest.includes(:user)
   end
 
   def complete
