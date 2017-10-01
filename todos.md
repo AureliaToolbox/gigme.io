@@ -1,22 +1,6 @@
 TESTS HERE
 
-0. Rotate wallet address every cash out
-  a. Whenever a user requestsDistribution
-    - Once distribution succeeds
-      1. Create a new address
-      2. Archive old address
-  b. Whenever money is requested from a listing
-    - Once approved
-      1. Set status to Complete on the listing
-      2. Archive the old address
-  c. Whenever money is sent from a user wallet
-    - Once succeeds
-      1. Create new address for user
-      2. Move all balance of previous address to new address
-      3. Archive old address
-
 0. Add ability to cancel a listing with zero balance
-0. Add ability to opt-out of who shows in developers list
 0. Add text about verifying Litecoin address
 0. Add text about making sure to clear your own wallet out when requesting payment
 0. Add flag for ifCharging fees if not already there
@@ -26,22 +10,8 @@ TESTS HERE
     - created
     - approved
     - rejected
-3. Add service for checking network fees
-  x. Show estimated network fee when requesting payment
-    x RequestMoney dialog
-    x Show the network fee
-    x Show the remainder (remove input element)
-  b. Show estimated network fee when sending money
-    - SendMoney dialog
-x. Remove company onboarding and have it be by request-only.
-
-x. Archive old addresses once a listing is completed
 
 ### ----
-
-x. Add ability to withdraw from your personal wallet only
-  x. Must specify a valid litecoin address
-  x. Add lots of warnings that the address must be valid
 
 x.x. Create a new model for controlling_interest
   x. Reference to the company

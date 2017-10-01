@@ -28,9 +28,7 @@ class WalletTransferService
     wallet.addresses.each do |address|
       from_addresses << address.address
     end
-p '-' * 80
-p from_addresses.join(',')
-p to_address
+
     BlockIoWrapper.withdraw(amount, from_addresses.join(','), to_address)
 
     withdraw_request.complete

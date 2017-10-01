@@ -2,6 +2,7 @@ class AddressManagementService
   def self.archive_old_addresses
     addresses = self.get_all_zero_balance_addresses
     addresses_to_archive = []
+    whitelisted_address_labels = ['default']
 
     addresses.each do |address_info|
       address = (address_info['address'] || address_info[:address])
@@ -16,12 +17,15 @@ class AddressManagementService
           addresses_to_archive << matching_address
         end
       else
-        Address.archive_blockio_addresses(address)
+        is_not_whitelisted = !(whitelisted_address_labels.include? address_info['label'])
+        sleep 0.1
+        Address.archive_blockio_addresses(address) if is_not_whitelisted
       end
     end
 
     addresses_to_archive.each do |address|
-      result = address.archive
+      sleep 0.1
+      self.archive_address(address)
     end
   end
 
@@ -39,5 +43,12 @@ class AddressManagementService
 
   def self.find_matching_address_model(address)
     Address.where({ address: address }).first
+  end
+
+  def self.archive_address(address)
+    is_not_whitelisted = !(whitelisted_address_labels.include? address.label)
+    if (is_not_whitelisted)
+      result = address.archive
+    end
   end
 end
