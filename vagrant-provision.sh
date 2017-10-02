@@ -6,11 +6,11 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc\
 
-if [ ! -d "~/.rbenv/plugins/ruby-build"]; then
+if [ ! -d ~/.rbenv/plugins/ruby-build ]; then
   git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi
 
-if [ ! -d "~/home/ubuntu/.rbenv/2.3.1"]; then
+if [ ! -d ~/home/ubuntu/.rbenv/2.3.1 ]; then
   rbenv install 2.3.1
 fi
 

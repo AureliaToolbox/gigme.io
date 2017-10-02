@@ -5,13 +5,13 @@
   "keywords": [
     "aurelia"
   ],
-  "homepage": "http://aureliatoolbox.com",
+  "homepage": "https://gigme.io",
   "license": "MIT",
   "author": "Patrick Walters",
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/pwkad/aureliatoolbox"
+    "url": "http://github.com/aureliatoolbox/gigme.io"
   },
   "devDependencies": {
     "aurelia-bundler": "^0.4.0",
