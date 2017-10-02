@@ -4,29 +4,38 @@ We use Vagrant to provision a development environment so that the platform can b
 
 To start with Vagrant, from the root directory of this project after cloning -
 
-### Install new vagrant box
+## Pre-requisites
 
-The project comes with a pre-configured vagrant box in the `box` directory.  We need to install it before bringing up our VM -
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html)
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-```
-$ vagrant box add aureliatoolbox-basebox ./box/aureliatoolbox-base.box
-```
-
-## Next bring our box up
+## Bring up the Vagrant box
 
 ```
+$ cd {{path to root of where you git cloned this repo}}
 $ vagrant up
+```
+
+The first time you run `vagrant up` it will take a while to download the Ubuntu box and provision it.  This is normal.
+
+With Vagrant you typically don't want to blow out your images all of the time unless it's really screwed up.  This is a better dev experience.
+
+## Setting up the VM
+
+Now that the Virtual Machine has been provisioned and brought up by Vagrant we need to add configuration to it so the Rails app runs correctly.
+
+```
 $ vagrant ssh
 $ vim ~/.bashrc
 ```
 
-When the editor is open make sure to be in edit mode and paste the following in -
+When the editor is open make sure to be in edit mode and paste the following in at the bottom of the file -
 
 ```
 export block_io_litecoin_apikey={{your block.io testnet apikey goes here}}
 export block_io_pin={{your block.io pin goes here}}
 
-export GITHUB_SECRET_ID="{{DEV SECRET"
+export GITHUB_SECRET_ID="{{DEV SECRET}}"
 export GITHUB_SECRET_APP="{{DEV APP}}"
 
 export GOOGLE_CLIENT_ID="{{DEV GOOGLE CLIENT}}"
@@ -41,16 +50,21 @@ $ source ~/.bashrc
 
 Now the environment variables are in place to at least allow logins in against GitHub.
 
-Next we need to install the ruby gems and run the rails server.
+## Installing Ruby / Rails / other dev dependencies
+
+Next we need to get all of the development environment set up.  All of the files in the directory where we created
 
 ```
 $ cd /vagrant
-$ bundle install
-$ bundle exec unicorn -p3000 -b 0.0.0.0
+$ ./vagrant-provision.sh
 ```
 
+This script will run through and keep trying to install all of the dependencies.  If it fails, you can try to run it again, sometimes this will work.
 
-# Non-vagrant
+Max number of retries should be 5, if it doesn't work by then it's probably not going to.
+
+
+# Non-vagrant installation
 
 
 ## Install the following in your local development environment -

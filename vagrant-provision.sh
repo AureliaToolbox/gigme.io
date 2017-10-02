@@ -38,4 +38,3 @@ apt-get install mongodb
 sudo mkdir -p /data/db/
 
 sudo chown `id -u` /data/db
-
