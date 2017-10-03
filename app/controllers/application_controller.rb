@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
     return if current_user.blank?
     @user = current_user
     @company = current_user.company
-    p @user.wallet
-    p @company.wallet
   end
 
   def after_sign_in_path_for(resource)

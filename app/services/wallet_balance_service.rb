@@ -2,9 +2,6 @@ require 'bigdecimal'
 
 class WalletBalanceService
   def self.get_wallet_balance(wallet, currency_code)
-    p '-' * 80
-    p wallet
-
     self.clear_wallet_balance(wallet)
 
     exchange_rate = get_exchange_rate(currency_code)
