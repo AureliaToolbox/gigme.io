@@ -63,6 +63,33 @@ This script will run through and keep trying to install all of the dependencies.
 
 Max number of retries should be 5, if it doesn't work by then it's probably not going to.
 
+If it is failing for not finding rbenv you can source `~/.bashrc` again before running a second time.
+
+```
+$ source ~/.bashrc
+```
+
+## Add sample data
+
+There are a few small things we need to add to the database.  We can do this with a `rake` command
+
+```
+$ rake seed:create
+```
+
+## Setting up client-side
+
+We can run Aurelia directly on our dev machine and vagrant will sync those files in to the VM to be served.
+
+First install all of the dependencies -
+
+```
+$ npm install
+$ jspm install
+```
+
+Then just `gulp watch` for changes.
+
 
 # Non-vagrant installation
 

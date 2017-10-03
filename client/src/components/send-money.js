@@ -15,6 +15,7 @@ export class SendMoney {
     this.session = session;
     this.exchangeRatesService = exchangeRatesService;
   }
+
   activate(address) {
     this.address = address;
   }
@@ -24,6 +25,7 @@ export class SendMoney {
     });
   }
   send() {
+    console.log('this.address = ', this.address)
     let address = this.address.address;
 
     return this.walletsService.sendToAddress(this.amount, address).then(result => {
