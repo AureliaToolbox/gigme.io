@@ -3,17 +3,26 @@ html
   head
     title GigMe.io
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag    "/jspm_packages/github/twbs/bootstrap@3.3.7/css/bootstrap", media: 'all'
-    = stylesheet_link_tag    "/styles/styles", media: 'all'
+    = stylesheet_link_tag "/jspm_packages/github/twbs/bootstrap@3.3.7/css/bootstrap", media: 'all'
+    = stylesheet_link_tag "/styles/styles", media: 'all'
+    <link rel="stylesheet" type="text/css" href="styles/left-nav/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/cards/styles.css">
+    <link rel="stylesheet" type="text/css" href="jspm_packages/npm/font-awesome@4.6.3/css/font-awesome.min.css">
+
     = csrf_meta_tags
     javascript:
       window.dataLoader = {
         availabilities: '#{j @availabilities.to_json.html_safe}',
         listingTypes: '#{j @listing_types.to_json.html_safe}',
-        experienceLevels: '#{j @experience_levels.to_json.html_safe}'
+        experienceLevels: '#{j @experience_levels.to_json.html_safe}',
+        currentUser: "#{j current_user.to_json.html_safe}",
+        additionalDetails: "{\"email\": \"#{current_user.email.html_safe}\", \"username\": \"#{j current_user.username.html_safe}\"}",
+        company: "#{j @company.to_json.html_safe}",
+        wallet: "#{j @current_user.wallet.to_json.html_safe}",
+        companyWallet: "#{j @company ? @company.wallet.to_json.html_safe : false}"
       }
 
-  body
+  body aurelia-app="main"
     nav.navbar.navbar-default.navbar-fixed-top
       div.navbar-header
         button.navbar-toggle
@@ -26,33 +35,13 @@ html
 
       div.collapse.navbar-collapse
         ul.nav.navbar-nav
-          - if current_user
-            <user-dropdown class="current-user-dropdown" current-user.bind="#{current_user.to_json}" additional-details.bind="{email: '#{current_user.email}', username: '#{current_user.username}'}" company.bind="#{@company.to_json}" wallet.bind="#{@current_user.wallet.to_json}" company-wallet.bind="#{@company ? @company.wallet.to_json : false}"></user-dropdown>
-            li.dropdown
-              a.dropdown-toggle.ellipsis href="#" data-target="#" data-toggle="dropdown" aria-expanded="false"
-                div style="background-image: url('#{current_user.image}&amp;s=64'); width: 32px; height: 32px; background-size: contain; display: inline-block;"
-                span.ellipsis.pull-right
-                  | #{current_user.name}
-                  b.caret
-                div.ripple-wrapper
-              ul.dropdown-menu.dropdown-menu-right
-                li
-                  a href="/users/sign_out"
-                    | Sign out
-                li.divider
           - if !current_user
             li
               a href="/users/sign_up"
                 | Sign up / in
-          / li#home
-            a href="/home"
-              | Home
           li#listings
             a href="/listings"
               | Listings
-          / li#developers
-            a href="/developers"
-              | Developers
           - if current_user
             li#accounts
               a href="/accounts"
@@ -72,6 +61,12 @@ html
 
     div.page-host
       = yield
+
+    = javascript_include_tag '/jspm_packages/system.js'
+    = javascript_include_tag '/config.js'
+
+    javascript:
+      System.import('aurelia-bootstrapper');
 
   p.notice = notice
   p.alert = alert

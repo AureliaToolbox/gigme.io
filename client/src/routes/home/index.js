@@ -1,4 +1,3 @@
-import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {Session} from '../../services/session';
 import {Datastore} from 'resources/datastore';
@@ -18,8 +17,8 @@ export class Index {
   }
 }
 
-class User{
-  constructor(username, uid, image){
+class User {
+  constructor(username, uid, image) {
     this.username = username;
     this.uid = uid;
     this.image = image;

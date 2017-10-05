@@ -5,6 +5,7 @@
     <button class="btn btn-default"
       if.bind="!user.company"
       click.trigger="addCompany()">Add Company?</button>
+    <a href="#/company-details/${user.company.id}">View Company Details</a>
   </template>
   <template if.bind="isAddingCompany">
     <form class="form-horizontal">
