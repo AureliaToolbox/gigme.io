@@ -1,12 +1,12 @@
 <template>
-  <ai-dialog>
-    <ai-dialog-body>
+  <ux-dialog>
+    <ux-dialog-body>
       <compose
         view-model.bind="currentStep.viewModel"
         model.bind="user">
       </compose>
-    </ai-dialog-body>
-    <ai-dialog-footer>
+    </ux-dialog-body>
+    <ux-dialog-footer>
       <button
         if.bind="!canFinish"
         click.trigger="nextStep()">
@@ -18,6 +18,6 @@
         click.trigger="controller.ok(user)">
         Save
       </button>
-    </ai-dialog-footer>
-  </ai-dialog>
+    </ux-dialog-footer>
+  </ux-dialog>
 </template>

@@ -4,6 +4,7 @@ import {bindable} from 'aurelia-framework';
 import {DialogService} from 'aurelia-dialog';
 import {SendMoney} from 'components/send-money';
 import {ShowAddress} from 'components/show-address';
+import {ShowAllAddresses} from 'components/show-all-addresses';
 import {RequestDistribution} from 'components/request-distribution';
 
 export class WalletDetails {
@@ -62,5 +63,10 @@ export class WalletDetails {
 
       return this.dialogsService.open(dialogOptions);
     });
+  }
+  showAllAddresses() {
+    let dialogOptions = { viewModel: ShowAllAddresses, model: this.wallet };
+
+    return this.dialogsService.open(dialogOptions);
   }
 }

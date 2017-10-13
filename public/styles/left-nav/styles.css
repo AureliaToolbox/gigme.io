@@ -1,7 +1,7 @@
 .clickable {
   cursor: pointer;
 }
-ai-dialog-footer > .btn-success:hover {
+ux-dialog-footer > .btn-success:hover {
   color: #fff !important;
   background-color: #449d44 !important;
   border-color: #398439 !important;

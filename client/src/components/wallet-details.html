@@ -25,15 +25,23 @@
           if.bind="canSendTo">
             Send to this Wallet
         </button>
+
         <button class="btn btn-default"
           click.trigger="requestDistribution()"
           if.bind="ownsWallet">
             Request Distribution
         </button>
+
         <button class="btn btn-default"
           click.trigger="showNewAddress()"
           if.bind="ownsWallet">
             Show Receive Address
+        </button>
+
+        <button class="btn btn-default"
+          click.trigger="showAllAddresses()"
+          if.bind="ownsWallet">
+            Show all Addresses
         </button>
       </div>
     </div>

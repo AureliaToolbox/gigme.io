@@ -1,5 +1,6 @@
 import {HttpClient} from 'aurelia-http-client';
 import {ListingType} from 'models/listing-type';
+import {Listing} from 'models/listing';
 
 export class ListingsService {
   static inject = [HttpClient];
@@ -22,7 +23,21 @@ export class ListingsService {
   }
   getListings() {
     return this.http.get('listings.json').then(result => {
-      return result.content;
+      return result.content.map(listing => {
+        return new Listing(listing);
+      });
+    });
+  }
+  getListingsByCompany(company) {
+    return this.http.get(`companies/${company.id}/listings.json`).then(result => {
+      return result.content.map(listing => {
+        return new Listing(listing);
+      });
+    });
+  }
+  getListingById(id) {
+    return this.http.get(`listings/${id}.json`).then(result => {
+      return new Listing(result.content);
     });
   }
   save(job) {

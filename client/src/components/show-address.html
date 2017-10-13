@@ -1,6 +1,6 @@
 <template>
-  <ai-dialog class="large-modal">
-    <ai-dialog-body>
+  <ux-dialog class="large-modal">
+    <ux-dialog-body>
       <div class="row">
         <div class="col-xs-12">
           <strong>Address</strong>
@@ -8,12 +8,12 @@
             value.bind="address.address" placeholder="address" readonly="readonly" />
         </div>
       </div>
-    </ai-dialog-body>
-    <ai-dialog-footer>
+    </ux-dialog-body>
+    <ux-dialog-footer>
       <button
         class="btn btn-success pull-left"
         click.trigger="controller.ok()">Ok</button>
       <button click.trigger="controller.cancel()">Cancel</button>
-    </ai-dialog-footer>
-  </ai-dialog>
+    </ux-dialog-footer>
+  </ux-dialog>
 </template>

@@ -26,6 +26,7 @@ export class DataLoader {
       this.datastore.addExperienceLevel(new ExperienceLevel(expLevel));
     });
     this.loadUserData();
+    this.loadCompaniesData();
     this.checkLoadUsers();
   }
 
@@ -67,6 +68,34 @@ export class DataLoader {
       let companyWalletData = new Wallet(companyWallet);
       this.session.currentUser.company.setWallet(companyWalletData);
       this.session.getUsersCompaniesWallet();
+    }
+  }
+
+
+  loadCompaniesData() {
+    this.loadCompanies();
+    this.loadListingTypes();
+  }
+
+  loadCompanies() {
+    let companies = JSON.parse(window.dataLoader.companies);
+
+    if (this.datastore && companies.length > 0) {
+      companies.forEach(companyJson => {
+        let company = new Company(companyJson);
+        this.datastore.companies.push(company);
+      });
+    }
+  }
+
+  loadListingTypes() {
+    let listingTypes = JSON.parse(window.dataLoader.listingTypes);
+
+    if (this.datastore && listingTypes.length > 0) {
+      listingTypes.forEach(listingType => {
+        let listingTypeData = new ListingType(listingType);
+        this.datastore.listingTypes.push(listingTypeData);
+      });
     }
   }
 }

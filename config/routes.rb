@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   end
   resources :news_contents
   resources :listings
+  resources :business_agreements do
+    get 'approve'
+    get 'requested', on: :collection
+    get 'requesting', on: :collection
+  end
   resources :payment_requests do
     patch 'approve'
   end
@@ -42,6 +47,7 @@ Rails.application.routes.draw do
   resources :companies do
     post 'new', on: :collection
     post 'create', on: :collection
+    resources :listings
   end
 
   resources :listing_types do

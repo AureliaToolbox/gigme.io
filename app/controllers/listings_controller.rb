@@ -1,9 +1,17 @@
 class ListingsController < ApplicationController
+  before_action :set_listing, only: [:show]
   before_action :authenticate_user!
   respond_to :json
 
   def index
-    @listings = Listing.includes(:address)
+    company_id = params[:company_id]
+
+    if (company_id)
+      @listings = Listing.not_requiring_agreement.by_company(company_id)
+    else
+      @listings = Listing.not_requiring_agreement
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @listings.to_json(include: :address) }
@@ -15,6 +23,12 @@ class ListingsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @listing }
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.json { render json: @listing.to_json(include: [:address, :company]) }
     end
   end
 
@@ -47,7 +61,7 @@ class ListingsController < ApplicationController
     end
 
     def set_listing
-      @listing = Listing.find(params[:id])
+      @listing = Listing.includes(:address, :company).find(params[:id])
     end
 
     def listing_params

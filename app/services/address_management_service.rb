@@ -1,8 +1,8 @@
 class AddressManagementService
   def self.archive_old_addresses
+    whitelisted_address_labels = ['default']
     addresses = self.get_all_zero_balance_addresses
     addresses_to_archive = []
-    whitelisted_address_labels = ['default']
 
     addresses.each do |address_info|
       address = (address_info['address'] || address_info[:address])
@@ -46,6 +46,8 @@ class AddressManagementService
   end
 
   def self.archive_address(address)
+    whitelisted_address_labels = ['default']
+
     is_not_whitelisted = !(whitelisted_address_labels.include? address.label)
     if (is_not_whitelisted)
       result = address.archive

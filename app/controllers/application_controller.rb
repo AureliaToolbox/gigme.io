@@ -21,5 +21,6 @@ class ApplicationController < ActionController::Base
     @availabilities = Availability.all
     @listing_types = ListingType.all
     @experience_levels = ExperienceLevel.all
+    @companies = Company.all
   end
 end

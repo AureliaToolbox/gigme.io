@@ -6,6 +6,8 @@ export class Listing {
   company_id;
   listing_type;
   completed = false;
+  require_agreement = false;
+
   canEdit = false;
 
   constructor(data) {
