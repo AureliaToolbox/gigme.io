@@ -2,6 +2,32 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   respond_to :json
 
+  def get_current_user
+    company = current_user.company
+
+    render json: {
+      user: current_user,
+      email: current_user.email,
+      username: current_user.username,
+      wallet: current_user.wallet,
+      company: company,
+      companyWallet: company ? company.wallet : nil
+    }.to_json
+  end
+
+  def get_prime_data
+
+    availabilities = Availability.all
+    listing_types = ListingType.all
+    experience_levels = ExperienceLevel.all
+
+    render json: {
+      availabilities: availabilities,
+      listing_types: listing_types,
+      experience_levels: experience_levels
+    }.to_json
+  end
+
   def index
     @users = User.all
     respond_to do |format|

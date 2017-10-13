@@ -19,12 +19,27 @@ export class UsersService {
   }
   getAll() {
     let url = `/admin/users.json`;
+
     return this.http.get(url).then(result => {
       let users = [];
       result.content.forEach(user => {
         users.push(new User(user));
       });
       return users;
+    });
+  }
+  getCurrentUser() {
+    let url = `/admin/users/get_current_user.json`;
+
+    return this.http.get(url).then(result => {
+      return result.content;
+    });
+  }
+  getPrimeData() {
+    let url = `/admin/users/get_prime_data.json`;
+
+    return this.http.get(url).then(result => {
+      return result.content;
     });
   }
   save(user) {
@@ -36,7 +51,7 @@ export class UsersService {
     }
     let url = `/admin/users/${user.id}.json`;
     return this.http.patch(url, user).then(result => {
-      console.log('Saved');
+      return result.content;
     });
   }
 }

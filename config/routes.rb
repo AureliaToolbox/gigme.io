@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   scope '/admin' do
     resources :users do
+      get 'get_current_user', on: :collection
+      get 'get_prime_data', on: :collection
+
       resources :messages do
         get 'from', on: :collection
         get 'to', on: :collection
