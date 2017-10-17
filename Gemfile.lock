@@ -140,6 +140,7 @@ GEM
     pbkdf2-ruby (0.2.1)
     polyglot (0.3.5)
     rack (1.5.2)
+    rack-cors (1.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.5)
@@ -244,6 +245,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   omniauth-twitter
+  rack-cors
   rails (= 4.1.5)
   rspec-rails (~> 3.6)
   sass-rails (~> 4.0.3)

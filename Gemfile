@@ -18,6 +18,7 @@ gem 'omniauth-linkedin'
 
 gem "slim-rails"
 gem "gon"
+gem "rack-cors"
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
