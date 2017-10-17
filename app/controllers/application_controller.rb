@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :add_user
   before_action :preload_data
-  skip_before_action :verify_authenticity_token, unless: csrf_required?
+  skip_before_action :verify_authenticity_token, unless: csrf_required
 
   def add_user
     return if current_user.blank?
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     @companies = Company.all
   end
 
-  def csrf_required?
+  def csrf_required
     ENV['DISABLE_CSRF'] == true
   end
 end
