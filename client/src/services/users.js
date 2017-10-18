@@ -1,15 +1,13 @@
 import {Session} from 'services/session';
 import {User} from 'models/index';
 import {TemplatingEngine} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 
 export class UsersService {
-  static inject  = [Session, TemplatingEngine, HttpClient];
-  constructor(session, templatingEngine, httpClient) {
+  static inject  = [Session, TemplatingEngine, HttpWrapper];
+  constructor(session, templatingEngine, httpWrapper) {
     this.session = session;
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });;
+    this.http = httpWrapper;
     let dropdown = document.querySelector('user-dropdown');
     let otherDeadContent = document.querySelector('user-dropdown + li');
     if (dropdown) {

@@ -1,13 +1,11 @@
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 import {inject} from 'aurelia-framework';
 
 export class DataContext {
   datastore;
-  static inject = [HttpClient, Datastore];
+  static inject = [HttpWrapper, Datastore];
   constructor(http, datastore) {
-    this.http = http.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });
+    this.http = http;
     this.datastore = datastore;
   }
   load() {

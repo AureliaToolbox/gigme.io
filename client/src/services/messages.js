@@ -1,7 +1,7 @@
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 
 export class MessagesService {
-  static inject = [HttpClient];
+  static inject = [HttpWrapper];
   constructor(http) {
     this.http = http;
   }

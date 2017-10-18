@@ -12,6 +12,7 @@ export class ListingList {
   @bindable listings = [];
   @bindable canApprove = false;
   @bindable canCancel = false;
+  @bindable canAdd = false;
 
   companies = [];
   listingTypes = [];

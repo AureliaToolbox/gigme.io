@@ -1,13 +1,13 @@
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 import {ListingType} from 'models/listing-type';
 import {Listing} from 'models/listing';
+import {Session} from 'services/session';
 
 export class ListingsService {
-  static inject = [HttpClient];
-  constructor(httpClient) {
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });
+  static inject = [HttpWrapper, Session];
+  constructor(httpWrapper, session) {
+    this.session = session;
+    this.http = httpWrapper;
   }
   getListingTypes() {
     return this.http.get('listing_types.json').then(result => {

@@ -1,12 +1,12 @@
 import {Wallet, Address, PaymentRequest} from 'models/index';
-import {HttpClient} from 'aurelia-http-client';
+import {Session} from 'services/session';
+import {HttpWrapper} from 'services/http-wrapper';
 
 export class WalletsService {
-  static inject  = [HttpClient];
-  constructor(httpClient) {
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });;
+  static inject  = [HttpWrapper, Session];
+  constructor(httpWrapper, session) {
+    this.session = session;
+    this.http = httpWrapper;
   }
 
   requestNewUserWallet() {
@@ -25,12 +25,29 @@ export class WalletsService {
     });
   }
 
+  getUsersCompaniesWallet() {
+    let companyWallet = this.session.currentUser.company.wallet;
+    if (!companyWallet) {
+      return;
+    }
+    return this.getWalletInfo(companyWallet).then(result => {
+      if (!result || !result.total_value) {
+        this.hasNoWallet = true;
+      }
+      this.session.currentUser.company.wallet.total_value = result.total_value;
+    });
+  }
   getUsersWallet() {
     let url = `/accounts/get_users_wallet_info`;
 
     return this.http.get(url).then(result => {
-      let newWallet = new Wallet(result.content);
-      return newWallet;
+      let updatedWalletInfo = new Wallet(result.content);
+
+      if (!updatedWalletInfo || !updatedWalletInfo.total_value) {
+        this.session.hasNoWallet = true;
+      }
+      Object.assign(this.session.currentUser.wallet, updatedWalletInfo);
+      this.session.currentUser.wallet.total_value = updatedWalletInfo.total_value;
     });
   }
 

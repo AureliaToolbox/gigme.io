@@ -3,16 +3,18 @@ import {Session} from 'services/session';
 import {PaymentRequestsService} from 'services/payment-requests';
 import {UsersService} from 'services/users';
 import {CompaniesService} from 'services/companies';
+import {WalletsService} from 'services/wallets';
 
 export class DataLoader {
   datastore;
 
-  static inject = [Session, PaymentRequestsService, UsersService, CompaniesService];
-  constructor(session, paymentRequestsService, usersService, companiesService) {
+  static inject = [Session, PaymentRequestsService, UsersService, CompaniesService, WalletsService];
+  constructor(session, paymentRequestsService, usersService, companiesService, walletsService) {
     this.session = session;
     this.paymentRequestsService = paymentRequestsService;
     this.usersService = usersService;
     this.companiesService = companiesService;
+    this.walletsService = walletsService;
   }
 
   load(datastore) {
@@ -24,8 +26,9 @@ export class DataLoader {
   }
 
   checkLoadUsers() {
-    if (!window.dataLoader.users) return;
+    if (!window.dataLoader || !window.dataLoader.users) return;
     let users = JSON.parse(window.dataLoader.users);
+
     users.forEach(user => {
       this.datastore.addUser(new User(user));
     });
@@ -101,12 +104,12 @@ export class DataLoader {
     if (wallet) {
       let walletData = new Wallet(wallet);
       this.session.currentUser.setWallet(walletData);
-      this.session.getUsersWallet();
+      this.walletsService.getUsersWallet();
     }
     if (companyWallet) {
       let companyWalletData = new Wallet(companyWallet);
       this.session.currentUser.company.setWallet(companyWalletData);
-      this.session.getUsersCompaniesWallet();
+      this.walletsService.getUsersCompaniesWallet();
     }
   }
 

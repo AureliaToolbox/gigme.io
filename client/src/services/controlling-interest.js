@@ -1,13 +1,11 @@
 import {Wallet} from 'models/index';
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 import {WalletsService} from 'services/wallets';
 
 export class ControllingInterestService {
-  static inject  = [HttpClient];
-  constructor(httpClient) {
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });;
+  static inject  = [HttpWrapper];
+  constructor(httpWrapper) {
+    this.http = httpWrapper;
   }
   getControllingInterest() {
     let url = `/accounts/get_controlling_interest`;

@@ -1,14 +1,12 @@
 import {Session} from 'services/session';
 import {WithdrawRequest} from 'models/index';
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 
 export class WithdrawRequestsService {
-  static inject  = [Session, HttpClient];
-  constructor(session, httpClient) {
+  static inject  = [Session, HttpWrapper];
+  constructor(session, httpWrapper) {
     this.session = session;
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });;
+    this.http = httpWrapper;
   }
   getAll() {
     let url = `/withdraw_requests.json`;

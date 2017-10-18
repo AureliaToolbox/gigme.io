@@ -42,7 +42,7 @@ class WalletBalanceService
   def self.get_exchange_rate(currency_code)
     return_result = 0.0
 
-    if (Rails.env.production?)
+    if (ENV['LITECOIN_NET'] == 'mainnet')
       result = BlockIoWrapper.get_exchange_rate(currency_code)
       return_result = result['data']['prices'][0]['price'].to_f
     else

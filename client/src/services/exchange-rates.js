@@ -1,11 +1,9 @@
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 
 export class ExchangeRatesService {
-  static inject  = [HttpClient];
-  constructor(httpClient) {
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });;
+  static inject  = [HttpWrapper];
+  constructor(httpWrapper) {
+    this.http = httpWrapper;
   }
   getExchangeRate() {
     let url = `/accounts/get_exchange_rate`;

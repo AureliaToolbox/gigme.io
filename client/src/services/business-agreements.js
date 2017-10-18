@@ -1,12 +1,10 @@
-import {HttpClient} from 'aurelia-http-client';
+import {HttpWrapper} from 'services/http-wrapper';
 import {BusinessAgreement} from 'models/business-agreement';
 
 export class BusinessAgreementsService {
-  static inject = [HttpClient];
-  constructor(httpClient) {
-    this.http = httpClient.configure(x => {
-      x.withHeader('X-CSRF-Token', document.querySelector('meta[name="csrf-token"]').content)
-    });
+  static inject = [HttpWrapper];
+  constructor(httpWrapper) {
+    this.http = httpWrapper;
   }
   requestToDoBusiness(requestingCompany, otherCompany) {
     let payload = {
