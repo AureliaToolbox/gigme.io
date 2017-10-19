@@ -45,4 +45,23 @@ export class Details {
       this.hasNoWallet = false;
     });
   }
+  approve() {
+    return this.paymentRequestsService.approve(this.paymentRequest).then(result => {
+      Object.assign(this.paymentRequest, result);
+      this.paymentRequest.completed = true;
+      this.paymentRequest.id = this.paymentRequest.getId();
+    }).catch(error => {
+      alert('Error: Forbidden.  You are not allowed to approve this.');
+    });
+  }
+  reject() {
+    return this.paymentRequestsService.reject(this.paymentRequest).then(result => {
+      Object.assign(this.paymentRequest, result);
+      this.paymentRequest.completed = false;
+      this.paymentRequest.rejected = true;
+      this.paymentRequest.id = this.paymentRequest.getId();
+    }).catch(error => {
+      alert('Error: Forbidden.  You are not allowed to reject this.');
+    });
+  }
 }

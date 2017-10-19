@@ -14,7 +14,6 @@
         <td><input placeholder="Type" value.bind="typeFilter" /></td>
         <td></td>
         <td></td>
-        <td></td>
       </tr>
       <tr repeat.for="listing of displayListings">
         <template if.bind="!listing.isEditing">
@@ -65,5 +64,5 @@
       </tr>
     </tbody>
   </table>
-  <button class="btn" click.trigger="add()">Add new listing</button>
+  <button if.bind="canAdd" class="btn" click.trigger="add()">Add new listing</button>
 </template>
