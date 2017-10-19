@@ -6,13 +6,13 @@
     <hr>
     <p>
       <button class="btn" click.trigger="doing()">
-        <i class="fal fa-building"></i>I am working on this
+        <i class="fa fa-building"></i>I am working on this
       </button>
       <button class="btn" click.trigger="sendMoney()">
-        <i class="fal fa-dollar-sign"></i>Add to Bounty
+        <i class="fa fa-dollar-sign"></i>Add to Bounty
       </button>
       <button class="btn" click.trigger="requestPayment()">
-        <i class="fal fa-address-book"></i>Request Bounty
+        <i class="fa fa-address-book"></i>Request Bounty
       </button>
     </p>
 
@@ -34,7 +34,7 @@
 
   <modal if.bind="showDoingModal" confirm-text="Yes" cancel-text="Cancel" callback.call="doingModalCallback(type)">
     <h4>Are you working on this?</h4>
-    <p>By clicking, "Yes" you acknowledge that comitting to this task does not guarantee payment. There are 3 people currently working on this task who could finish it before you do.</p>
+    <p>By clicking, "Yes" you acknowledge that comitting to this task does not guarantee payment. There are 0 people currently working on this task who could finish it before you do.</p>
   </modal>
 
   <modal if.bind="showContributeModal" confirm-text="Yes" cancel-text="Cancel" callback.call="contributeModalCallback(type)">

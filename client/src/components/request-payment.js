@@ -21,6 +21,7 @@ export class RequestPayment {
   }
   activate(listing) {
     this.listing = listing;
+    console.log(this.listing.address)
     let balance = this.listing.address.available_balance;
 
     let networkFeesPromise = this.networkFeesService.getNetworkFees(balance, listing.address.address).then(result => {

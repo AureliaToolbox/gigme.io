@@ -5,19 +5,24 @@
   <table class="table table-striped">
     <thead>
       <th>Amount</th>
-      <th>To Label / Address</th>
-      <th>Approval URL</th>
-      <th>Completed</th>
       <th>User</th>
       <th>Listing</th>
+      <th>Approval URL</th>
+      <th>Completed?</th>
+      <th>Actions</th>
     </thead>
     <tbody>
       <tr repeat.for="paymentRequest of paymentRequests">
         <template if.bind="!paymentRequest.isEditing">
           <td>${paymentRequest.amount | rounded} LTC - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
           <td>
-            <span if.bind="(paymentRequest.to_label || paymentRequest.to_address)">
-              ${paymentRequest.to_label ? paymentRequest.to_label : paymentRequest.to_address}
+            <span if.bind="paymentRequest.user">
+              ${paymentRequest.user.name}
+            </span>
+          </td>
+          <td>
+            <span if.bind="paymentRequest.listing">
+              ${paymentRequest.listing.title}
             </span>
           </td>
           <td>
@@ -27,17 +32,7 @@
           </td>
           <td>
             <span if.bind="paymentRequest.completed">
-              ${paymentRequest.completed ? 'Completed' : 'Not Approved'}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.user">
-              ${paymentRequest.user.name}
-            </span>
-          </td>
-          <td>
-            <span if.bind="paymentRequest.listing">
-              ${paymentRequest.listing.title}
+              <i class="fa fa-${paymentRequest.completed ? 'check-square' : 'minus-square'}"></i>
             </span>
           </td>
           <td>

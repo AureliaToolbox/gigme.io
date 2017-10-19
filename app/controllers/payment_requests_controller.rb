@@ -11,10 +11,7 @@ class PaymentRequestsController < ApplicationController
       @payment_requests = PaymentRequest.all.with_user
     end
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @payment_requests }
-    end
+    render json: @payment_requests.to_json(include: [:user, :listing])
   end
 
   def new
