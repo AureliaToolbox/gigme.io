@@ -1,6 +1,6 @@
 <template>
-  <ux-dialog class="large-modal">
-    <ux-dialog-body>
+  <div class="modal modal--visible">
+    <div class="modal__content">
       <div class="row">
         <div class="col-xs-12">
           <strong>Address</strong>
@@ -8,12 +8,14 @@
             value.bind="address.address" placeholder="address" readonly="readonly" />
         </div>
       </div>
-    </ux-dialog-body>
-    <ux-dialog-footer>
+    </div>
+    <div class="modal__footer">
       <button
-        class="btn btn-success pull-left"
+        class="btn"
         click.trigger="controller.ok()">Ok</button>
-      <button click.trigger="controller.cancel()">Cancel</button>
-    </ux-dialog-footer>
-  </ux-dialog>
+      <button
+        class="btn btn--purple"
+        click.trigger="controller.cancel()">Cancel</button>
+    </div>
+  </div>
 </template>

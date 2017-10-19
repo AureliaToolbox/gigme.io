@@ -1,6 +1,6 @@
 <template>
-  <ux-dialog>
-    <ux-dialog-body>
+  <div class="modal modal--visible">
+    <div class="modal__content">
       <div class="row">
         <div class="col-xs-12">
           <strong>Total Amount</strong>
@@ -18,12 +18,14 @@
           <input type="text" value.bind="toAddress" placeholder="to address" class="form-control" />
         </div>
       </div>
-    </ux-dialog-body>
-    <ux-dialog-footer>
+    </div>
+    <div class="modal__footer">
       <button
-        class="btn btn-success pull-left"
+        class="btn"
         click.trigger="request()">Request</button>
-      <button click.trigger="controller.cancel()">Cancel</button>
-    </ux-dialog-footer>
-  </ux-dialog>
+      <button
+        class="btn btn--purple"
+        click.trigger="controller.cancel()">Cancel</button>
+    </div>
+  </div>
 </template>

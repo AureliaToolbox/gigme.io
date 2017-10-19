@@ -1,17 +1,19 @@
 <template>
-  <ux-dialog class="large-modal">
-    <ux-dialog-body>
+  <div class="modal modal--visible">
+    <div class="modal__content">
       <ul class="list-unstyled">
         <li class="row" repeat.for="address of wallet.addresses">
           <strong>${address.address}</strong>
         </li>
       </ul>
-    </ux-dialog-body>
-    <ux-dialog-footer>
+    </div>
+    <div class="modal__footer">
       <button
-        class="btn btn-success pull-left"
+        class="btn"
         click.trigger="controller.ok()">Ok</button>
-      <button click.trigger="controller.cancel()">Cancel</button>
-    </ux-dialog-footer>
-  </ux-dialog>
+      <button
+        class="btn btn--purple"
+        click.trigger="controller.cancel()">Cancel</button>
+    </div>
+  </div>
 </template>
