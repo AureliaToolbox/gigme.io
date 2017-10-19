@@ -52,7 +52,7 @@ class WalletTransferService
 
     network_fee = network_fee_info['data']['estimated_network_fee'].to_f
 
-    remainder = (total_available - (network_fee * 2))
+    remainder = (total_available - (network_fee * 2)).to_f.round(3)
 
     from_address = listing.address.address
 
