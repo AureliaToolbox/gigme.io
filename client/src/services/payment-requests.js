@@ -29,6 +29,11 @@ export class PaymentRequestsService {
       return paymentRequests;
     });
   }
+  getPaymentRequestById(id) {
+    return this.http.get(`/payment_requests/${id}.json`).then(result => {
+      return new PaymentRequest(result.content);
+    });
+  }
   approve(paymentRequest) {
     let url = `/payment_requests/${paymentRequest.id}/approve.json`;
 

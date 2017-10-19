@@ -2,15 +2,23 @@ table, th, td {
   border: none;
 }
 
+table td > span.td-ellipsis {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   display: table;
   width: 100%;
+  table-layout: fixed;
 }
 
 thead,
-thead > tr, 
+thead > tr,
 tbody > tr {
   border-bottom: 1px solid rgba(175, 172, 172, 0.12);
 }

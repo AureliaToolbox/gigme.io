@@ -28,6 +28,11 @@ export class WithdrawRequestsService {
       return withdrawRequests;
     });
   }
+  getWithdrawRequestById(id) {
+    return this.http.get(`/withdraw_requests/${id}.json`).then(result => {
+      return new WithdrawRequest(result.content);
+    });
+  }
   approve(withdrawRequest) {
     let url = `/withdraw_requests/${withdrawRequest.id}/approve.json`;
 

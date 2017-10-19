@@ -1,6 +1,6 @@
 import {HttpWrapper} from 'services/http-wrapper';
-import {ListingType} from 'models/listing-type';
 import {Listing} from 'models/listing';
+import {ListingType} from 'models/listing-type';
 import {Session} from 'services/session';
 
 export class ListingsService {
@@ -40,11 +40,12 @@ export class ListingsService {
       return new Listing(result.content);
     });
   }
-  save(job) {
-    job.company_id = getId(job.company);
-    job.listing_type_id = getId(job.listing_type);
-    return this.http.post('listings.json', job).then(result => {
-      return result.content;
+  save(listing) {
+    listing.company_id = getId(listing.company);
+    listing.listing_type_id = getId(listing.listing_type);
+    return this.http.post('listings.json', listing).then(result => {
+      let updatedListingInfo = new Listing(result.content);
+      Object.assign(listing, updatedListingInfo);
     });
   }
 }

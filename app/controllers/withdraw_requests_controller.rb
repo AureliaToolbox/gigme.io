@@ -1,4 +1,5 @@
 class WithdrawRequestsController < ApplicationController
+  before_action :set_withdraw_request, only: [:show]
   before_action :authenticate_user!
   respond_to :json
 
@@ -11,10 +12,7 @@ class WithdrawRequestsController < ApplicationController
       @withdraw_requests = WithdrawRequest.all.with_user
     end
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @withdraw_requests }
-    end
+    render json: @withdraw_requests.to_json(include: :user)
   end
 
   def new
@@ -24,6 +22,10 @@ class WithdrawRequestsController < ApplicationController
       format.html
       format.json { render json: @withdraw_request }
     end
+  end
+
+  def show
+    render json: @payment_request.to_json(include: :user)
   end
 
   def edit

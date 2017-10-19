@@ -4,7 +4,7 @@ import {ExchangeRatesService} from 'services/exchange-rates';
 import {Datastore} from 'resources/datastore';
 
 export class Index {
-  listings = [];
+  paymentRequests = [];
   companies = [];
   currentExchangeRate = 0;
 

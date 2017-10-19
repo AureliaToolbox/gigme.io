@@ -9,12 +9,15 @@
       <th>Listing</th>
       <th>Approval URL</th>
       <th>Completed?</th>
-      <th>Actions</th>
     </thead>
     <tbody>
       <tr repeat.for="paymentRequest of paymentRequests">
         <template if.bind="!paymentRequest.isEditing">
-          <td>${paymentRequest.amount | rounded} LTC - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
+          <td>
+            <a href="#/payment-requests/details/${paymentRequest.id}">
+              ${paymentRequest.amount | rounded} LTC - (${paymentRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)
+            </a>
+          </td>
           <td>
             <span if.bind="paymentRequest.user">
               ${paymentRequest.user.name}
@@ -26,7 +29,7 @@
             </span>
           </td>
           <td>
-            <span if.bind="paymentRequest.approval_url">
+            <span if.bind="paymentRequest.approval_url" class="td-ellipsis">
               ${paymentRequest.approval_url}
             </span>
           </td>
@@ -34,12 +37,6 @@
             <span>
               <i class="fa fa-${paymentRequest.completed ? 'check-square' : 'minus-square'}"></i>
             </span>
-          </td>
-          <td>
-            <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
-              click.trigger="approve(paymentRequest)">Approve</button>
-            <button class="btn btn-default" href="#" if.bind="!paymentRequest.completed"
-              click.trigger="reject(paymentRequest)">Reject</button>
           </td>
         </template>
       </tr>

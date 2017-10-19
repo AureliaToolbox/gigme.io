@@ -1,4 +1,5 @@
 class PaymentRequestsController < ApplicationController
+  before_action :set_payment_request, only: [:show]
   before_action :authenticate_user!
   respond_to :json
 
@@ -21,6 +22,10 @@ class PaymentRequestsController < ApplicationController
       format.html
       format.json { render json: @payment_request }
     end
+  end
+
+  def show
+    render json: @payment_request.to_json(include: [:user, :listing])
   end
 
   def edit

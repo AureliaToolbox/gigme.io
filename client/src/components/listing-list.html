@@ -6,7 +6,6 @@
       <th>Type</th>
       <th>Bounty</th>
       <th>Completed?</th>
-      <!-- <th>Actions</th> -->
     </thead>
     <tbody>
       <tr>
@@ -42,18 +41,6 @@
               ${listing.completed}
             </span>
           </td>
-<!--           <td>
-            <a href="#"
-              click.trigger="edit(listing)"
-              if.bind="listing.canEdit">Edit
-            </a>
-            <template if.bind="!listing.completed">
-              <button class="btn btn-default"
-                click.trigger="sendMoney(listing)">Add to Bounty</button>
-              <button class="btn btn-default"
-                click.trigger="requestPayment(listing)">Request Payment</button>
-            </template>
-          </td> -->
         </template>
         <template if.bind="listing.isEditing">
           <td>

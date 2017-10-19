@@ -5,6 +5,7 @@ import {Lazy} from 'aurelia-dependency-injection';
 export class Datastore {
   companies = [];
   listingTypes = [];
+  paymentRequests = [];
   listings = [];
   availabilities = [];
   experienceLevels = [];
@@ -37,6 +38,9 @@ export class Datastore {
   }
   addListingType(listingType) {
     this.listingTypes.push(listingType);
+  }
+  addPaymentRequest(paymentRequest) {
+    this.paymentRequests.push(paymentRequest);
   }
   setupListing(listing) {
     if (listing.company_id) {
