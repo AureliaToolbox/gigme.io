@@ -40,7 +40,6 @@ export class DataLoader {
         let availabilities = payload.availabilities;
         let listingTypes = payload.listing_types;
         let experienceLevels = payload.experience_levels;
-
         this.setPrimeData(availabilities, listingTypes, experienceLevels);
       });
     } else {

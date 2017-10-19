@@ -1,57 +1,48 @@
 <template>
   <a href="#/listings" class="btn btn-default">Back</a>
-  <h2>Listing Details</h2>
-  <div class="row" if.bind="listing">
-    <div class="col-xs-6">
-      <div class="well">
-        <div class="row">
-          <div class="col-xs-12">
-            <strong>Title</strong>
-            <span if.bind="!isEditing">${listing.title}</span>
-            <input class="form-control" if.bind="isEditing" value.bind="listing.title" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <strong>Description</strong>
-            <span if.bind="!isEditing">${listing.description}</span>
-            <input class="form-control" if.bind="isEditing" value.bind="listing.description" />
-          </div>
-        </div>
-        <div class="row" if.bind="listing.company">
-          <div class="col-xs-12">
-            <strong>Company</strong>
-            <span>${listing.company.name}</span>
-          </div>
-        </div>
+  <article>
+    <h1>${listing.title} <span>USD ${listing.address.total_value | usdFormat}</span></h1>
+    <p>${listing.description}</p>
+    <hr>
+    <p>
+      <button class="btn" click.trigger="doing()">
+        <i class="fal fa-building"></i>I am working on this
+      </button>
+      <button class="btn" click.trigger="sendMoney()">
+        <i class="fal fa-dollar-sign"></i>Add to Bounty
+      </button>
+      <button class="btn" click.trigger="requestPayment()">
+        <i class="fal fa-address-book"></i>Request Bounty
+      </button>
+    </p>
 
-        <template if.bind="listing.address">
-          <div class="row">
-            <div class="col-xs-12">
-              <strong>Address</strong>
-              <span>${listing.address.address}</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <strong>Balance (in Litecoin)</strong>
-              <span>${listing.address.available_balance}</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <strong>Pending Received Balance (in Litecoin)</strong>
-              <span>${listing.address.pending_received_balance}</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <strong>Total Value</strong>
-              <span>${listing.address.total_value | usdFormat}</span>
-            </div>
-          </div>
-        </template>
+    <section class="listing-meta">
+      <header>
+        <h1>Details</h1>
+      </header>
+      <div>
+        <ul class="unstyled-list">
+          <li>Submitted: ${listing.created_at}</li>
+          <li>Bounty offering: ${listing.address.total_value | usdFormat}(${listing.address.available_balance} LTC)</li>
+          <li>Company: ${listing.company.name}</li>
+          <li>Type: ${listing.listing_type.name}</li>
+          <li>People working on this: 0</li>
+        </ul>
       </div>
+    </section>
+  </article>
+
+  <modal if.bind="showDoingModal" confirm-text="Yes" cancel-text="Cancel" callback.call="doingModalCallback(type)">
+    <h4>Are you working on this?</h4>
+    <p>By clicking, "Yes" you acknowledge that comitting to this task does not guarantee payment. There are 3 people currently working on this task who could finish it before you do.</p>
+  </modal>
+
+  <modal if.bind="showContributeModal" confirm-text="Yes" cancel-text="Cancel" callback.call="contributeModalCallback(type)">
+    <h4>Add to bounty</h4>
+    <p>If you would like to contribute to the bounty of this task, please enter an amount of Litecoin (LTC) in the box below that you would like to contribute.</p>
+    <div class="form-input">
+      <span class="form-input-dressing">$LTC</span>
+      <input value.bind="contributeAmount" name="contributeAmount" type="text">
     </div>
-  </div>
+  </modal>
 </template>

@@ -1,0 +1,42 @@
+table, th, td {
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  width: 100%;
+}
+
+thead,
+thead > tr, 
+tbody > tr {
+  border-bottom: 1px solid rgba(175, 172, 172, 0.12);
+}
+
+tbody > tr {
+  background-color: .25s ease;
+}
+
+tbody > tr:hover {
+  background-color: #333;
+}
+
+td, th {
+  border-radius: 2px;
+  display: table-cell;
+  line-height: 1.429;
+  padding: 15px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  font-family: $font-raleway;
+}
+
+td a,
+th a {
+  text-decoration: none;
+}

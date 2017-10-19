@@ -6,7 +6,7 @@
       <th>Type</th>
       <th>Bounty</th>
       <th>Completed?</th>
-      <th>Actions</th>
+      <!-- <th>Actions</th> -->
     </thead>
     <tbody>
       <tr>
@@ -42,7 +42,7 @@
               ${listing.completed}
             </span>
           </td>
-          <td>
+<!--           <td>
             <a href="#"
               click.trigger="edit(listing)"
               if.bind="listing.canEdit">Edit
@@ -53,7 +53,7 @@
               <button class="btn btn-default"
                 click.trigger="requestPayment(listing)">Request Payment</button>
             </template>
-          </td>
+          </td> -->
         </template>
         <template if.bind="listing.isEditing">
           <td>
@@ -65,7 +65,7 @@
           <td>
             <select value.bind="listing.listing_type">
               <option model.bind="null">Choose...</option>
-              <option repeat.for="listing_type of listingTypes"
+              <option repeat.for="listing_type of datastore.listingTypes"
                       model.bind="listing_type">
                 ${listing_type.name}
               </option>

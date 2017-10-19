@@ -4,7 +4,6 @@ export class Session {
 
   constructor() {
     let csrfTokenElement = document.querySelector('meta[name="csrf-token"]')
-    console.log(csrfTokenElement)
     if (csrfTokenElement) {
       localStorage.setItem('csrf-token', csrfTokenElement.content);
     }

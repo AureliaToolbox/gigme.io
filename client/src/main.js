@@ -4,8 +4,7 @@ export function configure(aurelia) {
     .developmentLogging()
     .plugin('aurelia-dialog')
     .globalResources('resources/date-format')
-    .globalResources('resources/usd-format')
-    .globalResources('components/user-dropdown');
+    .globalResources('resources/usd-format');
 
   aurelia.start().then(() => aurelia.setRoot());
 }

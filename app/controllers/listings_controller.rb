@@ -27,9 +27,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.json { render json: @listing.to_json(include: [:address, :company]) }
-    end
+    render json: @listing.to_json(include: [:address, :company, :listing_type]) }
   end
 
   def edit

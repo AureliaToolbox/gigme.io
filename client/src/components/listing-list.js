@@ -2,6 +2,7 @@ import {CompaniesService} from 'services/companies';
 import {ListingsService} from 'services/listings';
 import {Listing, Company, ListingType} from 'models/index';
 import {Session} from 'services/session'
+import {Datastore} from 'resources/datastore'
 import {observable, bindable} from 'aurelia-framework';
 import {WalletsService} from 'services/wallets';
 import {DialogService} from 'aurelia-dialog';
@@ -15,20 +16,20 @@ export class ListingList {
   @bindable canAdd = false;
 
   companies = [];
-  listingTypes = [];
   displayListings = [];
   @observable titleFilter = '';
   @observable descriptionFilter = '';
   @observable companyFilter = '';
   @observable typeFilter = '';
 
-  static inject = [CompaniesService, ListingsService, WalletsService, Session, DialogService];
-  constructor(companiesService, listingsService, walletsService, session, dialogsService) {
+  static inject = [CompaniesService, ListingsService, WalletsService, Session, DialogService, Datastore];
+  constructor(companiesService, listingsService, walletsService, session, dialogsService, datastore) {
     this.listingsService = listingsService;
     this.session = session;
     this.companiesService = companiesService;
     this.walletsService = walletsService;
     this.dialogsService = dialogsService;
+    this.datastore = datastore;
   }
 
   attached() {
@@ -79,7 +80,6 @@ export class ListingList {
     this.filter();
   }
   filter() {
-    console.log(this.listings)
     this.displayListings = this.listings.filter(listing => {
       let match = true;
       if (this.titleFilter) {
