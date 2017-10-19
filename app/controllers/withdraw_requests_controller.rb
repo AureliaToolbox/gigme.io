@@ -25,7 +25,7 @@ class WithdrawRequestsController < ApplicationController
   end
 
   def show
-    render json: @payment_request.to_json(include: :user)
+    render json: @withdraw_request.to_json(include: :user)
   end
 
   def edit

@@ -6,6 +6,7 @@ export class Datastore {
   companies = [];
   listingTypes = [];
   paymentRequests = [];
+  withdrawRequests = [];
   listings = [];
   availabilities = [];
   experienceLevels = [];
@@ -41,6 +42,9 @@ export class Datastore {
   }
   addPaymentRequest(paymentRequest) {
     this.paymentRequests.push(paymentRequest);
+  }
+  addWithdrawRequest(withdrawRequest) {
+    this.withdrawRequests.push(withdrawRequest);
   }
   setupListing(listing) {
     if (listing.company_id) {

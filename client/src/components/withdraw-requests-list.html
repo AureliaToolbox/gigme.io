@@ -12,7 +12,11 @@
     <tbody>
       <tr repeat.for="withdrawRequest of withdrawRequests">
         <template if.bind="!withdrawRequest.isEditing">
-          <td>${withdrawRequest.amount | rounded} LTC - (${withdrawRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)</td>
+          <td>
+            <a href="#/payment-requests/withdraw-details/${withdrawRequest.id}">
+              ${withdrawRequest.amount | rounded} LTC - (${withdrawRequest.amount | toCurrency:currentExchangeRate | usdFormat} USD)
+            </a>
+          </td>
           <td>
             <span if.bind="withdrawRequest.to_address">
               ${withdrawRequest.to_address}
@@ -27,12 +31,6 @@
             <span if.bind="withdrawRequest.user">
               ${withdrawRequest.user.name}
             </span>
-          </td>
-          <td>
-            <button class="btn btn-default" href="#" if.bind="!withdrawRequest.completed"
-              click.trigger="approve(withdrawRequest)">Approve</button>
-            <button class="btn btn-default" href="#" if.bind="!withdrawRequest.completed"
-              click.trigger="reject(withdrawRequest)">Reject</button>
           </td>
         </template>
       </tr>
