@@ -72,6 +72,7 @@ export class PaymentRequestInCurrency {
   controllingInterestFees;
   remainder;
   total;
+
   constructor(data) {
     Object.assign(this, data);
   }
