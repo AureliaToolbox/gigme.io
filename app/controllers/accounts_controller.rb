@@ -66,8 +66,8 @@ class AccountsController < ApplicationController
   end
 
   def request_from_listing
-    amount = params[:amount]
     listing = Listing.find(params[:listing_id])
+    amount = listing.address.available_balance
     approval_url = params[:approval_url]
 
     PaymentRequestService.request_from_listing(amount, approval_url, current_user, listing)

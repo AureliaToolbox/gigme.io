@@ -30,27 +30,22 @@ class ListingsController < ApplicationController
     render json: @listing.to_json(include: [:address, :company, :listing_type])
   end
 
-  def edit
-  end
-
   def create
     @listing = Listing.new(listing_params)
     @address = CreateWalletService.create_listing_address(@listing)
+
     return false if cannot_save_or_update
+
     @listing.save!
-    respond_to do |format|
-      format.html { redirect_to(@listing) }
-      format.json { render json: @listing }
-    end
+    render json: @listing
   end
 
   def update
     return false if cannot_save_or_update
+
     @listing.update(listing_params)
-    respond_to do |format|
-      format.html { redirect_to(@listing) }
-      format.json { render json: @listing }
-    end
+
+    render json: @listing
   end
 
   private
@@ -63,6 +58,6 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:title, :description, :company_id, :listing_type_id)
+      params.require(:listing).permit(:title, :description)
     end
 end

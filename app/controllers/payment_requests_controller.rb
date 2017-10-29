@@ -31,14 +31,14 @@ class PaymentRequestsController < ApplicationController
   def edit
   end
 
-  def create
-    @payment_request = PaymentRequest.new(payment_request_params)
-    @payment_request.save!
+  # def create
+  #   @payment_request = PaymentRequest.new(payment_request_params)
+  #   @payment_request.save!
 
-    respond_to do |format|
-      format.json { render json: @payment_request }
-    end
-  end
+  #   respond_to do |format|
+  #     format.json { render json: @payment_request }
+  #   end
+  # end
 
   def approve
     set_payment_request
@@ -57,12 +57,10 @@ class PaymentRequestsController < ApplicationController
 
   def update
     set_payment_request
+
     @payment_request.update(payment_request_params)
 
-    respond_to do |format|
-      format.html { redirect_to(@payment_request) }
-      format.json { render json: @payment_request }
-    end
+    render json: @payment_request
   end
 
   private
@@ -71,6 +69,6 @@ class PaymentRequestsController < ApplicationController
     end
 
     def payment_request_params
-      params.require(:payment_request).permit(:amount, :from_address, :to_label, :approval_url, :completed, :user_id, :listing_id)
+      params.require(:payment_request).permit(:approval_url)
   end
 end
